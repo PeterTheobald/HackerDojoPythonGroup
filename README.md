@@ -18,9 +18,9 @@ The meetings are oriented around in-person conversations gathered together at th
 - 2024-05-21 Web Scraping Pt.1 - Requests, Beautiful Soup, Mechanical Soup, HTML, DOM, XPath
 - 2024-05-14 command line programs (argument parsing, graphic interfaces, terminal interfaces) argparse, gooey,
 - 2024-05-07 Hosted by Kevin V: git
-- 2024-04-30 concurrency 3: Multiprocessing
+- 2024-04-30 concurrency 4: Multiprocessing
 - 2024-04-23 PyTest
-- 2024-04-16 Concurrency 2: Multi-threading
+- 2024-04-16 Concurrency 3: Multi-threading
 - 2024-04-09 file operations
 - 2024-04-02 All about strings
 - 2024-03-26 Python development best-practices
@@ -29,7 +29,7 @@ The meetings are oriented around in-person conversations gathered together at th
 - 2024-03-08 classes and objects
 - 2024-02-27 misc
 - 2024-02-20 Python packages
-- 2024-02-13 concurrency 3: Starting, controlling, interactive with and stopping sub-processes from Python
+- 2024-02-13 concurrency 2: Starting, controlling, interactive with and stopping sub-processes from Python
 - 2024-02-06 "intro to Python data structures - How are they different than Java,Javascript, C++ etc"; Pip, Poetry,
 - 2024-01-30 NICEGui instant web sites
 - 2024-01-23 SQL Alchemy
