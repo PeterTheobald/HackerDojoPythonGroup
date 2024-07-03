@@ -10,6 +10,7 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Calendar of past meeting topics:
 
+- 2024-07-02 hosted by John H: Geocoding, streamlit and more.
 - 2024-06-25 speed shootout: CPU bound - memoize, dict>binarytree>list, profiling, cpython/numpy/pypy/numba/cython/codon
 - 2024-06-18 hosted by John H: using Git with Github; Visualization library Seaborn used to graph last week's speed shootout results.
 - 2024-06-11 speed shootout: IO bound - sequential, async, multi-threading, multi-processing
