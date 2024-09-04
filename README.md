@@ -10,9 +10,18 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Calendar of past meeting topics:
 
-- 2024-07-02 hosted by John H: Geocoding, streamlit and more.
+- 2024-09-03 WebSockets/HTMX chat app - Peter Theobald, https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
+- 2024-08-27 SEC API - Juan Flores, https://github.com/jf-2023/finance-apis-2024-08-27
+- 2024-08-20 Pandas vs Polars - Kelvin Shi, https://github.com/Legume1728/pandas-polars-demo (also demo from Mesibo)
+- 2024-08-13 Jinja2 - Fred Cox, https://github.com/sailorfred/python-meetup-2024-08-13
+- 2024-08-06 HTMX - John Hanley, https://github.com/jhanley634/dojo-2024-08-06-htmx
+- 2024-07-30 Python EDA - Kelvin Shi, https://github.com/Legume1728/eda-demo
+- 2024-07-23 FastAPI / Pydantic - Fred Cox, https://github.com/sailorfred/python-meetup-2024-07-23/
+- 2024-07-16 Unit Testing - Blaise Pabon, https://docs.google.com/presentation/d/1Db7kE2D4BCAjyVTbeax4jH2u8v4QPScoN1qVD-ySu7Q/edit#slide=id.p
+- 2024-07-09 Python Profiling	- Kelvin Shi,	https://github.com/Legume1728/python-profiling-demo
+- 2024-07-02 hosted by John H: Geocoding, streamlit and more, https://github.com/jhanley634/dojo-2024-06-18-geocode
 - 2024-06-25 speed shootout: CPU bound - memoize, dict>binarytree>list, profiling, cpython/numpy/pypy/numba/cython/codon
-- 2024-06-18 hosted by John H: using Git with Github; Visualization library Seaborn used to graph last week's speed shootout results.
+- 2024-06-18 hosted by John H: using Git with Github, pull requests; Visualization library Seaborn used to graph last week's speed shootout results.
 - 2024-06-11 speed shootout: IO bound - sequential, async, multi-threading, multi-processing
 - 2024-06-04 HTMX for websites
 - 2024-05-28 Web Scraping Pt.2 - Selenium, XPath
