@@ -28,7 +28,7 @@ Ready to work on project!
 ```
 Read to work on project!
 
-### If a Project uses Jupyter Notebooks:
+### If a project uses Jupyter Notebooks:
 ```
 % cd ~/Documents/<proj_dir>
 % source <projname_venv>/bin/activate
