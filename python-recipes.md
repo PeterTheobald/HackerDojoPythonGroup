@@ -12,7 +12,7 @@ On your local machine open a terminal:
 % cd <project_dir>
 % pyenv local 3.12 # set the Python version for this project
 ```
-If Python 3.12 isn't installed, `pyenv install 3.12` will do it
+If Python 3.12 isn't installed, `pyenv install 3.12` will do it  
 create a virtual environment where all packages will be installed:
 ```
 % python -m venv <projname_venv> # pick a good but short name
