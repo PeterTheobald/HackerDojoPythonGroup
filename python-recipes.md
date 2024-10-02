@@ -1,8 +1,10 @@
-# First install tool: pyenv https://github.com/pyenv/pyenv?tab=readme-ov-file#installation
+## Python recipes for common workflows
 
-#  Start a new project:
-#    Make repo at github.com and copy the CODE ssh URL
-#    On your local machine open a terminal:
+First install tool: pyenv https://github.com/pyenv/pyenv?tab=readme-ov-file#installation
+
+### Start a new project:
+Make repo at github.com and copy the CODE ssh URL
+On your local machine open a terminal:
 ```
 % cd ~/Documents # or wherever you keep projects
 % git clone <paste repo_URL> # makes a new folder and downloads repo into it
@@ -17,22 +19,27 @@
 % source <projname_venv>/bin/activate # activate the environment
 % pip install -r requirements.txt
 ```
-#    Ready to work on project!
+Ready to work on project!
 
-#  Enter an existing project:
+### Enter an existing project:
+```
 % cd ~/Documents/<proj_dir>
 % source <projname_venv>/bin/activate
-#   Read to work on project!
+```
+Read to work on project!
 
-#  If a Project uses Jupyter Notebooks:
+### If a Project uses Jupyter Notebooks:
+```
 % cd ~/Documents/<proj_dir>
 % source <projname_venv>/bin/activate
 #    Add "notebook" to requirements.txt
 % pip install -r requirements.txt
 % jupyter notebook # start notebook
+```
 
-#    Basic GIT commands for working on projects:
-#    Create feature branch on github.com
+### Basic GIT commands for working on projects:
+Create feature branch on github.com
+```
 % git checkout <branch>
 #    Edit files
 % git status
@@ -40,4 +47,5 @@
 % git commit -m "description" 
 % git push origin # send to github.com
 #    Go to repo on github.com and create PULL REQUEST
+```
 
