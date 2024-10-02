@@ -1,0 +1,33 @@
+#  Start a new project:
+#    Make repo at github.com and copy the CODE ssh URL
+#    On your local machine open a terminal:
+% cd ~/Documents # or wherever you keep projects
+% git clone <paste repo_URL> # makes a new folder and downloads repo into it
+% ls
+% cd <project_dir>
+% pyenv local 3.12 # set the Python version for this project
+#    create a virtual environment where all packages will be installed:
+% python -m venv <projname_venv> # pick a good but short name
+% source <projname_venv>/bin/activate # activate the environment
+% pip install -r requirements.txt
+#    Ready to work on project!
+
+#  Enter an existing project:
+% cd ~/Documents/<proj_dir>
+% source <projname_venv>/bin/activate
+#   Read to work on project!
+
+#  A Project uses Jupyter Notebooks:
+#    Add "notebook" to requirements.txt
+% pip install -r requirements.txt
+% jupyter notebook # start notebook
+
+#  Basic GIT commands for working on project:
+#  Create feature branch on github.com
+% git checkout <branch>
+#    Edit files
+% git status
+% git add . # or git add <file>
+% git commit -m "description" 
+% git push origin # send to github.com
+
