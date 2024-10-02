@@ -46,6 +46,7 @@ Create feature branch on github.com
 % git add . # or git add <file>
 % git commit -m "description" 
 % git push origin # send to github.com
-#    Go to repo on github.com and create PULL REQUEST
 ```
+Go to repo on github.com and create PULL REQUEST
+(If you are the only one working on a project you could skip the feature branch and use main for everything)
 
