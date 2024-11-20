@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+aside, section {
+    padding: 10px;
+    border-right: 1px solid #ddd;
+}
+
+#topics-section {
+    width: 30%;
+    border-right: 1px solid #ddd;
+}
+
+#comments-section {
+    flex: 1;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
+
