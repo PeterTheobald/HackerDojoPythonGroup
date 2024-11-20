@@ -1,0 +1,16 @@
+# Web framework and server
+fastapi==0.109.1
+uvicorn==0.27.0
+
+# Database ORM
+sqlalchemy==2.0.25
+
+# Data validation and email handling
+pydantic[email]==2.0.3
+
+# Password hashing and security
+passlib[bcrypt]==1.7.4
+PyJWT==2.8.0
+
+# Form handling (needed for OAuth2 password flow)
+python-multipart==0.0.7

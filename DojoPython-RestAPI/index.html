@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Dojo Python Discussion Board</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>Discussion Board</h1>
+            <div id="auth-section">
+                <button id="register-btn">Register</button>
+                <button id="login-btn">Login</button>
+                <button id="logout-btn" style="display: none;">Logout</button>
+           </div>
+           <div id="username-display" style="margin-left: auto; font-weight: bold;"></div>
+        </header>
+        <main>
+            <aside id="topics-section">
+                <h2>Topics</h2>
+                <button id="new-topic-btn">New Topic</button>
+                <ul id="topics-list"></ul>
+            </aside>
+            <section id="comments-section">
+                <h2>Comments</h2>
+                <ul id="comments-list"></ul>
+                <textarea id="new-comment-input" placeholder="Write a comment..."></textarea>
+                <button id="post-comment-btn">Post Comment</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
