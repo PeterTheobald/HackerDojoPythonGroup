@@ -1,11 +1,14 @@
 from fastapi import FastAPI, HTTPException, Depends, Security, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, EmailStr, Field, validator
 from typing import List, Optional
 from datetime import datetime, timedelta
 import uuid
 import jwt
+from pathlib import Path
 from passlib.context import CryptContext
 from sqlalchemy import create_engine, Column, String, DateTime, ForeignKey, Text
 from sqlalchemy.ext.declarative import declarative_base
@@ -192,6 +195,9 @@ async def get_current_user(
 # FastAPI app
 app = FastAPI(title="Hacker Dojo Python Discussion Board API")
 
+# Serve static files (CSS, JS)
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
@@ -200,6 +206,12 @@ app.add_middleware(
     allow_methods=["*"],  # Allow specific methods or "*" for all
     allow_headers=["*"],  # Allow specific headers or "*" for all
 )
+
+# Serve HTML for "/"
+@app.get("/", response_class=HTMLResponse)
+async def root():
+    html_file = Path("templates/index.html").read_text()
+    return HTMLResponse(content=html_file)
 
 # Auth endpoints
 @app.post("/auth/register", response_model=User, status_code=status.HTTP_201_CREATED)
