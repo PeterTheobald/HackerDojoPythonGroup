@@ -11,6 +11,7 @@ The meetings are oriented around in-person conversations gathered together at th
 ## Ideas for upcoming meeting topics:
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
 - making a game in Python, Pygame
+
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
 ## Calendar of past meeting topics:
