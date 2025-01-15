@@ -4,13 +4,39 @@
 
 We meet every Tuesday night at 6:30 at the [Hacker Dojo](https://hackerdojo.org/) in Mountain View, CA. Our discussions usually start with a specific topic such as a programming technique, Python language features, or a new module or library. Some nights are good for beginners just learning Python and some get pretty advanced. We usually follow the threads of our conversation off into whatever questions or tangents interest the group that night. The discussions are usually hosted by me, Peter Theobald, or by one of our regular members.
 
-Between meetings, come chat about your Python questions in the Python channel in the [Hacker Dojo Discord.](https://discord.gg/qz3v4ggQdP) We announce our meetings on the [Hacker Dojo Meetup page.](https://www.meetup.com/hackerdojo/events/)
+Between meetings, come chat about your Python questions in the [Python channel](https://discord.com/channels/698267668918173827/1111141001818537985)  in the [Hacker Dojo Discord.](https://discord.gg/qz3v4ggQdP) We announce our meetings on the [Hacker Dojo Meetup page.](https://www.meetup.com/hackerdojo/events/)
 
 The meetings are oriented around in-person conversations gathered together at the [Hacker Dojo](https://hackerdojo.org/), but we do usually stream the meetings in the [Hacker Dojo Discord](https://discord.gg/qz3v4ggQdP) 'Dojo Voicebox' channel, although remote is not ideal because it can be hard to catch everyone's comments and it is harder to ask questions.
 
+## Ideas for upcoming meeting topics:
+- Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
+- making a game in Python, Pygame
+Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
+
 ## Calendar of past meeting topics:
 
-- 2024-09-03 WebSockets/HTMX chat app - Peter Theobald, https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
+- 2025-01-28
+- 2025-01-21
+- 2025-01-14 Serialization for data persistence and transmission
+- 2025-01-07 Python Power Tools 
+- 2024-12-31 .. no meeting - holiday
+- 2024-12-24 .. no meeting - holiday
+- 2024-12-17 Itertools, Functools, Toolz Part 2
+- 2024-12-10 Machine Learning - John Hanley
+- 2024-12-03 Itertools, Functools, Toolz
+- 2024-11-26 GraphQL - Kelvin Shi, https://github.com/Legume1728/graphql-demo
+- 2024-11-19 REST APIs - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/DojoPython-RestAPI
+- 2024-11-12 Generators as pipelines - John Hanley, https://github.com/jhanley634/dojo-blackboard/blob/main/talks/2024-11-12-sloc.md
+- 2024-11-05 Python NamedTuples, Dataclasses and Classes, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/DojoPython_dataclasses.ipynb
+- 2024-10-29 Cursor (AI IDE) - Sam Mirazi, https://sam-m345.github.io/connect-4/
+- 2024-10-22 BAML AI apps- Gintautas Svedas, https://github.com/GintasS/Hacker-Dojo-BAML
+- 2024-10-15 Modern Python Toolset: uv, pyright, ruff, pytest, pydantic, etc. - Peter Theobald
+- 2024-10-08 Streamlit vs Mesop - Kelvin Shi, https://github.com/Legume1728/streamlit-mesop-demo
+- 2024-10-01 Iterators, Generators, Dunder Methods - Peter Theobald, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-recipes.md
+- 2024-09-24 Talk from PyBay, SSE vs. WebSockets, OR-Tools Constraint Based Solver - John Hanley, Peter Theobald
+- 2024-09-17 Python Culture - John Hanley, https://github.com/jhanley634/dojo-blackboard/tree/main/talks/out/
+- 2024-09-10 Interactive Visualization with IPyWidgets - Kelvin Shi, https://github.com/Legume1728/interactive-viz-demo
+- 2024-09-03 Building a WebSockets/HTMX chat app - Peter Theobald, https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
 - 2024-08-27 SEC API - Juan Flores, https://github.com/jf-2023/finance-apis-2024-08-27
 - 2024-08-20 Pandas vs Polars - Kelvin Shi, https://github.com/Legume1728/pandas-polars-demo (also demo from Mesibo)
 - 2024-08-13 Jinja2 - Fred Cox, https://github.com/sailorfred/python-meetup-2024-08-13
@@ -19,23 +45,23 @@ The meetings are oriented around in-person conversations gathered together at th
 - 2024-07-23 FastAPI / Pydantic - Fred Cox, https://github.com/sailorfred/python-meetup-2024-07-23/
 - 2024-07-16 Unit Testing - Blaise Pabon, https://docs.google.com/presentation/d/1Db7kE2D4BCAjyVTbeax4jH2u8v4QPScoN1qVD-ySu7Q/edit#slide=id.p
 - 2024-07-09 Python Profiling	- Kelvin Shi,	https://github.com/Legume1728/python-profiling-demo
-- 2024-07-02 hosted by John H: Geocoding, streamlit and more, https://github.com/jhanley634/dojo-2024-06-18-geocode
+- 2024-07-02 Geocoding, streamlit and more - John Hanley, https://github.com/jhanley634/dojo-2024-06-18-geocode
 - 2024-06-25 speed shootout: CPU bound - memoize, dict>binarytree>list, profiling, cpython/numpy/pypy/numba/cython/codon
-- 2024-06-18 hosted by John H: using Git with Github, pull requests; Visualization library Seaborn used to graph last week's speed shootout results.
+- 2024-06-18 using Git with Github, pull requests; Visualization library Seaborn used to graph last week's speed shootout results. - John Hanley
 - 2024-06-11 speed shootout: IO bound - sequential, async, multi-threading, multi-processing
 - 2024-06-04 HTMX for websites
 - 2024-05-28 Web Scraping Pt.2 - Selenium, XPath
 - 2024-05-21 Web Scraping Pt.1 - Requests, Beautiful Soup, Mechanical Soup, HTML, DOM, XPath
 - 2024-05-14 command line programs (argument parsing, graphic interfaces, terminal interfaces) argparse, gooey,
-- 2024-05-07 Hosted by Kevin V: git
+- 2024-05-07 git - Kevin V
 - 2024-04-30 concurrency 4: Multiprocessing
 - 2024-04-23 PyTest
 - 2024-04-16 Concurrency 3: Multi-threading
 - 2024-04-09 file operations
 - 2024-04-02 All about strings
 - 2024-03-26 Python development best-practices
-- 2024-03-19 hosted by Jessica: bioinformatics, machine learning , numpy, pandas, and scikit-learn
-- 2024-03-12 hosted by John H: setting up a Python environment with Conda, database from IMDB and processed it with Pandas and SQLAlchemy
+- 2024-03-19 bioinformatics, machine learning , numpy, pandas, and scikit-learn - Jessica
+- 2024-03-12 setting up a Python environment with Conda, database from IMDB and processed it with Pandas and SQLAlchemy - John Hanley
 - 2024-03-08 classes and objects
 - 2024-02-27 misc
 - 2024-02-20 Python packages
@@ -68,3 +94,6 @@ The meetings are oriented around in-person conversations gathered together at th
 - 2023-07-26 Data Types: functions vs generators, list comprehensions and generator comprehensions, some other data types such as DefaultDicts, stacks, deques, etc, when to use tuples, dicts, namedTuples, dataclasses or classes
 - 2023-07-19 misc
 - 2023-07-05 misc
+
+\* if no name is listed the speaker is Peter Theobald
+
