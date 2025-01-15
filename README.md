@@ -18,7 +18,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 - 2025-01-28
 - 2025-01-21
-- 2025-01-14 Serialization for data persistence and transmission, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md
+- 2025-01-14 Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md
 - 2025-01-07 Python Power Tools, huge results with minimal code: ORTools, Gooey, Seaborn, Streamlit, etc
 - 2024-12-31 .. no meeting - holiday
 - 2024-12-24 .. no meeting - holiday
