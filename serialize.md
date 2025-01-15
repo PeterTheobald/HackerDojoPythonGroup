@@ -5,7 +5,7 @@ Serialization and Transmission
 2. *SEND* data to another service
 
 ## tl;dr the best
-You will probably use JSON, Pickle or Protobufs for most use cases
+You will probably use JSON, Pickle (or the easier shelve or TinyDB) or Protobufs for most use cases
 
 ## Formats
 
@@ -20,6 +20,7 @@ Binary formats:
 not human readble, but *fast* and *compact*
 - Pickle - Native, built-in, any complex Python data structure. DANGEROUS EVAL!
     - alternatives: Marshal (faster but not all data types), Dill (more data types)
+- Python DBM (and other minimal key-value stores) - fast easy built-in DICTS ONLY
 - Google Protobuf - efficient fast compact with schema for data layout and types
 - Apache Thrift - compact binary schema used by Meta
 - avro - efficient, built in schema
@@ -75,6 +76,66 @@ with open("data.pkl", "rb") as file:
 print(loaded_data)
 ```
 
+## DBM
+fast standard built-in, easiest, just use like a dict and it gets stored in the key-value dbm file.
+Keys and values must be BYTES. Strings must be converted to bytes. Other data structures must be serializes (with pickle or json etc)
+
+
+```
+import dbm
+
+# Open a database in write mode, creating it if it doesn't exist
+with dbm.open("example_db", "c") as db:
+    db[b"key1"] = b"value1"
+    db[b"key2"] = b"value2"
+    db[b"key3"] = b"value3"
+
+
+# Open the database in read mode
+with dbm.open("example_db", "r") as db:
+    for key in db.keys():
+        print(f"{key.decode()}: {db[key].decode()}")
+
+# Open the database in write mode
+with dbm.open("example_db", "w") as db:
+    del db[b"key1"]  # Deletes the entry with key 'key1'
+
+```
+
+shelve library is easier to use. Same as DBM but uses pickle internally to convert complex data types for you.
+
+```
+import shelve
+
+# Writing data
+with shelve.open("example_shelve") as db:
+    db["key1"] = {"name": "Alice", "age": 30}
+    db["key2"] = [1, 2, 3]
+
+# Reading data
+with shelve.open("example_shelve") as db:
+    print(db["key1"])  # {'name': 'Alice', 'age': 30}
+    print(db["key2"])  # [1, 2, 3]
+
+```
+
+TinyDB is a similar library that is easy to use and handles all serialization (using JSON) internally
+```
+from tinydb import TinyDB, Query
+
+db = TinyDB("example_db.json")
+
+# Insert data
+db.insert({"key": "key1", "value": "value1"})
+db.insert({"key": "key2", "value": {"name": "Alice", "age": 30}})
+
+# Query data
+query = Query()
+result = db.search(query.key == "key2")
+print(result)  # [{'key': 'key2', 'value': {'name': 'Alice', 'age': 30}}]
+```
+
+
 ## JSON
 
 ```
@@ -94,20 +155,6 @@ with open("data.json", "r") as file:
 # Output the loaded data
 print(loaded_data)
 ```
-
-
-## Database
-
-- Manually save data to a SQL database: sqlite, MySql, etc.
-- Use an ORM to convert data structures to SQL: SQLAlchemy, Django ORM
-- Manually save JSON to a document/Object database: pyMongo, redis-py, Cassandra, AWS S3 (boto3) 
-- Redis: fast in-memory database
-- ZODB: Object oriented database for Python saves python objects directly without a schema
-
-## Message queues
-
-- Stores high speed and volume of data in a queue for async writing to another datastore
-- RabbitMQ, Kafka
 
 ## Google Protobuf
 
@@ -158,3 +205,39 @@ print(f"Hobbies: {', '.join(person.hobbies)}")
 
 ```
 
+
+## Database
+
+- Manually save data to a SQL database: sqlite, MySql, etc.
+- Use an ORM to convert data structures to SQL: SQLAlchemy, Django ORM
+- Manually save JSON to a document/Object database: pyMongo, redis-py, Cassandra, AWS S3 (boto3) 
+- Redis: fast in-memory database
+- ZODB: Object oriented database for Python saves python objects directly without a schema
+
+## Message queues
+
+- Stores high speed and volume of data in a queue for async writing to another datastore
+- RabbitMQ, Kafka
+
+## Redis
+
+Lightning fast in-memory cache, often used as a front-end to databases for speed.
+key-value. keys are strings, values are strings or serialized data structures with pickle or JSON
+can be persisted to disk with RDB or AOF
+
+```
+import redis
+import json
+
+# Connect to Redis
+client = redis.Redis()
+
+# Storing and retrieving strings
+client.set("key1", "value1")
+print(client.get("key1").decode())  # value1
+
+# Storing Python objects (manual serialization)
+client.set("key2", json.dumps({"name": "Alice", "age": 30}))
+print(json.loads(client.get("key2")))  # {'name': 'Alice', 'age': 30}
+
+```
