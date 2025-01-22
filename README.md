@@ -10,14 +10,17 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Ideas for upcoming meeting topics:
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
-- making a game in Python, Pygame
+- logging
+- cursor.ai demo
+- MicroPython on a tiny controller (Raspberry Pico)
+- PyDantic and AI
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
 ## Calendar of past meeting topics:
 
 - 2025-01-28
-- 2025-01-21
+- 2025-01-21 Make a simple videogame from scratch with PyGame
 - 2025-01-14 Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md
 - 2025-01-07 Python Power Tools, huge results with minimal code: ORTools, Gooey, Seaborn, Streamlit, etc
 - 2024-12-31 .. no meeting - holiday
