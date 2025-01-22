@@ -2,7 +2,7 @@
 ## About
 [Hacker Dojo](https://hackerdojo.org/) is a collaborative hackerspace in Silicon Valley where tech enthusiasts gather to build, experiment and improve. The Hacker Dojo Python Group is a group of people interested in learning more about developing in the Python programming language.
 
-We meet every Tuesday night at 6:30 at the [Hacker Dojo](https://hackerdojo.org/) in Mountain View, CA. Our discussions usually start with a specific topic such as a programming technique, Python language features, or a new module or library. Some nights are good for beginners just learning Python and some get pretty advanced. We usually follow the threads of our conversation off into whatever questions or tangents interest the group that night. The discussions are usually hosted by me, Peter Theobald, or by one of our regular members.
+We meet every Tuesday night at 6:30 at the [Hacker Dojo](https://hackerdojo.org/) in Mountain View, CA. Our discussions usually start with a specific topic such as a programming technique, Python language features, or a new module or library. Some nights are good for beginners just learning Python and some get pretty advanced. The first Tuesday of the month is usually a beginner topic. We usually follow the threads of our conversation off into whatever questions or tangents interest the group that night. The discussions are usually hosted by me, Peter Theobald, or by one of our regular members.
 
 Between meetings, come chat about your Python questions in the [Python channel](https://discord.com/channels/698267668918173827/1111141001818537985)  in the [Hacker Dojo Discord.](https://discord.gg/qz3v4ggQdP) We announce our meetings on the [Hacker Dojo Meetup page.](https://www.meetup.com/hackerdojo/events/)
 
