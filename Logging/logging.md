@@ -3,6 +3,7 @@
 ## Simplest: print logging
 ```
     print(value)
+```
 
 ## Logging module
 
@@ -12,6 +13,7 @@
 4. Can search/filter consolidated log files
 
 ## Basic usage
+
 ```
 import logging
 
