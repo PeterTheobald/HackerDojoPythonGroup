@@ -20,8 +20,8 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
-- 2025-01-28
-- 2025-01-21 Make a simple videogame from scratch with PyGame
+- 2025-01-28 Logging - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Logging/logging.md
+- 2025-01-21 Make a simple videogame from scratch with PyGame - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pygame
 - 2025-01-14 Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md
 - 2025-01-07 Python Power Tools, huge results with minimal code: ORTools, Gooey, Seaborn, Streamlit, etc
 - 2024-12-31 .. no meeting - holiday
@@ -35,13 +35,13 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 - 2024-11-05 Python NamedTuples, Dataclasses and Classes, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/DojoPython_dataclasses.ipynb
 - 2024-10-29 Cursor (AI IDE) - Sam Mirazi, https://sam-m345.github.io/connect-4/
 - 2024-10-22 BAML AI apps- Gintautas Svedas, https://github.com/GintasS/Hacker-Dojo-BAML
-- 2024-10-15 Modern Python Toolset: uv, pyright, ruff, pytest, pydantic, etc. - Peter Theobald
+- 2024-10-15 Modern Python Toolset: uv, pyright, ruff, pytest, pydantic, etc.
 - 2024-10-08 Streamlit vs Mesop - Kelvin Shi, https://github.com/Legume1728/streamlit-mesop-demo
-- 2024-10-01 Iterators, Generators, Dunder Methods - Peter Theobald, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-recipes.md
+- 2024-10-01 Iterators, Generators, Dunder Methods - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-recipes.md
 - 2024-09-24 Talk from PyBay, SSE vs. WebSockets, OR-Tools Constraint Based Solver - John Hanley, Peter Theobald
 - 2024-09-17 Python Culture - John Hanley, https://github.com/jhanley634/dojo-blackboard/tree/main/talks/out/
 - 2024-09-10 Interactive Visualization with IPyWidgets - Kelvin Shi, https://github.com/Legume1728/interactive-viz-demo
-- 2024-09-03 Building a WebSockets/HTMX chat app - Peter Theobald, https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
+- 2024-09-03 Building a WebSockets/HTMX chat app - https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
 - 2024-08-27 SEC API - Juan Flores, https://github.com/jf-2023/finance-apis-2024-08-27
 - 2024-08-20 Pandas vs Polars - Kelvin Shi, https://github.com/Legume1728/pandas-polars-demo (also demo from Mesibo)
 - 2024-08-13 Jinja2 - Fred Cox, https://github.com/sailorfred/python-meetup-2024-08-13
