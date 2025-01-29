@@ -70,8 +70,10 @@ def main():
 if __name__ == "__main__":
     sys.exit(main())
 ```
-## Standard field in the formatter
 
+## Standard fields in the formatter
+
+```
 Placeholder	Description
 %(name)s	Name of the logger (logger.name).
 %(levelno)s	Numeric log level for the message (e.g., 10 for DEBUG, 20 for INFO, 30 for WARNING, etc.).
@@ -89,6 +91,7 @@ Placeholder	Description
 %(threadName)s	Thread name (if available).
 %(process)d	Process ID (if available).
 %(message)s	The final text message after applying any msg % args manipulations.
+```
 
 ## Extra fields in the formatter
 You can define custom fields to add to the log format
@@ -351,7 +354,7 @@ memory_handler.flush()
 - QueueHandler: If you need asynchronous logging, consider the QueueHandler (and QueueListener) approach, which can offload log handling to a separate thread or process.
 
 
-## advanced
+## Advanced
 
 - Be aware of security. Some of these send logs over the network unencrypted.
 - Loki is a well known central log server with a user interface for searching and filtering logs. It's made by Grafana Labs which has other "observability" tools. It can scale horizontally to multiple servers. It has a query language. It works well with Grafana to make dashboards and charts and graphs based on the data. It can even work without sending logs over the network by running the "Promtail" agent which watches the end of your log file and sending new logs to the server. It can store logs locally, across a cluster of Loki's or in cloud storage like S3.
