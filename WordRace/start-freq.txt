@@ -1,0 +1,28 @@
+# English letter frequency as the start of a word
+# source: https://norvig.com/mayzner.html
+e 2.799
+t 15.978
+a 11.682
+o 7.631
+i 7.294
+n 2.284
+s 6.686
+r 2.826
+h 4.2
+l 2.415
+d 3.174
+c 5.238
+u 1.183
+m 3.826
+f 4.027
+p 4.319
+g 1.642
+w 5.497
+y 0.763
+b 4.434
+v 0.824
+k 0.456
+x 0.045
+j 0.511
+q 0.222
+z 0.045
