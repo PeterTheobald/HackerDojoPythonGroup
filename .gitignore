@@ -1,5 +1,6 @@
 dojo_venv/
 venv/
+.venv/
 .ipynb_checkpoints/
 .DS_Store
 
