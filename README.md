@@ -10,7 +10,6 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Ideas for upcoming meeting topics:
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
-- logging
 - cursor.ai demo
 - MicroPython on a tiny controller (Raspberry Pico)
 - PyDantic and AI
@@ -20,6 +19,8 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
+- 2025-02-11 Demo of Cursor.ai AI enhanced IDE
+- 2025-02-04 First Tuesdays for Beginners: Python data types. We peek under the hood at how Python stores scalars and sequences, immutibles and mutables
 - 2025-01-28 Logging - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Logging/logging.md
 - 2025-01-21 Make a simple videogame from scratch with PyGame - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pygame
 - 2025-01-14 Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md

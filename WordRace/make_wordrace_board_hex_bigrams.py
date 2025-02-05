@@ -9,7 +9,7 @@ ROWS = 13
 COLS = 10
 
 # We'll define the "pointy-top" hex so that its top-to-bottom diameter is 0.75 inches
-HEX_DIAM = 0.75 * inch
+HEX_DIAM = 0.8 * inch
 SIDE = HEX_DIAM / 2.0  # side length of the hex
 
 # Page size in inches
