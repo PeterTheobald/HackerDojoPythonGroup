@@ -10,7 +10,7 @@ LIGHT_RED = Color(1, 0.8, 0.8)
 
 PAGE_WIDTH = 8.5 * inch
 PAGE_HEIGHT = 11 * inch
-HEX_DIAM = 0.8 * inch
+HEX_DIAM = 0.9 * inch
 SIDE = HEX_DIAM / 2
 COLS = 10
 ROWS = 13
@@ -95,8 +95,8 @@ def main():
     total_height = y_spacing * (ROWS - 1) + 2 * SIDE
 
     # Offsets to center the grid on the page
-    x0 = (PAGE_WIDTH - total_width) / 2 + SIDE
-    y0 = (PAGE_HEIGHT - total_height) / 2 + SIDE
+    x0 = (PAGE_WIDTH - total_width) / 2 + SIDE/2
+    y0 = (PAGE_HEIGHT - total_height) / 2 + SIDE/2
 
     # Draw the hexes and letters
     for r in range(ROWS):
