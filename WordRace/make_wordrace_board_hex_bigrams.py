@@ -9,7 +9,7 @@ ROWS = 13
 COLS = 10
 
 # We'll define the "pointy-top" hex so that its top-to-bottom diameter is 0.75 inches
-HEX_DIAM = 0.8 * inch
+HEX_DIAM = 0.9 * inch
 SIDE = HEX_DIAM / 2.0  # side length of the hex
 
 # Page size in inches
@@ -231,8 +231,8 @@ def main():
     total_height = (ROWS - 1) * Y_SPACING + 2 * SIDE
 
     # Offsets to center the grid on the page
-    x0 = (PAGE_WIDTH - total_width) / 2 + SIDE
-    y0 = (PAGE_HEIGHT - total_height) / 2 + SIDE
+    x0 = (PAGE_WIDTH - total_width) / 2 + SIDE/2
+    y0 = (PAGE_HEIGHT - total_height) / 2 + SIDE/2
 
     # Draw each cell
     for r in range(ROWS):

@@ -13,7 +13,7 @@ ROWS = 13
 COLS = 10
 
 # Each square will be 0.75 inches per side
-SQUARE_SIZE = 0.8 * inch
+SQUARE_SIZE = 0.9 * inch
 
 # Page size in inches
 PAGE_WIDTH = 8.5 * inch
@@ -91,8 +91,8 @@ def main():
     total_height = ROWS * SQUARE_SIZE
 
     # Offsets to center the grid on the page
-    x0 = (PAGE_WIDTH - total_width) / 2
-    y0 = (PAGE_HEIGHT - total_height) / 2
+    x0 = (PAGE_WIDTH - total_width) / 2 + SQUARE_SIZE/2
+    y0 = (PAGE_HEIGHT - total_height) / 2 + SQUARE_SIZE/2
 
     # Draw squares and letters
     for r in range(ROWS):
