@@ -14,6 +14,7 @@ The meetings are oriented around in-person conversations gathered together at th
 - MicroPython on a tiny controller (Raspberry Pico)
 - PyDantic and AI
 - create and manipulate PDFs
+- Simulated Annealing
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
