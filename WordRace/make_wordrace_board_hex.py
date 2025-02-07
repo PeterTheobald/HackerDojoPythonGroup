@@ -1,3 +1,4 @@
+import copy
 import math
 import random
 from reportlab.pdfgen import canvas
@@ -26,7 +27,9 @@ Y_SPACING = 1.5 * SIDE
 LIGHT_BLUE = Color(0.9, 0.9, 1)
 LIGHT_RED = Color(1, 0.8, 0.8)
 
-def load_start_frequencies(filename="start-freq.txt"):
+LONG_WORD_MULTIPLIER = 3.0 # factor to favor longer words
+
+def load_start_frequencies(filename="start-letter-freqs.txt"):
     """
     Load "start letter" frequencies from a file, e.g.:
        A 3.2
@@ -48,7 +51,7 @@ def load_start_frequencies(filename="start-freq.txt"):
         freqs = [(ltr, val / total) for (ltr, val) in freqs]
     return freqs
 
-def load_bigrams(filename="bigrams.txt"):
+def load_bigrams(filename="bigram-freqs.txt"):
     """
     Load bigram frequencies from a file where each line has:
        X Y 0.12
@@ -181,6 +184,151 @@ def get_neighbors(r, c):
         if 0 <= rr < ROWS and 0 <= cc < COLS:
             yield rr, cc
 
+def evaluate_board(board, words_set, prefixes_set):
+    """
+    Calculate a "score" for the board, defined as:
+      - For each cell, do a depth-first search of all possible paths.
+      - For each path that forms a word of length >=4, add the length of that word to the total.
+      - The standard Boggle-like approach:
+         * We track visited cells in the path so we don't reuse a cell in the same word.
+         * We prune whenever the partial word is not in prefixes_set.
+      - Return the total score.
+    """
+    total_score = 0
+
+    def dfs(r, c, visited, current_word, starting_home_row):
+        nonlocal total_score
+
+        # If length >= 4 and it's a valid word, add its length
+        if len(current_word) >= 4 and current_word in words_set:
+            if starting_home_row:
+                # Its very important to be able to make words off the starting row
+                starting_row_multiplier=3
+            else:
+                starting_row_multiplier=1
+            total_score += len(current_word)*LONG_WORD_MULTIPLIER*starting_row_multiplier
+            # We do NOT stop after finding a valid word, because longer expansions might yield
+            # different longer words. So we keep going.
+
+        # Explore neighbors
+        for (nr, nc) in get_neighbors(r, c):
+            if (nr, nc) not in visited:
+                next_letter = board[nr][nc]
+                next_word = current_word + next_letter
+                # Prune if next_word isn't a prefix of any word
+                if next_word in prefixes_set:
+                    visited.add((nr, nc))
+                    dfs(nr, nc, visited, next_word, starting_home_row)
+                    visited.remove((nr, nc))
+
+    for r in range(ROWS):
+        for c in range(COLS):
+            start_letter = board[r][c]
+            if not start_letter:
+                continue
+            # If even the first letter isn't a prefix, skip
+            if start_letter not in prefixes_set:
+                continue
+            visited = set()
+            visited.add((r, c))
+            dfs(r, c, visited, start_letter, (r==0 or r==ROWS-1))
+
+    return total_score
+
+def generate_initial_board(start_freq, bigram_freq):
+    # Create empty board
+    board = [["" for _ in range(COLS)] for _ in range(ROWS)]
+
+    # Fill top and bottom rows with start frequencies
+    for col in range(COLS):
+        board[0][col] = pick_start_letter(start_freq)
+    for col in range(COLS):
+        board[ROWS - 1][col] = pick_start_letter(start_freq)
+
+    # Fill middle rows in a specific order
+    fill_order = [1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6]
+    for r in fill_order:
+        if 0 <= r < ROWS:
+            for col in range(COLS):
+                if board[r][col] == "":
+                    neighbor_letters = []
+                    for (nr, nc) in get_neighbors(r, col):
+                        if board[nr][nc]:
+                            neighbor_letters.append(board[nr][nc])
+                    chosen_letter = pick_letter_bigrams(bigram_freq, neighbor_letters)
+                    board[r][col] = chosen_letter
+    return board
+
+def simulated_annealing(
+    board, 
+    bigram_freq, 
+    dict_words, 
+    dict_prefixes, 
+    start_temp=5.0, 
+    end_temp=0.1, 
+    steps=100
+):
+    """ Simulated Annealing will randomize parts of the board looking for better boards
+        It will start with a "high temperature" and randomize many cells in order to explore
+        more variety and find better global maximums.
+        As the "temperature" drops it will randomize progressively less cells in order to
+        explore minor variations of the better boards to find local maximums.
+    """
+    current_board = copy.deepcopy(board)
+    best_board = copy.deepcopy(board)
+
+    current_score = evaluate_board(current_board, dict_words, dict_prefixes)
+    best_score = current_score
+
+    for i in range(steps):
+        # Simple linear cooling schedule
+        frac = i / float(steps)
+        T = start_temp + (end_temp - start_temp) * frac
+
+        # Make a copy to modify
+        new_board = copy.deepcopy(current_board)
+
+        # Decide how many cells to randomly reselect (depends on T)
+        # For example, reselect up to ~ T * 5 cells
+        n_changes = int(round(T * 5))  
+        for _ in range(n_changes):
+            # pick a random row/col (but skip top/bottom row to keep them stable or not)
+            rr = random.randint(0, ROWS - 1)
+            cc = random.randint(0, COLS - 1)
+            # re-generate letter using bigrams from neighbors
+            neighbor_letters = []
+            for (nr, nc) in get_neighbors(rr, cc):
+                neighbor_letters.append(new_board[nr][nc])
+            new_letter = pick_letter_bigrams(bigram_freq, neighbor_letters)
+            new_board[rr][cc] = new_letter
+
+        # Evaluate new board
+        new_score = evaluate_board(new_board, dict_words, dict_prefixes)
+
+        # Decide acceptance
+        delta = new_score - current_score
+        if delta > 0:
+            # Better board, accept
+            current_board = new_board
+            current_score = new_score
+        else:
+            # Accept with probability e^(delta / T)
+            prob = math.exp(delta / T) if T > 0 else 0
+            if random.random() < prob:
+                current_board = new_board
+                current_score = new_score
+
+        # Track best
+        if current_score > best_score:
+            best_score = current_score
+            best_board = copy.deepcopy(current_board)
+
+    return best_board, best_score
+
+def print_board(b):
+    for line in b:
+        print( ''.join(line))
+        
 def draw_hex(c, x_center, y_center, side, fillColor=None):
     """
     Draw a pointy-top hex centered at (x_center, y_center).
@@ -207,91 +355,7 @@ def draw_hex(c, x_center, y_center, side, fillColor=None):
     c.setStrokeColorRGB(0, 0, 0)
     c.drawPath(path, fill=1, stroke=1)
 
-def evaluate_board(board, words_set, prefixes_set):
-    """
-    Calculate a "score" for the board, defined as:
-      - For each cell, do a depth-first search of all possible paths.
-      - For each path that forms a word of length >=4, add the length of that word to the total.
-      - The standard Boggle-like approach:
-         * We track visited cells in the path so we don't reuse a cell in the same word.
-         * We prune whenever the partial word is not in prefixes_set.
-      - Return the total score.
-    """
-    total_score = 0
-
-    def dfs(r, c, visited, current_word):
-        nonlocal total_score
-
-        # If length >= 4 and it's a valid word, add its length
-        if len(current_word) >= 4 and current_word in words_set:
-            total_score += len(current_word)
-            # We do NOT stop after finding a valid word, because longer expansions might yield
-            # different longer words. So we keep going.
-
-        # Explore neighbors
-        for (nr, nc) in get_neighbors(r, c):
-            if (nr, nc) not in visited:
-                next_letter = board[nr][nc]
-                next_word = current_word + next_letter
-                # Prune if next_word isn't a prefix of any word
-                if next_word in prefixes_set:
-                    visited.add((nr, nc))
-                    dfs(nr, nc, visited, next_word)
-                    visited.remove((nr, nc))
-
-    for r in range(ROWS):
-        for c in range(COLS):
-            start_letter = board[r][c]
-            if not start_letter:
-                continue
-            # If even the first letter isn't a prefix, skip
-            if start_letter not in prefixes_set:
-                continue
-            visited = set()
-            visited.add((r, c))
-            dfs(r, c, visited, start_letter)
-
-    return total_score
-
-def main():
-    # Load data
-    start_freq = load_start_frequencies("start-freq.txt")
-    bigram_freq = load_bigrams("bigrams.txt")
-    dict_words, dict_prefixes = load_dictionary("dict.txt")
-
-    # Prepare the PDF
-    c = canvas.Canvas("hex_grid.pdf", pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
-
-    # We'll store letters in a 2D list
-    grid = [["" for _ in range(COLS)] for _ in range(ROWS)]
-
-    # Assign the top row (row = 0) from start frequencies
-    for col in range(COLS):
-        grid[0][col] = pick_start_letter(start_freq)
-
-    # Assign the bottom row (row = ROWS-1) from start frequencies
-    for col in range(COLS):
-        grid[ROWS - 1][col] = pick_start_letter(start_freq)
-
-    # Fill the remaining rows in the order: 1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6
-    fill_order = [1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6]
-    for r in fill_order:
-        if r < 0 or r >= ROWS:
-            continue
-        for col in range(COLS):
-            if grid[r][col] == "":
-                # Gather neighbor letters
-                neighbor_letters = []
-                for nr, nc in get_neighbors(r, col):
-                    if grid[nr][nc] != "":
-                        neighbor_letters.append(grid[nr][nc])
-
-                chosen_letter = pick_letter_bigrams(bigram_freq, neighbor_letters)
-                grid[r][col] = chosen_letter
-
-    score = evaluate_board(grid, dict_words, dict_prefixes)
-    print(f"Board Score: {score}")
-
+def draw_board(c, board):
     # Now draw the hex grid
     # We'll compute total bounding box to center on page
     #  - width ~ (COLS - 1) * X_SPACING + (2 * SIDE)
@@ -306,7 +370,7 @@ def main():
     # Draw each cell
     for r in range(ROWS):
         for col in range(COLS):
-            letter = grid[r][col]
+            letter = board[r][col]
 
             # For pointy-top hex coordinates:
             #   x_offset = x0 + col * X_SPACING (+ half X_SPACING if row is odd?)
@@ -337,8 +401,40 @@ def main():
                 else:
                     c.drawCentredString(x_offset, y_offset - 3, letter)
 
+def main():
+    # Load data
+    start_freq = load_start_frequencies("start-letter-freqs.txt")
+    bigram_freq = load_bigrams("bigram-freqs.txt")
+    dict_words, dict_prefixes = load_dictionary("dict.txt")
+
+
+    # Generate initial board
+    board = generate_initial_board(start_freq, bigram_freq)
+    initial_score = evaluate_board(board, dict_words, dict_prefixes)
+    print(f"Initial Score: {initial_score}")
+
+    # Run simulated annealing
+    best_board, best_score = simulated_annealing(
+        board, 
+        bigram_freq, 
+        dict_words, 
+        dict_prefixes, 
+        start_temp=5.0, 
+        end_temp=0.1, 
+        steps=100
+    )
+    print(f"Best Score Found: {best_score}")
+
+    # Prepare the PDF
+    c = canvas.Canvas("hex_grid.pdf", pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
+    draw_board(c, best_board)
     c.showPage()
     c.save()
+
+    print_board(best_board)
+    score = evaluate_board(best_board, dict_words, dict_prefixes)
+    print(f"Board Score: {score}")
+
 
 if __name__ == "__main__":
     main()
