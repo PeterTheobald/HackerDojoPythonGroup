@@ -1,6 +1,8 @@
 import sys
+
 COLS = 10
 ROWS = 13
+
 
 def load_dictionary(filename="dict.txt"):
     """
@@ -17,9 +19,10 @@ def load_dictionary(filename="dict.txt"):
             if w:
                 words.add(w)
                 # Add all prefixes of w to prefix set
-                for i in range(1, len(w)+1):
+                for i in range(1, len(w) + 1):
                     prefixes.add(w[:i])
     return words, prefixes
+
 
 def get_neighbors(r, c):
     """
@@ -37,6 +40,7 @@ def get_neighbors(r, c):
             cc = c + dc
             if 0 <= rr < ROWS and 0 <= cc < COLS:
                 yield (rr, cc)
+
 
 def evaluate_board(board, words_set, prefixes_set):
     """
@@ -60,7 +64,7 @@ def evaluate_board(board, words_set, prefixes_set):
             # different longer words. So we keep going.
 
         # Explore neighbors
-        for (nr, nc) in get_neighbors(r, c):
+        for nr, nc in get_neighbors(r, c):
             if (nr, nc) not in visited:
                 next_letter = board[nr][nc]
                 next_word = current_word + next_letter
@@ -83,41 +87,50 @@ def evaluate_board(board, words_set, prefixes_set):
             dfs(r, c, visited, start_letter)
 
     return total_score
-    
-def get_boards( filename):
+
+
+def get_boards(filename):
     with open(filename) as f:
         # Gather non-blank, non-comment lines
-        lines = [line.rstrip('\n').upper() for line in f if line.strip() and not line.startswith('#')]
+        lines = [
+            line.rstrip("\n").upper()
+            for line in f
+            if line.strip() and not line.startswith("#")
+        ]
         # Group into boards of 13 lines each
         for i in range(0, len(lines), 13):
-            board = [ list(line) for line in lines[i:i+13] ]
+            board = [list(line) for line in lines[i : i + 13]]
             if len(board) < 13:
                 break
             yield board
 
+
 def print_board(b):
     for line in b:
-        print( ''.join(line))
+        print("".join(line))
+
 
 def main():
-    if len(sys.argv)<2:
-        print('Usage: python score_boards.py board_file.txt')
-        print('Where board_file.txt has 10x13 grids of letters separated by a blank line')
+    if len(sys.argv) < 2:
+        print("Usage: python evalate_boards.py board_file.txt")
+        print(
+            "Where board_file.txt has 10x13 grids of letters separated by a blank line"
+        )
         sys.exit()
-        
+
     words, prefixes = load_dictionary("dict.txt")
 
-    total_score=0
-    num_scores=0
+    total_score = 0
+    num_scores = 0
     for b in get_boards(sys.argv[1]):
         print_board(b)
-        score=evaluate_board(b, words, prefixes)
-        total_score+=score
-        num_scores+=1
-        print(f'Board Score={score}')
+        score = evaluate_board(b, words, prefixes)
+        total_score += score
+        num_scores += 1
+        print(f"Board Score={score}")
         print()
-    print(f'Average board score {(total_score/num_scores):.0f}')
-    
+    print(f"Average board score {(total_score/num_scores):.0f}")
+
+
 if __name__ == "__main__":
     main()
-
