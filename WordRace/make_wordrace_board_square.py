@@ -20,6 +20,9 @@ PAGE_HEIGHT = 11 * inch
 LIGHT_BLUE = Color(0.9, 0.9, 1)
 LIGHT_RED = Color(1, 0.8, 0.8)
 
+LONG_WORD_MULTIPLIER = 3.0 # factor to favor longer words
+
+
 def load_start_frequencies(filename="start-letter-freqs.txt"):
     """
     Load "start letter" frequencies from a file, e.g.:
@@ -171,12 +174,17 @@ def evaluate_board(board, words_set, prefixes_set):
     """
     total_score = 0
 
-    def dfs(r, c, visited, current_word):
+    def dfs(r, c, visited, current_word, starting_home_row):
         nonlocal total_score
 
         # If length >= 4 and it's a valid word, add its length
         if len(current_word) >= 4 and current_word in words_set:
-            total_score += len(current_word)
+            if starting_home_row:
+                # Its very important to be able to make words off the starting row
+                starting_row_multiplier=3
+            else:
+                starting_row_multiplier=1
+            total_score += len(current_word)*LONG_WORD_MULTIPLIER*starting_row_multiplier
             # We do NOT stop after finding a valid word, because longer expansions might yield
             # different longer words. So we keep going.
 
@@ -188,7 +196,7 @@ def evaluate_board(board, words_set, prefixes_set):
                 # Prune if next_word isn't a prefix of any word
                 if next_word in prefixes_set:
                     visited.add((nr, nc))
-                    dfs(nr, nc, visited, next_word)
+                    dfs(nr, nc, visited, next_word, starting_home_row)
                     visited.remove((nr, nc))
 
     for r in range(ROWS):
@@ -201,7 +209,7 @@ def evaluate_board(board, words_set, prefixes_set):
                 continue
             visited = set()
             visited.add((r, c))
-            dfs(r, c, visited, start_letter)
+            dfs(r, c, visited, start_letter, (r==0 or r==ROWS-1))
 
     return total_score
 
@@ -238,6 +246,12 @@ def simulated_annealing(
     end_temp=0.1, 
     steps=100
 ):
+    """ Simulated Annealing will randomize parts of the board looking for better boards
+        It will start with a "high temperature" and randomize many cells in order to explore
+        more variety and find better global maximums.
+        As the "temperature" drops it will randomize progressively less cells in order to
+        explore minor variations of the better boards to find local maximums.
+    """
     current_board = copy.deepcopy(board)
     best_board = copy.deepcopy(board)
 
