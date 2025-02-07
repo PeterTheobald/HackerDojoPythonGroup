@@ -4,108 +4,321 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.colors import Color
 
+# Grid size
+ROWS = 13
+COLS = 10
+
+# We'll define the "pointy-top" hex so that its top-to-bottom diameter is 0.75 inches
+HEX_DIAM = 0.9 * inch
+SIDE = HEX_DIAM / 2.0  # side length of the hex
+
+# Page size in inches
+PAGE_WIDTH = 8.5 * inch
+PAGE_HEIGHT = 11 * inch
+
+# Spacing for a pointy-top hex grid:
+#  - Horizontal center-to-center: sqrt(3) * side
+#  - Vertical center-to-center: 1.5 * side
+X_SPACING = math.sqrt(3) * SIDE
+Y_SPACING = 1.5 * SIDE
+
 # Light colors for top/bottom row fills
 LIGHT_BLUE = Color(0.9, 0.9, 1)
 LIGHT_RED = Color(1, 0.8, 0.8)
 
-PAGE_WIDTH = 8.5 * inch
-PAGE_HEIGHT = 11 * inch
-HEX_DIAM = 0.9 * inch
-SIDE = HEX_DIAM / 2
-COLS = 10
-ROWS = 13
-
-def load_letter_frequencies(filename):
+def load_start_frequencies(filename="start-freq.txt"):
     """
-    Load letter frequencies from a file where each line has the format:
-      A 12.9
-    This means letter 'A' has a frequency value of 12.9.
-    convert these values into fractions that sum to 1.
+    Load "start letter" frequencies from a file, e.g.:
+       A 3.2
+    We'll normalize them to sum to 1.0 for random selection.
     """
-    letter_freq = []
+    freqs = []
     total = 0.0
-
     with open(filename, "r") as f:
         for line in f:
             parts = line.strip().upper().split()
             if len(parts) != 2:
                 continue
-            letter, freq_str = parts
-            freq_val = float(freq_str)
-            letter_freq.append((letter, freq_val))
-            total += freq_val
+            letter, val_str = parts
+            val = float(val_str)
+            freqs.append((letter, val))
+            total += val
+    # Normalize
+    if total > 0:
+        freqs = [(ltr, val / total) for (ltr, val) in freqs]
+    return freqs
 
-    # Normalize so frequencies sum to 1.0
-    letter_freq = [(letter, freq_val / total) for (letter, freq_val) in letter_freq]
-    return letter_freq
+def load_bigrams(filename="bigrams.txt"):
+    """
+    Load bigram frequencies from a file where each line has:
+       X Y 0.12
+    We'll store them in a dict-of-dicts:
+       bigram_freq[X][Y] = frequency
+    """
+    bigram_freq = {}
+    with open(filename, "r") as f:
+        for line in f:
+            parts = line.strip().upper().split()
+            if len(parts) != 3:
+                continue
+            first, second, freq_str = parts
+            freq = float(freq_str)
+            if first not in bigram_freq:
+                bigram_freq[first] = {}
+            bigram_freq[first][second] = freq
+    return bigram_freq
+    
+def load_dictionary(filename="dict.txt"):
+    """
+    Load a dictionary of valid words, one per line.
+    Return two structures:
+       1) A set of all valid words
+       2) A set of all valid prefixes (for pruning)
+    """
+    words = set()
+    prefixes = set()
+    with open(filename, "r") as f:
+        for line in f:
+            w = line.strip().upper()  # convert to uppercase if needed
+            if w:
+                words.add(w)
+                # Add all prefixes of w to prefix set
+                for i in range(1, len(w)+1):
+                    prefixes.add(w[:i])
+    return words, prefixes
 
-def pick_letter(letter_freq):
-    """Randomly pick a letter based on the normalized frequency distribution."""
+def pick_from_distribution(freq_pairs):
+    """
+    freq_pairs is a list of (letter, probability),
+    with probabilities summing to ~1.0.
+    """
     r = random.random()
-    cumulative = 0.0
-    for letter, freq in letter_freq:
-        cumulative += freq
-        if r <= cumulative:
+    accum = 0.0
+    for letter, p in freq_pairs:
+        accum += p
+        if r <= accum:
             return letter
-    return letter_freq[-1][0]  # Fallback in case of rounding errors
+    # Fallback on rounding errors
+    return freq_pairs[-1][0]
 
-def fill_grid(letter_freq):
-    """Fill the grid row-by-row with letters picked from the frequency distribution."""
-    grid = []
-    for r in range(ROWS):
-        row_letters = []
-        for c in range(COLS):
-            row_letters.append(pick_letter(letter_freq))
-        grid.append(row_letters)
-    return grid
+def pick_start_letter(start_freq):
+    """
+    Pick a letter using the "start letter" frequencies (already normalized).
+    """
+    return pick_from_distribution(start_freq)
 
-def draw_hex(c, x, y, side, fillColor=None):
-    """Draw a pointy-top hexagon centered at (x, y)."""
+def pick_letter_bigrams(bigram_freq, neighbor_letters):
+    """
+    Given a set of neighbor letters, compute a weighted distribution of all
+    possible letters based on the sum of bigram frequencies from each neighbor.
+    """
+    # Collect candidate letters from neighbors
+    candidate_letters = set()
+    for n in neighbor_letters:
+        if n in bigram_freq:
+            candidate_letters.update(bigram_freq[n].keys())
+
+    # If no candidates, fallback to all known "second letters" or 'A'
+    if not candidate_letters:
+        all_known_letters = set()
+        for first in bigram_freq:
+            all_known_letters.update(bigram_freq[first].keys())
+        if not all_known_letters:
+            return 'A'
+        candidate_letters = all_known_letters
+
+    # Compute weight for each candidate letter
+    weights = []
+    total_weight = 0.0
+    for letter in candidate_letters:
+        w = 0.0
+        for n in neighbor_letters:
+            w += bigram_freq.get(n, {}).get(letter, 0.0)
+        if w > 0:
+            weights.append((letter, w))
+            total_weight += w
+
+    # If all weights are zero or no data, pick randomly from candidates
+    if total_weight <= 0:
+        return random.choice(sorted(candidate_letters))
+
+    # Normalize to probabilities
+    dist = [(letter, w / total_weight) for (letter, w) in weights]
+    return pick_from_distribution(dist)
+
+def get_neighbors(r, c):
+    """
+    Return up to 8 neighbors for hex cell (r,c) in a pointy-top layout.
+    We'll assume "odd-r horizontal layout" or "even-r horizontal layout",
+    but the offsets commonly used for pointy-top. 
+    For a standard approach:
+      Even-row:  neighbors = [(-1,0), (-1,1), (0,-1), (0,1), (1,0), (1,1), (-1,-1?), (1,-1?) ... etc]
+      Odd-row:   neighbors = [(-1,-1), (-1,0), (0,-1), (0,1), (1,-1), (1,0)]
+    We'll try the typical 'odd-r' approach:
+    """
+    offsets_even = [
+        (-1, 0), (-1, 1),
+        (0, -1),           (0, 1),
+        (1, 0),  (1, 1),
+        # You can add or remove diagonals if you want 8 directions including NW/NE/SE/SW
+        # but typically a hex has 6 neighbors. We'll allow up to 6 here. 
+    ]
+    offsets_odd = [
+        (-1, -1), (-1, 0),
+        (0, -1),            (0, 1),
+        (1, -1),  (1, 0),
+    ]
+    # If you truly want 8 neighbors, that might not be a standard hex adjacency.
+    # But let's assume 6 neighbors for typical hex grid:
+    if r % 2 == 0:
+        neighbors = offsets_even
+    else:
+        neighbors = offsets_odd
+
+    for dr, dc in neighbors:
+        rr = r + dr
+        cc = c + dc
+        if 0 <= rr < ROWS and 0 <= cc < COLS:
+            yield rr, cc
+
+def draw_hex(c, x_center, y_center, side, fillColor=None):
+    """
+    Draw a pointy-top hex centered at (x_center, y_center).
+    The 'side' is the distance from center to any vertex along one side.
+    We offset the angle by -30 so that a vertex points straight up.
+    """
     path = c.beginPath()
     for i in range(6):
-        angle = math.radians(60 * i - 30)  # -30 so one vertex points straight up
-        px = x + side * math.cos(angle)
-        py = y + side * math.sin(angle)
+        angle_deg = 60 * i - 30  # -30 so top vertex is straight up
+        angle = math.radians(angle_deg)
+        px = x_center + side * math.cos(angle)
+        py = y_center + side * math.sin(angle)
         if i == 0:
             path.moveTo(px, py)
         else:
             path.lineTo(px, py)
     path.close()
 
-    c.setFillColor(fillColor if fillColor else Color(1,1,1))
-    c.setStrokeColorRGB(0,0,0)
+    if fillColor:
+        c.setFillColor(fillColor)
+    else:
+        c.setFillColorRGB(1, 1, 1)
+
+    c.setStrokeColorRGB(0, 0, 0)
     c.drawPath(path, fill=1, stroke=1)
 
+def evaluate_board(board, words_set, prefixes_set):
+    """
+    Calculate a "score" for the board, defined as:
+      - For each cell, do a depth-first search of all possible paths.
+      - For each path that forms a word of length >=4, add the length of that word to the total.
+      - The standard Boggle-like approach:
+         * We track visited cells in the path so we don't reuse a cell in the same word.
+         * We prune whenever the partial word is not in prefixes_set.
+      - Return the total score.
+    """
+    total_score = 0
+
+    def dfs(r, c, visited, current_word):
+        nonlocal total_score
+
+        # If length >= 4 and it's a valid word, add its length
+        if len(current_word) >= 4 and current_word in words_set:
+            total_score += len(current_word)
+            # We do NOT stop after finding a valid word, because longer expansions might yield
+            # different longer words. So we keep going.
+
+        # Explore neighbors
+        for (nr, nc) in get_neighbors(r, c):
+            if (nr, nc) not in visited:
+                next_letter = board[nr][nc]
+                next_word = current_word + next_letter
+                # Prune if next_word isn't a prefix of any word
+                if next_word in prefixes_set:
+                    visited.add((nr, nc))
+                    dfs(nr, nc, visited, next_word)
+                    visited.remove((nr, nc))
+
+    for r in range(ROWS):
+        for c in range(COLS):
+            start_letter = board[r][c]
+            if not start_letter:
+                continue
+            # If even the first letter isn't a prefix, skip
+            if start_letter not in prefixes_set:
+                continue
+            visited = set()
+            visited.add((r, c))
+            dfs(r, c, visited, start_letter)
+
+    return total_score
+
 def main():
-    # Load frequencies from file (adjust filename if needed)
-    letter_freq = load_letter_frequencies("big-boggle-freqs.txt")
+    # Load data
+    start_freq = load_start_frequencies("start-freq.txt")
+    bigram_freq = load_bigrams("bigrams.txt")
+    dict_words, dict_prefixes = load_dictionary("dict.txt")
 
-    # Generate the grid of letters
-    grid = fill_grid(letter_freq)
-
-    # Create the PDF canvas
+    # Prepare the PDF
     c = canvas.Canvas("hex_grid.pdf", pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
 
-    # Calculate spacing for pointy-top hexagons
-    x_spacing = math.sqrt(3) * SIDE
-    y_spacing = 1.5 * SIDE
+    # We'll store letters in a 2D list
+    grid = [["" for _ in range(COLS)] for _ in range(ROWS)]
 
-    # Compute total grid width/height in drawing space
-    total_width = x_spacing * (COLS - 1) + 2 * SIDE
-    total_height = y_spacing * (ROWS - 1) + 2 * SIDE
+    # Assign the top row (row = 0) from start frequencies
+    for col in range(COLS):
+        grid[0][col] = pick_start_letter(start_freq)
+
+    # Assign the bottom row (row = ROWS-1) from start frequencies
+    for col in range(COLS):
+        grid[ROWS - 1][col] = pick_start_letter(start_freq)
+
+    # Fill the remaining rows in the order: 1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6
+    fill_order = [1, 11, 2, 10, 3, 9, 4, 8, 5, 7, 6]
+    for r in fill_order:
+        if r < 0 or r >= ROWS:
+            continue
+        for col in range(COLS):
+            if grid[r][col] == "":
+                # Gather neighbor letters
+                neighbor_letters = []
+                for nr, nc in get_neighbors(r, col):
+                    if grid[nr][nc] != "":
+                        neighbor_letters.append(grid[nr][nc])
+
+                chosen_letter = pick_letter_bigrams(bigram_freq, neighbor_letters)
+                grid[r][col] = chosen_letter
+
+    score = evaluate_board(grid, dict_words, dict_prefixes)
+    print(f"Board Score: {score}")
+
+    # Now draw the hex grid
+    # We'll compute total bounding box to center on page
+    #  - width ~ (COLS - 1) * X_SPACING + (2 * SIDE)
+    #  - height ~ (ROWS - 1) * Y_SPACING + (2 * SIDE)
+    total_width = (COLS - 1) * X_SPACING + 2 * SIDE
+    total_height = (ROWS - 1) * Y_SPACING + 2 * SIDE
 
     # Offsets to center the grid on the page
     x0 = (PAGE_WIDTH - total_width) / 2 + SIDE/2
     y0 = (PAGE_HEIGHT - total_height) / 2 + SIDE/2
 
-    # Draw the hexes and letters
+    # Draw each cell
     for r in range(ROWS):
         for col in range(COLS):
             letter = grid[r][col]
-            x_offset = x0 + col * x_spacing + (x_spacing / 2 if r % 2 else 0)
-            y_offset = y0 + r * y_spacing
 
-            # Color the top row red, bottom row blue
+            # For pointy-top hex coordinates:
+            #   x_offset = x0 + col * X_SPACING (+ half X_SPACING if row is odd?)
+            #   y_offset = y0 + r * Y_SPACING
+            # But we only shift x for odd rows if we're using the "odd-r" approach
+            if r % 2 == 1:
+                x_offset = x0 + col * X_SPACING + (X_SPACING / 2.0)
+            else:
+                x_offset = x0 + col * X_SPACING
+            y_offset = y0 + r * Y_SPACING
+
+            # Fill color for top row vs bottom row
             fill_color = None
             if r == 0:
                 fill_color = LIGHT_RED
@@ -115,13 +328,14 @@ def main():
             draw_hex(c, x_offset, y_offset, SIDE, fillColor=fill_color)
 
             # Place the letter in the center
-            c.setFillColorRGB(0,0,0)
-            c.setFont("Helvetica", 10)
-            c.drawCentredString(x_offset, y_offset - 3, letter)
-            if letter=='Q':
-                c.drawCentredString(x_offset, y_offset - 3, 'Qu')
-            else:
-                c.drawCentredString(x_offset, y_offset - 3, letter)
+            if letter:
+                c.setFillColorRGB(0, 0, 0)
+                c.setFont("Helvetica", 10)
+                # A small vertical offset can help center the text
+                if letter=='Q':
+                    c.drawCentredString(x_offset, y_offset - 3, 'Qu')
+                else:
+                    c.drawCentredString(x_offset, y_offset - 3, letter)
 
     c.showPage()
     c.save()
