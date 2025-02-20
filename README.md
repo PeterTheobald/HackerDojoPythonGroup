@@ -9,17 +9,20 @@ Between meetings, come chat about your Python questions in the [Python channel](
 The meetings are oriented around in-person conversations gathered together at the [Hacker Dojo](https://hackerdojo.org/), but we do usually stream the meetings in the [Hacker Dojo Discord](https://discord.gg/qz3v4ggQdP) 'Dojo Voicebox' channel, although remote is not ideal because it can be hard to catch everyone's comments and it is harder to ask questions.
 
 ## Ideas for upcoming meeting topics:
-- Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
-- cursor.ai demo
+- Python GIL and Gil-less
+- Cursor.ai agents
 - MicroPython on a tiny controller (Raspberry Pico)
 - PyDantic and AI
+- TKInter desktop UIs
 - create and manipulate PDFs
-- Simulated Annealing
+- Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
+- FastHTML framework
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
 ## Calendar of past meeting topics:
 
+- 2025-02-18 Simulated Annealing to solve complex optimization problems - https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py
 - 2025-02-11 Demo of Cursor.ai AI enhanced IDE
 - 2025-02-04 First Tuesdays for Beginners: Python data types. We peek under the hood at how Python stores scalars and sequences, immutibles and mutables
 - 2025-01-28 Logging - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Logging/logging.md
