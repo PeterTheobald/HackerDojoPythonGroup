@@ -18,6 +18,9 @@ The meetings are oriented around in-person conversations gathered together at th
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
 - FastHTML framework
 - uv python environment tool
+- Regex
+- Making command line tools for text file processing/automation
+
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
