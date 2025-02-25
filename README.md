@@ -19,8 +19,8 @@ The meetings are oriented around in-person conversations gathered together at th
 - FastHTML framework
 - uv python environment tool
 - Regex
-- Making command line tools for text file processing/automation
-
+- Making command line tools for text file processing/automation (file reading, regex, pexpect)
+- occasionally revisit some core topics like Object oriented programming, Pandas, SciPy etc. (see below)
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
