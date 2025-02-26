@@ -14,7 +14,6 @@ The meetings are oriented around in-person conversations gathered together at th
 - MicroPython on a tiny controller (Raspberry Pico)
 - PyDantic and AI
 - TKInter desktop UIs
-- create and manipulate PDFs
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
 - FastHTML framework
 - uv python environment tool
