@@ -27,7 +27,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
-- 2025-02-25 Creating and manipulating PDFs with Python
+- 2025-02-25 Creating and manipulating PDFs with Python - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs
 - 2025-02-18 Simulated Annealing to solve complex optimization problems - https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py
 - 2025-02-11 Demo of Cursor.ai AI enhanced IDE
 - 2025-02-04 First Tuesdays for Beginners: Python data types. We peek under the hood at how Python stores scalars and sequences, immutibles and mutables
