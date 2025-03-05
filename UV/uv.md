@@ -65,6 +65,15 @@ Note: On Windows if your program extension is `.pyw` it will run it as a GUI pro
 Creates a directory myproject with a README.md, a pyproject.toml, a main.py a .python-version, a .venv, and a uv.lock
 or `uv init` in the current directory.
 
+pyproject.toml:
+```
+[project]
+name = "project"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["jax; sys_platform == 'linux'"]
+```
+
 In a project your dependencies don't go in inline comments, they go in the pyproject.toml. You can edit it manually, or use:
 `uv add requests`
 `uv remove requests`
