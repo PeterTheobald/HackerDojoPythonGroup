@@ -16,7 +16,6 @@ The meetings are oriented around in-person conversations gathered together at th
 - TKInter desktop UIs
 - Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
 - FastHTML framework
-- uv python environment tool
 - Regex
 - Making command line tools for text file processing/automation (file reading, regex, pexpect)
 - occasionally revisit some core topics like Object oriented programming, Pandas, SciPy etc. (see below)
@@ -27,6 +26,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
+- 2025-03-04 UV python environment tool - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md
 - 2025-02-25 Creating and manipulating PDFs with Python - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs
 - 2025-02-18 Simulated Annealing to solve complex optimization problems - https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py
 - 2025-02-11 Demo of Cursor.ai AI enhanced IDE
