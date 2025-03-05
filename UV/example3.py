@@ -1,0 +1,14 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "requests",
+#     "rich",
+# ]
+# ///
+import sys
+import requests
+from rich.pretty import pprint
+
+print(" ".join(sys.argv[1:]))
+resp = requests.get("https://peps.python.org/api/peps.json")
+pprint(resp.json())
