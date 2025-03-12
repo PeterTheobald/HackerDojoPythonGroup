@@ -9,18 +9,19 @@ Between meetings, come chat about your Python questions in the [Python channel](
 The meetings are oriented around in-person conversations gathered together at the [Hacker Dojo](https://hackerdojo.org/), but we do usually stream the meetings in the [Hacker Dojo Discord](https://discord.gg/qz3v4ggQdP) 'Dojo Voicebox' channel, although remote is not ideal because it can be hard to catch everyone's comments and it is harder to ask questions.
 
 ## Ideas for upcoming meeting topics:
-- Python GIL and Gil-less
+
 - Cursor.ai agents
 - MicroPython on a tiny controller (Raspberry Pico)
-- PyDantic and AI
 - TKInter desktop UIs
-- Great Expectations: unit testing for data, https://github.com/great-expectations/great_expectations (sugg. by John Hanley)
-- FastHTML framework
-- Regex
+- FastHTML web framework
+- Regex deep dive
 - Making command line tools for text file processing/automation (file reading, regex, pexpect)
-- occasionally revisit some core topics like Object oriented programming, Pandas, SciPy etc. (see below)
+- revisit core topics like Object oriented programming, Pandas, SciPy etc. (see below)
 - python project organization (folders, pyproject.toml etc)
 - git, source control
+- testing with GreatExpectations
+- PyDantic and AI
+- Python multithreading GIL and Gil-less
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
