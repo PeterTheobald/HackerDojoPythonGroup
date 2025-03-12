@@ -26,6 +26,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
+- 2025-03-11 Design Patterns and Object Oriented class design - Slava Zinevich, https://github.com/SlavaZinevichUSC/design-presentation
 - 2025-03-04 UV python environment tool - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md
 - 2025-02-25 Creating and manipulating PDFs with Python - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs
 - 2025-02-18 Simulated Annealing to solve complex optimization problems - https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py
