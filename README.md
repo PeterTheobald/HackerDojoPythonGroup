@@ -11,7 +11,7 @@ The meetings are oriented around in-person conversations gathered together at th
 ## Ideas for upcoming meeting topics:
 
 - Cursor.ai agents
-- MicroPython on a tiny controller (Raspberry Pico)
+- CircuitPython/MicroPython on controllers (Raspberry Pico)
 - TKInter desktop UIs
 - FastHTML web framework
 - Regex deep dive
