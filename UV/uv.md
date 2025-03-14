@@ -53,6 +53,17 @@ What if you have tested your script and want to make sure the **exact** same ver
 `uv lock --script example.py`
 This creates a `example.py.lock` file with the exact versions of everything that will be respected by `uv run` and other uv commands.
 
+To run your script without typing 'uv run', put this _shebang_ line at the top of your file: `#!/usr/bin/env -S uv run`
+```
+$ cat runme.py
+#!/usr/bin/env -S uv run
+print('I am now running.')
+
+$ chmod u+x runme.py
+$ ./runme.py
+I am now running.
+```
+
 Many more options, like don't use any versions later than a certain date, etc.
 Test my script with a different version of python:
 `uv run --python 3.13 example.py`
