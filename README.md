@@ -10,7 +10,7 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Ideas for upcoming meeting topics:
 
-- Cursor.ai agents
+- Ruff linting and formatting tool
 - CircuitPython/MicroPython on controllers (Raspberry Pico)
 - TKInter desktop UIs
 - FastHTML web framework
@@ -27,6 +27,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 ## Calendar of past meeting topics:
 
+- 2025-03-18 AI MCP Model Concept Protocol and Cursor.ai - Micah Alpern
 - 2025-03-11 Design Patterns and Object Oriented class design - Slava Zinevich, https://github.com/SlavaZinevichUSC/design-presentation
 - 2025-03-04 UV python environment tool - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md
 - 2025-02-25 Creating and manipulating PDFs with Python - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs
