@@ -1,3 +1,9 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "ortools",
+# ]
+# ///
 from ortools.sat.python import cp_model
 
 def solve_hexagonal_grid():
@@ -62,3 +68,11 @@ def solve_hexagonal_grid():
 
 # Run the solver
 solve_hexagonal_grid()
+
+
+# Outputs:
+#      18   17   3
+#    11   1   7   19
+#  9   6   5   2   16
+#   14   8   4   12
+#     15   13   10
