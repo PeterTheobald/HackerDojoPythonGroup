@@ -15,7 +15,6 @@ The meetings are oriented around in-person conversations gathered together at th
 - TKInter desktop UIs
 - FastHTML web framework
 - Regex deep dive
-- Making command line tools for text file processing/automation (file reading, regex, pexpect)
 - revisit core topics like Object oriented programming, Pandas, SciPy etc. (see below)
 - python project organization (folders, pyproject.toml etc)
 - git, source control
@@ -25,8 +24,15 @@ The meetings are oriented around in-person conversations gathered together at th
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
-## Calendar of past meeting topics:
+## Calendar of meeting topics:
 
+Coming Up:
+- 2025-04-01 Building www.advisee.com a website that does Text To Speech - Sam Mirazi
+- 2025-04-08 The RUFF linter and formatter tool - Chris
+- 2025-04-15 Swarm AI Agents - @EternalReclaimer
+
+Past meetings:
+- 2025-03-25 Making command line tools for text file processing and automation - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md
 - 2025-03-18 AI MCP Model Concept Protocol and Cursor.ai - Micah Alpern
 - 2025-03-11 Design Patterns and Object Oriented class design - Slava Zinevich, https://github.com/SlavaZinevichUSC/design-presentation
 - 2025-03-04 UV python environment tool - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md
