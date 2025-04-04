@@ -1,0 +1,16 @@
+
+
+
+class myiterator:
+  def __next__(self)
+    if end raise StopIteration
+  def __iter__(self)
+  
+
+def loop(l):
+  for i in l:
+    s=s+i
+
+def gen(l):
+  for i in l:
+    yield i
