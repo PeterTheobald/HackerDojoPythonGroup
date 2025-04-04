@@ -11,7 +11,7 @@
 
 ### Techniques:
 
-Check for reference cycles – Especially with custom classes or closures.
-Use weak references – With weakref to avoid unintended retention.
-Track object counts over time – With sys.getobjects() or gc.get_objects().
-Valgrind + Python Debug Build – For low-level leaks in C extensions.
+- Check for reference cycles – Especially with custom classes or closures.
+- Use weak references – With weakref to avoid unintended retention.
+- Track object counts over time – With sys.getobjects() or gc.get_objects().
+- Valgrind + Python Debug Build – For low-level leaks in C extensions.
