@@ -32,7 +32,7 @@ Coming Up:
 
 Past meetings:
 - 2025-04-08 [The RUFF linter and formatter tool](https://www.github.com/cmsato09/ruff-demo) - Chris 
-- 2025-04-01 Building Text to Speech website www.advisee.com with AI workflow best practices - Sam Mirazi
+- 2025-04-01 Building Text to Speech website [www.advisee.ai](https://www.advisee.ai) with AI workflow best practices - Sam Mirazi
 - 2025-03-25 [Making command line tools for text file processing and automation](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md)
 - 2025-03-18 AI MCP Model Concept Protocol and Cursor.ai - Micah Alpern
 - 2025-03-11 [Design Patterns and Object Oriented class design](https://github.com/SlavaZinevichUSC/design-presentation) - Slava Zinevich
