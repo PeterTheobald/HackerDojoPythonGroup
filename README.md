@@ -33,45 +33,45 @@ Coming Up:
 Past meetings:
 - 2025-04-08 [The RUFF linter and formatter tool](https://www.github.com/cmsato09/ruff-demo) - Chris 
 - 2025-04-01 Building Text to Speech website www.advisee.com with AI workflow best practices - Sam Mirazi
-- 2025-03-25 Making command line tools for text file processing and automation - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md
+- 2025-03-25 [Making command line tools for text file processing and automation](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md)
 - 2025-03-18 AI MCP Model Concept Protocol and Cursor.ai - Micah Alpern
-- 2025-03-11 Design Patterns and Object Oriented class design - Slava Zinevich, https://github.com/SlavaZinevichUSC/design-presentation
-- 2025-03-04 UV python environment tool - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md
-- 2025-02-25 Creating and manipulating PDFs with Python - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs
-- 2025-02-18 Simulated Annealing to solve complex optimization problems - https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py
+- 2025-03-11 [Design Patterns and Object Oriented class design](https://github.com/SlavaZinevichUSC/design-presentation) - Slava Zinevich
+- 2025-03-04 [UV python environment tool](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/UV/uv.md)
+- 2025-02-25 [Creating and manipulating PDFs with Python](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PDFs)
+- 2025-02-18 [Simulated Annealing to solve complex optimization problems](https://github.com/PeterTheobald/WordRace/blob/main/make_wordrace_board_hex.py)
 - 2025-02-11 Demo of Cursor.ai AI enhanced IDE
 - 2025-02-04 First Tuesdays for Beginners: Python data types. We peek under the hood at how Python stores scalars and sequences, immutibles and mutables
-- 2025-01-28 Logging - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Logging/logging.md
-- 2025-01-21 Make a simple videogame from scratch with PyGame - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pygame
-- 2025-01-14 Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md
+- 2025-01-28 [Logging](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Logging/logging.md)
+- 2025-01-21 [Make a simple videogame from scratch with PyGame](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pygame)
+- 2025-01-14 [Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md)
 - 2025-01-07 Python Power Tools, huge results with minimal code: ORTools, Gooey, Seaborn, Streamlit, etc
 - 2024-12-31 .. no meeting - holiday
 - 2024-12-24 .. no meeting - holiday
 - 2024-12-17 Itertools, Functools, Toolz Part 2
 - 2024-12-10 Machine Learning - John Hanley
 - 2024-12-03 Itertools, Functools, Toolz
-- 2024-11-26 GraphQL - Kelvin Shi, https://github.com/Legume1728/graphql-demo
-- 2024-11-19 REST APIs - https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/DojoPython-RestAPI
-- 2024-11-12 Generators as pipelines - John Hanley, https://github.com/jhanley634/dojo-blackboard/blob/main/talks/2024-11-12-sloc.md
-- 2024-11-05 Python NamedTuples, Dataclasses and Classes, https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/DojoPython_dataclasses.ipynb
-- 2024-10-29 Cursor (AI IDE) - Sam Mirazi, https://sam-m345.github.io/connect-4/
-- 2024-10-22 BAML AI apps- Gintautas Svedas, https://github.com/GintasS/Hacker-Dojo-BAML
+- 2024-11-26 [GraphQL](https://github.com/Legume1728/graphql-demo) - Kelvin Shi
+- 2024-11-19 [REST APIs](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/DojoPython-RestAPI)
+- 2024-11-12 [Generators as pipelines](https://github.com/jhanley634/dojo-blackboard/blob/main/talks/2024-11-12-sloc.md) - John Hanley
+- 2024-11-05 [Python NamedTuples, Dataclasses and Classes](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/DojoPython_dataclasses.ipynb)
+- 2024-10-29 [Cursor (AI IDE)](https://sam-m345.github.io/connect-4/) - Sam Mirazi
+- 2024-10-22 [BAML AI apps](https://github.com/GintasS/Hacker-Dojo-BAML) - Gintautas Svedas
 - 2024-10-15 Modern Python Toolset: uv, pyright, ruff, pytest, pydantic, etc.
-- 2024-10-08 Streamlit vs Mesop - Kelvin Shi, https://github.com/Legume1728/streamlit-mesop-demo
-- 2024-10-01 Iterators, Generators, Dunder Methods - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-recipes.md
+- 2024-10-08 [Streamlit vs Mesop](https://github.com/Legume1728/streamlit-mesop-demo) - Kelvin Shi
+- 2024-10-01 [Iterators, Generators, Dunder Methods](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-recipes.md)
 - 2024-09-24 Talk from PyBay, SSE vs. WebSockets, OR-Tools Constraint Based Solver - John Hanley, Peter Theobald
-- 2024-09-17 Python Culture - John Hanley, https://github.com/jhanley634/dojo-blackboard/tree/main/talks/out/
-- 2024-09-10 Interactive Visualization with IPyWidgets - Kelvin Shi, https://github.com/Legume1728/interactive-viz-demo
-- 2024-09-03 Building a WebSockets/HTMX chat app - https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py
-- 2024-08-27 SEC API - Juan Flores, https://github.com/jf-2023/finance-apis-2024-08-27
-- 2024-08-20 Pandas vs Polars - Kelvin Shi, https://github.com/Legume1728/pandas-polars-demo (also demo from Mesibo)
-- 2024-08-13 Jinja2 - Fred Cox, https://github.com/sailorfred/python-meetup-2024-08-13
-- 2024-08-06 HTMX - John Hanley, https://github.com/jhanley634/dojo-2024-08-06-htmx
-- 2024-07-30 Python EDA - Kelvin Shi, https://github.com/Legume1728/eda-demo
-- 2024-07-23 FastAPI / Pydantic - Fred Cox, https://github.com/sailorfred/python-meetup-2024-07-23/
-- 2024-07-16 Unit Testing - Blaise Pabon, https://docs.google.com/presentation/d/1Db7kE2D4BCAjyVTbeax4jH2u8v4QPScoN1qVD-ySu7Q/edit#slide=id.p
-- 2024-07-09 Python Profiling	- Kelvin Shi,	https://github.com/Legume1728/python-profiling-demo
-- 2024-07-02 Geocoding, streamlit and more - John Hanley, https://github.com/jhanley634/dojo-2024-06-18-geocode
+- 2024-09-17 [Python Culture](https://github.com/jhanley634/dojo-blackboard/tree/main/talks/out/) - John Hanley
+- 2024-09-10 [Interactive Visualization with IPyWidgets](https://github.com/Legume1728/interactive-viz-demo) - Kelvin Shi
+- 2024-09-03 [Building a WebSockets/HTMX chat app](https://replit.com/@ControlAltPete/Hacker-Dojo-Python-Meetup#htmxchat/app.py)
+- 2024-08-27 [SEC API](https://github.com/jf-2023/finance-apis-2024-08-27) - Juan Flores
+- 2024-08-20 [Pandas vs Polars](https://github.com/Legume1728/pandas-polars-demo) - Kelvin Shi (also a demo from Mesibo)
+- 2024-08-13 [Jinja2](https://github.com/sailorfred/python-meetup-2024-08-13) - Fred Cox
+- 2024-08-06 [HTMX](https://github.com/jhanley634/dojo-2024-08-06-htmx) - John Hanley
+- 2024-07-30 [Python EDA](https://github.com/Legume1728/eda-demo) - Kelvin Shi
+- 2024-07-23 [FastAPI / Pydantic](https://github.com/sailorfred/python-meetup-2024-07-23/) - Fred Cox
+- 2024-07-16 [Unit Testing](https://docs.google.com/presentation/d/1Db7kE2D4BCAjyVTbeax4jH2u8v4QPScoN1qVD-ySu7Q/edit#slide=id.p) - Blaise Pabon
+- 2024-07-09 [Python Profiling](https://github.com/Legume1728/python-profiling-demo) - Kelvin Shi
+- 2024-07-02 [Geocoding, streamlit and more](https://github.com/jhanley634/dojo-2024-06-18-geocode) - John Hanley
 - 2024-06-25 speed shootout: CPU bound - memoize, dict>binarytree>list, profiling, cpython/numpy/pypy/numba/cython/codon
 - 2024-06-18 using Git with Github, pull requests; Visualization library Seaborn used to graph last week's speed shootout results. - John Hanley
 - 2024-06-11 speed shootout: IO bound - sequential, async, multi-threading, multi-processing
