@@ -10,7 +10,6 @@ The meetings are oriented around in-person conversations gathered together at th
 
 ## Ideas for upcoming meeting topics:
 
-- Ruff linting and formatting tool
 - CircuitPython/MicroPython on controllers (Raspberry Pico)
 - TKInter desktop UIs
 - FastHTML web framework
