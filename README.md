@@ -28,10 +28,11 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
-- 2025-04-08 The RUFF linter and formatter tool - Chris
+
 - 2025-04-15 Swarm AI Agents - @EternalReclaimer
 
 Past meetings:
+- 2025-04-08 The RUFF linter and formatter tool - Chris https://www.github.com/cmsato09/ruff-demo
 - 2025-04-01 Building Text to Speech website www.advisee.com with AI workflow best practices - Sam Mirazi
 - 2025-03-25 Making command line tools for text file processing and automation - https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md
 - 2025-03-18 AI MCP Model Concept Protocol and Cursor.ai - Micah Alpern
