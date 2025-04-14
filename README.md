@@ -20,6 +20,8 @@ The meetings are oriented around in-person conversations gathered together at th
 - testing with GreatExpectations
 - PyDantic and AI
 - Python multithreading GIL and Gil-less
+- Namespaces, Inner functions and closures
+- Troubleshooting memory leaks
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
