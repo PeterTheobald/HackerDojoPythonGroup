@@ -20,7 +20,6 @@ The meetings are oriented around in-person conversations gathered together at th
 - testing with GreatExpectations
 - PyDantic and AI
 - Python multithreading GIL and Gil-less
-- Namespaces, Inner functions and closures
 - Troubleshooting memory leaks
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
@@ -30,9 +29,8 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 Coming Up:
 
 
-- 2025-04-15 Swarm AI Agents - @EternalReclaimer
-
 Past meetings:
+- 2025-04-15 [Namespaces, Scope, Closures and Decorators](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Namespaces/Namespaces.md)
 - 2025-04-08 [The RUFF linter and formatter tool](https://www.github.com/cmsato09/ruff-demo) - Chris 
 - 2025-04-01 Building Text to Speech website [www.advisee.ai](https://www.advisee.ai) with AI workflow best practices - Sam Mirazi
 - 2025-03-25 [Making command line tools for text file processing and automation](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TextProcessing/textprocessing.md)
