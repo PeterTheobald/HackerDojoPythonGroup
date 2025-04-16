@@ -19,7 +19,7 @@ True
 False
 ```
 
-Python tries to save space by making all variables that point to small ints (256 or under) and small strings point to the same box in memory.
+Python tries to save space by making all variables that point to small ints (256 or under) and small literal strings point to the same box in memory.
 
 ``` python
 
@@ -51,8 +51,8 @@ Any time you reassign a variable it makes a new box. It does NOT change the valu
 9784992
 >>> y=x
 >>> id(y)
-9784992
->>> x=x+1
+9784992       <-- both pointing to the same box
+>>> x=x+1     <-- reassigning x gives it a new box
 >>> id(x)
 9785024
 >>> x
@@ -84,10 +84,10 @@ False
 >>> id(x), id(y)
 (140569748543872, 140569748467200)
 
+# Let's make them point to the same box again:
 >>> y=x
 >>> x is y
 True
-# Both x and y point to the same box again
 
 >>> y[1]="changed value"
 # Don't reassign the value of y; Change the value of one of it's items
@@ -120,6 +120,10 @@ Usually you don't have be aware of this. It only matters when you pass a value a
 >>> x
 [1, 2, 'new value']
 ```
+
+_Digression: Why does Python have both List and Tuple when they can do mostly the same things?
+List is usually used for multiple homogenous (same type) items that changes in length
+Tuple is usually used for a fixed number of items where the order of items is meaningful, for example: (x,y) (latitude, longitude) (name, age, address, phone)_
 
 ## Namespaces
 
