@@ -1,0 +1,89 @@
+Leetcode Q https://leetcode.com/problems/climbing-stairs/
+  recursion, dynamic programming
+Big project? Sudoku solver?
+  python flask backend rest-api front-end
+Python environment:
+  CPython, PyPy (not C, 8x faster), Jython (Java), IronPython (Dot Net),
+  Anaconda (conda, math ML and AI), ActivePython,
+  MicroPython, PyScript
+  IDE: VSCode, PyCharm, Spyder, Komodo, Emacs, Vim
+  modules:
+    module.py, import module, sys.path, dir(module)
+    if name == main
+  pip list install
+  venv > virtualenv. docker.
+    python3 -m venv envs/myproject1
+    source envs/myproject1/bin/activate
+    deactivate
+
+  
+
+f- functions and generators (yield instead of return) 1. efficiency for long lists, 2. pausing complex calculations (co-routines)
+- list comprehensions [x for x], generator comprehensions (x for x)
+
+---
+Lions Tigers and Bears, which data structure to use?
+Tuples, Lists, Named Tuple, Dict, DefaultDict, Dataclass, Class
+https://docs.python.org/3/
+https://docs.python.org/3/library/index.html
+
+primitive scalar data types (all immutable):
+- int 5 (+ - * / // % etc) (int, long, bignum all handled invisibly in the background)
+- float 5.2 (any scale, but approx 15 digits of accuracy)
+- complex 5.2+3j
+- bool (None, False, 0, '', [], (), {}) or (True, anything else) (and or not == != if b , comparisons < > <= >= is is not)
+- str 'hello', "hello", """hello""" (+ is concatenate)
+- immutable? you can set x=x+5 or x="hello "+x to set x to a newly created value, but you can't change x in place. The sequence type tuple is also immutable. Mutable x={'name':'peter','age':10}  x['age']=11. This means repeatedly concatenating more and more values onto the end of a tuple or string will be SLOW. Instead make a list and use join at the end to build it once, or use an f'string'
+
+Sequences and Containers:
+- tuple (1,2,"hello"), l[index], slices l[index:index], l*n, l1+l2, len(l), max(l), min(l), l.index(value), l.count(value), l.reverse(), l.sort()
+	- function calls with dunder methods vs. class methods: len(s) vs s.len()  def \_\_len\_\_(): def len()
+- list [1,2,"hello"]
+- range range(10) range(1,10) range(2,10,2)
+- dict { 'name':'sue','age':20} (defaultDict) d={'key':value,'key2':value2}, d[key], key in d, k not in d, for k in d, list(d), d.values(), del d[k], d.get(key, default)
+- set set(), {'a','b','c'}, set( (1,2,3)) (frozenSet) value in set, len(set), for value in set, s.add(value), s.remove(value) s.discard(value), supersets and subsets with <= >=, union with S1|S2, intersection with s1&s2, difference with s1-s2
+- stacks: list.pop() list.append()
+
+Not built-in:
+- from decimal import Decimal, x=Decimal(5.23)
+- from collections import defaultdict, d=defaultdict(0)
+- deque: fast append and pop from both ends
+
+using Dicts and Tuples you can make any complicated data structure necessary, but using indexes can be error prone, naming your data reduces errors and is self-documenting:
+custom data types: namedTuple, attrs, pydantic, dataclass, class
+
+- from collections import namedtuple,
+	- Student = namedtuple('Student', ['name', 'age', 'DOB'], defaults=[18, '20000101'])
+	- s = Student('Nandini', 19, '2541997'), s=Student(name='nandini', age=19, DOB='2541997')
+	- s[0], s.name
+-  Dicts ~~ JSON
+```
+from dataclasses import dataclass
+@dataclass
+class DataClassCard:
+    rank: str = 'A'
+    suit: str = 'Diamonds'
+queen_of_hearts = DataClassCard('Q', 'Hearts')
+queen_of_hearts.rank
+if queen_of_hearts == DataClassCard('Q', 'Hearts')
+
+# regular classes
+class RegularCard:
+    def __init__(self, rank, suit):
+        self.rank = rank
+        self.suit = suit
+
+```
+
+Pandas:
+load csv, json, excel
+dtypes, shape, describe, info
+df['age'].max() .sum() .count()
+select cols: df['col'], df[ ['col','col2']]
+select rows: filter: x[ x['mark']>70 ]
+df.loc( conditional, cols)
+df.iloc[ r1:r2, c1:c2] = x
+join two tables newt = pd.merge( t1, t2, left_on="Name", right_on="name")
+    how='inner' 'left' 'right' 'outer'
+import matplotlib.pyplot as plt
+df['newcol']= xxx

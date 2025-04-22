@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat with SocketIO</title>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <style>
+        #chat {
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+        }
+        #chat div {
+            margin-bottom: 10px;
+        }
+        #message-box, #change-name {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        #message-box input, #change-name input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        #message-box button, #change-name button {
+            padding: 10px;
+            font-size: 1rem;
+        }
+        #user-list {
+            max-width: 600px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <!-- Display chat messages here -->
+    </div>
+    <div id="message-box">
+        <input type="text" id="message-input" placeholder="Type a message..." autofocus>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <div id="change-name">
+        <input type="text" id="name-input" placeholder="Change your name..." value="{{ user_name }}">
+        <button onclick="changeName()">Change Name</button>
+    </div>
+    <div id="user-list">
+        <h3>Connected Users</h3>
+        <ul id="users">
+            {% for user in users %}
+            <li>{{ user.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        const socket = io();
+        const user_id = "{{ user_id }}";
+
+        socket.on('receive_message', function(data) {
+            let chat = document.getElementById('chat');
+            chat.innerHTML += `<div><strong>${data.user}:</strong> ${data.message}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+        });
+
+        socket.on('name_changed', function(data) {
+            if (data.user_id === user_id) {
+                document.getElementById('name-input').value = data.new_name;
+            }
+        });
+
+        socket.on('update_user_list', function(users) {
+            let usersElement = document.getElementById('users');
+            usersElement.innerHTML = '';
+            users.forEach(function(user) {
+                usersElement.innerHTML += `<li>${user.name}</li>`;
+            });
+        });
+
+        function sendMessage() {
+            let message = document.getElementById('message-input').value;
+            if (message.trim() !== "") {
+                socket.emit('send_message', {user_id: user_id, message: message});
+                document.getElementById('message-input').value = '';
+            }
+        }
+
+        function changeName() {
+            let new_name = document.getElementById('name-input').value;
+            socket.emit('change_name', {user_id: user_id, new_name: new_name});
+        }
+    </script>
+</body>
+</html>

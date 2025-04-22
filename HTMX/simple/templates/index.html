@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMX with Flask</title>
+    <script src="https://unpkg.com/htmx.org@1.4.0"></script>
+</head>
+<body>
+    <h1>Welcome to HTMX with Flask</h1>
+    
+    <button hx-get="/api/get_data" hx-trigger="click" hx-target="#myid">Get Message</button>
+    <div id="myid"></div>
+
+    <button hx-get="/api/get_html" hx-trigger="click" hx-target="#html-message">Get HTML</button>
+    <div id="html-message"></div>
+    
+</body>
+</html>

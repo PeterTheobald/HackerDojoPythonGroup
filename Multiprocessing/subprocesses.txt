@@ -1,0 +1,68 @@
+Subprocesses
+
+ps; ps -ef; ps -ef
+DANGER! Passing strings to the command line!
+
+Level 1: system(). Runs program and finishes, no control over input or output, always uses shell
+Level 2: subprocess.run(). Runs program and finishes. Control over input and output and shell
+Level 3: popen(). Runs program and interacts with Python program.
+Level 4: IPC. attaches to long running process and interacts with Python program.
+
+returncode=os.system('date') # limited no control over output, always goes through current shell
+returncode=os.system('open -a TextEdit') # or Notepad
+
+subprocess.run(_args_, _*_, _stdin=None_, _input=None_, _stdout=None_, _stderr=None_, _capture_output=False_, _shell=False_, _cwd=None_, _timeout=None_, _check=False_, _encoding=None_, _errors=None_, _text=None_, _env=None_, _universal_newlines=None_, _**other_popen_kwargs_)
+
+result=subprocess.run( [ "ls", "-l"])
+print(result.args, result.returncode)
+Note: returncode=0 success, +n=error code, -n=killed by signal n
+result=subprocess.run( "ls -l", shell=True)
+result=subprocess.run( ['ls', '-l'], text=True, capture_output=True)
+print(result.args, result.returncode, result.stdout, result.stderr)
+result=subprocess.run( ['ls', '-l', '/xyz'], capture_output=True, text=True)
+result=subprocess.run( ['ls', '-l', '/xyz'], capture_output=True, encoding='utf-8')
+result=subprocess.run( ['ls', '-l', '/xyz'], capture_output=True)
+result.stdout.decode('utf-8')
+result=subprocess.run( ['ls', '-l', '/xyz'], text=True, capture_output=True, check=True)
+
+try:
+    subprocess.run('ls -lr /', shell=True, capture_output=True, text=True, timeout=1)
+except TimeoutExpired as e:
+    print(e.cmd, e.timeout, e.stdout, e.stderr)
+
+traceroute -w 10 www.google.com
+
+data="""Zebra
+Apple
+Monkey
+Automobile
+Banana"""
+r=subprocess.run( 'sort', input=data, text=True, capture_output=True)
+
+subprocess.run( input=b'byte-sequence')
+subprocess.run( input=string, text=True)
+subprocess.run( input=string, encoding='utf-8')
+
+try:
+    subprocess.run( check=True)
+except CalledProcessError as e:
+    print(e.args, e.returncode, e.stdout, e.stderr)
+
+with open("D:/temp/pythontest.txt", "w") as f:
+    r=subprocess.run("dir", shell=True, stdout=f)
+
+subprocess.run( args, stdin/stdout/stderr = subprocess.PIPE, DEVNULL, fd, STDOUT)
+
+with subprocess.Popen( ['adventure'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True) as proc:
+    while proc.poll() is None:
+        print( proc.stdout.read())
+         i=input()
+         proc.stdin=i
+
+
+
+
+import multiprocessing
+import asyncio
+import threading
+

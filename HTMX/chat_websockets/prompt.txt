@@ -1,0 +1,3 @@
+Write a real-time chat web-site in Python and HTMX. Each visitor will get assigned an ID. They will also get an initial random screen-name using the Faker library. Each message entered and sent will be sent to all other visitors. Each new message arriving will be displayed in a box on the screen and previous messages will scroll up. Hitting enter in the chat text field will send the message. There is a field for changing your screen name. Each message will be display as screen-name: message. Use websockets to send messages from the server to the client.
+
+
