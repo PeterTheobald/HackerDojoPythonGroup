@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat</title>
+    <script src="https://unpkg.com/htmx.org@2.0.2/dist/htmx.min.js"></script>
+</head>
+<body>
+    <h1>Chat</h1>
+
+    <form hx-post="/change_screen_name" hx-trigger="submit" hx-include="[name='screen_name']" hx-target="this">
+        <label for="screen_name">Screen Name:</label>
+        <input id="screen_name" type="text" name="screen_name" value="{{ screen_name }}">
+        <button type="submit">Change name</button>
+    </form>
+    
+    <div id="user-list-box" style="height: 150px; overflow-y: scroll; border: 1px solid black; margin-top: 10px;">
+        <strong>Current Users</strong>
+        {% for user in current_users %}
+            <div>{{ user }}</div>
+        {% endfor %}
+    </div>
+    
+    <div id="chat-box" style="height: 300px; overflow-y: scroll; border: 1px solid black; margin-top: 10px;">
+        {% for message in recent_messages %}
+            <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+    
+    <form hx-post="/send_message" hx-include="[name='message']" hx-trigger="submit" hx-on:htmx:after-request="document.getElementById('message').value = '';">
+        <input id="message" name="message" type="text" placeholder="Type your message...">
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- Warning Message for Cookie Support, normally hidden -->
+    <div id="cookie-warning" style="display: none; color: red;">
+        <p>This application requires cookies to function properly. Please enable cookies in your browser.</p>
+    </div>
+    
+    <script>
+        let chatBox = document.getElementById('chat-box');
+        let userListBox = document.getElementById('user-list-box');
+
+        // Establish EventSource connections to the server
+        let messageSource = new EventSource('/messages');  // Connect to /messages endpoint
+        let userEventSource = new EventSource('/user_events');  // Connect to /user_events endpoint
+
+        messageSource.onmessage = function(event) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = event.data;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        userEventSource.onmessage = function(event) {
+            userListBox.innerHTML = '<strong>Current Users</strong>' + event.data.split(',').map(user => `<div>${user}</div>`).join('');
+        };
+
+        messageSource.onerror = userEventSource.onerror = function() {
+            // If there is an error (disconnection), close the connections
+            messageSource.close();
+            userEventSource.close();
+            console.log(`Disconnected. Reload to reconnect.`);
+
+            // Print disconnection message to chat box
+            const disconnectMessage = document.createElement('div');
+            disconnectMessage.textContent = `Disconnected. Reload to reconnect.`;
+            chatBox.appendChild(disconnectMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        };
+
+        if (document.cookie.indexOf('client_id=') === -1) {
+            // Show the cookie warning
+            document.getElementById('cookie-warning').style.display = 'block';
+        }
+        
+    </script>
+</body>
+</html>
