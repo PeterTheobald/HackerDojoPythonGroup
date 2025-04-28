@@ -11,7 +11,6 @@ The meetings are oriented around in-person conversations gathered together at th
 ## Ideas for upcoming meeting topics:
 
 - CircuitPython/MicroPython on controllers (Raspberry Pico)
-- TKInter desktop UIs
 - FastHTML web framework
 - Regex deep dive
 - revisit core topics like Object oriented programming, Pandas, SciPy etc. (see below)
@@ -30,6 +29,7 @@ Coming Up:
 
 
 Past meetings:
+- 2025-04-22 [Graphical Interfaces Tk, Gooey, NiceGUI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/UIs)
 - 2025-04-15 [Namespaces, Scope, Closures and Decorators](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Namespaces/Namespaces.md)
 - 2025-04-08 [The RUFF linter and formatter tool](https://www.github.com/cmsato09/ruff-demo) - Chris 
 - 2025-04-01 Building Text to Speech website [www.advisee.ai](https://www.advisee.ai) with AI workflow best practices - Sam Mirazi
