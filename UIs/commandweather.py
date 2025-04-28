@@ -27,7 +27,7 @@ def get_weather(city, api_key):
     else:
         return "Failed to retrieve weather data."
 
-
+@Gooey
 def main():
     #parser = argparse.ArgumentParser(description='Get the current weather for a city.')
     parser = GooeyParser(description='Get the current weather for a city.')
