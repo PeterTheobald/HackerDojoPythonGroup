@@ -21,6 +21,7 @@ The meetings are oriented around in-person conversations gathered together at th
 - PyDantic and AI
 - Python multithreading GIL and Gil-less
 - Troubleshooting memory leaks
+- Multithreaded programming, locks and thread safety
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
