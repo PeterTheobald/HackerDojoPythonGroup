@@ -31,7 +31,7 @@ Coming Up:
 - 2025-05-06 Intro to classes and object oriented programming
 
 Past meetings:
-- 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/bytes)
+- 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bytes)
 - 2025-04-22 [Graphical Interfaces Tk, Gooey, NiceGUI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/UIs)
 - 2025-04-15 [Namespaces, Scope, Closures and Decorators](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Namespaces/Namespaces.md)
 - 2025-04-08 [The RUFF linter and formatter tool](https://www.github.com/cmsato09/ruff-demo) - Chris 
