@@ -28,6 +28,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
+- 2025-05-06 Intro to classes and object oriented programming
 
 Past meetings:
 - 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/bytes)
