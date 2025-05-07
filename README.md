@@ -13,7 +13,7 @@ The meetings are oriented around in-person conversations gathered together at th
 - CircuitPython/MicroPython on controllers (Raspberry Pico)
 - FastHTML web framework
 - Regex deep dive
-- revisit core topics like Object oriented programming, Pandas, SciPy etc. (see below)
+- revisit core topics (see history below)
 - python project organization (folders, pyproject.toml, modules etc)
 - git, source control
 - testing with GreatExpectations
@@ -28,9 +28,11 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
-- 2025-05-06 Intro to classes and object oriented programming
+- 2025-05-13 Object Oriented Design Patterns
+- 2025-05-20 Web scraping dynamic websites
 
 Past meetings:
+- 2025-05-06 Python classes and Object Oriented programming
 - 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bytes)
 - 2025-04-22 [Graphical Interfaces Tk, Gooey, NiceGUI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/UIs)
 - 2025-04-15 [Namespaces, Scope, Closures and Decorators](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Namespaces/Namespaces.md)
