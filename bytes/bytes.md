@@ -1,5 +1,9 @@
 bytes, bytearrays, memoryviews
 
+open( "my song.mp3", encoding="utf-8" "latin1") 
+open( "m.mp3", "rb") "wb"
+
+
 str 'hello'
 bytes b'hello' 
 bytearray(b'hello')
@@ -55,3 +59,6 @@ open('file.bin','wb').write(data)
 change mp3 tag
 tail -c 128 song.mp3 | xxd -g1
 id3v2 -l song.mp3
+
+smile: 😊
+
