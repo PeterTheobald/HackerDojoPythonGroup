@@ -28,7 +28,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
-- 2025-05-13 Object Oriented Design Patterns
+- 2025-05-13 [Object Oriented Design Patterns](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/ObjectOriented/design-patterns.md)
 - 2025-05-20 Web scraping dynamic websites
 
 Past meetings:
