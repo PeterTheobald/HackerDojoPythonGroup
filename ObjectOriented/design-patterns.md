@@ -5,6 +5,17 @@
 - Abstraction: Model real-world entities through simplified interfaces
 - Inheritance: Reuse and extend behavior in a class hierarchy
 - Polymorphism: Treat different types uniformly via a common interface
+Encapsulation
+``` python
+class BankAccount:
+    def __init__(self):
+        self.__balance = 0.0    # private attribute
+    def deposit(self, amt):
+        if amt > 0:
+            self.__balance += amt
+    def get_balance(self):
+        return self.__balance
+```
 2. Best Practices
 - Single Responsibility: One class: one reason to change
 - Open/Closed: Open to extension, closed to modification
