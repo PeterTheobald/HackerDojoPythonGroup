@@ -16,6 +16,35 @@ class BankAccount:
     def get_balance(self):
         return self.__balance
 ```
+#### Abstraction
+``` python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass  # hide implementation details
+```
+#### Inheritance
+``` python
+class Rectangle(Shape):
+    def __init__(self, w, h):
+        self.w, self.h = w, h
+    def area(self):
+        return self.w * self.h
+```
+#### Polymorphism
+``` python
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+    def area(self):
+        return 3.1416 * self.r**2
+
+shapes = [Rectangle(3,4), Circle(5)]
+for s in shapes:
+    print(s.area())    # works for any Shape
+```
 2. Best Practices
 - Single Responsibility: One class: one reason to change
 - Open/Closed: Open to extension, closed to modification
@@ -50,46 +79,9 @@ class BankAccount:
 The famous "Gang of Four" book that started it:
 “Design Patterns” (Gamma et al.),
 
-#### Encapsulation
-``` python
-class BankAccount:
-    def __init__(self):
-        self.__balance = 0.0    # private attribute
-    def deposit(self, amt):
-        if amt > 0:
-            self.__balance += amt
-    def get_balance(self):
-        return self.__balance
-```
-#### Abstraction
-``` python
-from abc import ABC, abstractmethod
 
-class Shape(ABC):
-    @abstractmethod
-    def area(self):
-        pass  # hide implementation details
-```
-#### Inheritance
-``` python
-class Rectangle(Shape):
-    def __init__(self, w, h):
-        self.w, self.h = w, h
-    def area(self):
-        return self.w * self.h
-```
-#### Polymorphism
-``` python
-class Circle(Shape):
-    def __init__(self, r):
-        self.r = r
-    def area(self):
-        return 3.1416 * self.r**2
 
-shapes = [Rectangle(3,4), Circle(5)]
-for s in shapes:
-    print(s.area())    # works for any Shape
-```
+
 #### Single Responsibility
 ``` python
 class MessageFormatter:
