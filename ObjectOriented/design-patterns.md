@@ -5,7 +5,7 @@
 - Abstraction: Model real-world entities through simplified interfaces
 - Inheritance: Reuse and extend behavior in a class hierarchy
 - Polymorphism: Treat different types uniformly via a common interface
-Encapsulation
+#### Encapsulation
 ``` python
 class BankAccount:
     def __init__(self):
