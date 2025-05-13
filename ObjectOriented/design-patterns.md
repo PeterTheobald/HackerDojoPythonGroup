@@ -54,34 +54,6 @@ for s in shapes:
 - Consistent Naming & Formatting: Improves readability and navigation
 - Write Small, Cohesive Methods: Easier to test and maintain
 - Automated Testing & Code Reviews: Catch design flaws early
-3. SOLID Principles
-- Single Responsibility
-- Open/Closed
-- Liskov Substitution
-- Interface Segregation
-- Dependency Inversion
-4. Common Design Patterns
-- Creational: Factory, Singleton, Builder, Abstract Factory, Prototype
-- Structural: Adapter, Decorator, Facade, Proxy, Composite
-- Behavioral: Observer, Strategy, Command, Iterator, State, Template Method, Mediator
-- Intent & Use-Case for each pattern
-- Pros & Cons and consequences of adoption
-- Guidance on when to refactor toward a pattern
-5. Pattern Selection & Integration
-- Analyze requirements → choose simplest pattern that fits
-- Combine patterns where appropriate (e.g., Factory + Singleton)
-- Refactor incrementally; verify via unit tests
-6. Refactoring & Anti-Patterns
-- Recognize code smells (e.g., God object, shotgun surgery, Feature Envy)
-- Refactor toward patterns to improve structure
-- Continuously review and adapt refactor as requirements evolve
-
-The famous "Gang of Four" book that started it:
-“Design Patterns” (Gamma et al.),
-
-
-
-
 #### Single Responsibility
 ``` python
 class MessageFormatter:
@@ -130,8 +102,12 @@ class Report:
     def generate(self):
         self.printer.print("Report data")
 ```
-#### Clear Naming & Small Methods, Automated Tests
-
+3. SOLID Principles
+- Single Responsibility
+- Open/Closed
+- Liskov Substitution
+- Interface Segregation
+- Dependency Inversion
 #### Liskov Substitution
 ``` python
 def print_area(shape: Shape):
@@ -151,6 +127,88 @@ class MFP(Scanner, Printer):
     def scan(self): ...
     def print(self): ...
 ```
+4. Common Design Patterns
+- Creational: Factory, Singleton, Builder, Abstract Factory, Prototype
+- Structural: Adapter, Decorator, Facade, Proxy, Composite
+- Behavioral: Observer, Strategy, Command, Iterator, State, Template Method, Mediator
+- Intent & Use-Case for each pattern
+- Pros & Cons and consequences of adoption
+- Guidance on when to refactor toward a pattern
+#### Factory
+``` python
+class ShapeFactory:
+    @staticmethod
+    def create(type_, *args):
+        return {'rect': Rectangle, 'circle': Circle}[type_](*args)
+```
+#### Singleton
+``` python
+class SingletonMeta(type):
+    _inst = None
+    def __call__(cls, *a, **k):
+        if not cls._inst:
+            cls._inst = super().__call__(*a, **k)
+        return cls._inst
+
+class Config(metaclass=SingletonMeta):
+    pass
+```
+#### Decorator
+``` python
+class Notifier:
+    def send(self, msg): print("Base:", msg)
+
+class SMSDecorator(Notifier):
+    def __init__(self, wrap):
+        self.wrap = wrap
+    def send(self, msg):
+        self.wrap.send(msg)
+        print("SMS:", msg)
+```
+#### Strategy
+``` python
+class Strategy(ABC):
+    @abstractmethod
+    def execute(self): pass
+
+class FastStrategy(Strategy):
+    def execute(self): print("Fast")
+
+class Context:
+    def __init__(self, strat: Strategy):
+        self.strat = strat
+    def run(self):
+        self.strat.execute()
+
+Context(FastStrategy()).run()
+```
+5. Pattern Selection & Integration
+- Analyze requirements → choose simplest pattern that fits
+- Combine patterns where appropriate (e.g., Factory + Singleton)
+- Refactor incrementally; verify via unit tests
+#### Compose patterns:
+``` python
+strat = {'fast': FastStrategy, 'slow': SlowStrategy}['fast']()
+Context(strat).run()
+```
+6. Refactoring & Anti-Patterns
+- Recognize code smells (e.g., God object, shotgun surgery, Feature Envy)
+- Refactor toward patterns to improve structure
+- Continuously review and adapt refactor as requirements evolve
+#### Code Smell: large class doing too much
+``` python
+# before: UserService handles parsing, validating, saving
+class UserService: ...
+# after:
+class UserParser: ...
+class UserValidator: ...
+class UserRepository: ...
+```
+<hr>
+The famous "Gang of Four" book that started it:
+“Design Patterns” (Gamma et al.),
+
+
 
 
 
