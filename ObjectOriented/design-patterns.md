@@ -17,14 +17,17 @@ class BankAccount:
         return self.__balance
 ```
 #### Abstraction
+
+**Abstract base class for shapes**
 ``` python
 from abc import ABC, abstractmethod
 
 class Shape(ABC):
     @abstractmethod
     def area(self):
-        pass  # hide implementation details
+        raise NotImplementedError("subclasses of Shape must implement area()") # better than using "pass"
 ```
+
 #### Inheritance
 ``` python
 class Rectangle(Shape):
@@ -44,6 +47,35 @@ class Circle(Shape):
 shapes = [Rectangle(3,4), Circle(5)]
 for s in shapes:
     print(s.area())    # works for any Shape
+```
+**Python doesn't explicitly have "interfaces", but uses Duck Typing. One way to explicitly define an interface is by using an Abstract Base Class. Another way is by using typing Protocol (not shown here)**
+``` python
+from abc import ABC, abstractmethod
+
+class Iterator(ABC):
+    def __iter__(self):
+        return self
+
+    @abstractmethod
+    def __next__(self):
+        raise NotImplementedError("Subclasses must implement __next__") # redundant, can just use "pass"
+
+class MyRange(Iterator):
+    def __init__(self, start: int, end: int):
+        self.current = start
+        self.end = end
+
+    def __next__(self) -> int:
+        if self.current >= self.end:
+            raise StopIteration
+        value = self.current
+        self.current += 1
+        return value
+
+# Example usage:
+for i in MyRange(1, 5):
+    print(i)
+# Output: 1 2 3 4
 ```
 2. Best Practices
 - Single Responsibility: One class: one reason to change
@@ -182,6 +214,7 @@ class Context:
 
 Context(FastStrategy()).run()
 ```
+
 5. Pattern Selection & Integration
 - Analyze requirements → choose simplest pattern that fits
 - Combine patterns where appropriate (e.g., Factory + Singleton)
