@@ -8,6 +8,8 @@ Between meetings, come chat about your Python questions in the [Python channel](
 
 The meetings are oriented around in-person conversations gathered together at the [Hacker Dojo](https://hackerdojo.org/), but we do usually stream the meetings in the [Hacker Dojo Discord](https://discord.gg/qz3v4ggQdP) 'Dojo Voicebox' channel, although remote is not ideal because it can be hard to catch everyone's comments and it is harder to ask questions.
 
+A formatted and styled version of this webpage [lives here](https://petertheobald.github.io/HackerDojoPythonGroup/).
+
 ## Ideas for upcoming meeting topics:
 
 - CircuitPython/MicroPython on controllers (Raspberry Pico)
@@ -28,10 +30,10 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
-- 2025-05-13 [Object Oriented Design Patterns](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/ObjectOriented/design-patterns.md)
 - 2025-05-20 Web scraping dynamic websites
 
 Past meetings:
+- 2025-05-13 [Object Oriented Design Patterns](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/ObjectOriented/design-patterns.md)
 - 2025-05-06 Python classes and Object Oriented programming
 - 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bytes)
 - 2025-04-22 [Graphical Interfaces Tk, Gooey, NiceGUI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/UIs)
