@@ -1,0 +1,11 @@
+[project]
+name = "webscraping"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "bs4>=0.0.2",
+    "selenium>=4.32.0",
+    "webdriver-manager>=4.0.2",
+]
