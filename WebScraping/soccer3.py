@@ -1,14 +1,19 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
+# Note: If you don't have chromium installed,
 # Need to apt install chromium-browser
 # apt install -y \
 #  chromium-browser chromium-chromedriver \
 #  libnss3 libgconf-2-4 libxss1 libasound2 \
 #  libatk1.0-0 libgtk-3-0 libx11-xcb1 \
 #  libdbus-glib-1-2 libxtst6 fonts-liberation
+# And need to run with a graphic UI (X server) running
 
 url = "https://www.cnbc.com/2025/05/05/cnbcs-official-global-soccer-team-valuations-2025.html"
 opts = webdriver.ChromeOptions()
