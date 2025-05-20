@@ -1,11 +1,3 @@
-# /// script
-# requires-python = ">=3.12"
-# dependencies = [
-#     "bs4",
-#     "pandas",
-#     "requests",
-# ]
-# ///
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
