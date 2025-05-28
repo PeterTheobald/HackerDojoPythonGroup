@@ -30,9 +30,11 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 
-- 2025-05-20 Web scraping dynamic websites
+- 2025-06-03 GIL multi-threading vs. GIL-less free-threading in Python 3.13t AND Flask vs. FastAPI
 
 Past meetings:
+- 2025-05-27 [Web scraping pt. 2 for dynamic sites with Selenium](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/WebScraping)
+- 2025-05-20 [Web scraping with requests, BeautifulSoup](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/WebScraping)
 - 2025-05-13 [Object Oriented Design Patterns](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/ObjectOriented/design-patterns.md)
 - 2025-05-06 Python classes and Object Oriented programming
 - 2025-04-29 [Unicode, bytes, bytearray, memoryview](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bytes)
