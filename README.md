@@ -31,7 +31,7 @@ Coming Up:
 Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
-- 2025-06-03 Flask vs. FasAPI and GIL slow threads vs. GIL-less fast free-threading in Python 3.13t
+- 2025-06-03 [Flask vs. FasAPI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/FlaskFastAPI) and [GIL slow threads vs. GIL-less fast free-threading in Python 3.13t](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Multiprocessing/time_threads.py)
 - 2025-05-27 [Web scraping pt. 2 for dynamic sites with Selenium](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/WebScraping)
 - 2025-05-20 [Web scraping with requests, BeautifulSoup](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/WebScraping)
 - 2025-05-13 [Object Oriented Design Patterns](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/ObjectOriented/design-patterns.md)
