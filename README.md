@@ -20,7 +20,6 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - git, source control
 - testing with GreatExpectations
 - PyDantic and AI
-- Python multithreading GIL and Gil-less
 - Troubleshooting memory leaks
 - Multithreaded programming, locks and thread safety
 
