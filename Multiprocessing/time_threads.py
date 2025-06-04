@@ -1,3 +1,7 @@
+# Run this in Python 3.13 (normal GIL locked threads) against Python 3.13t (GIL-less free-threaded) to compare
+# uv run -p3.13 time_threads.py
+# uv run -p3.13t time_threads.py
+
 import threading
 import time
 import argparse
