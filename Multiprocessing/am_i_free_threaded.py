@@ -1,5 +1,8 @@
 import sysconfig
+import sys
+
+v=sys.version
 if sysconfig.get_config_var("Py_GIL_DISABLED"):
-    print('I am running free-threaded Python (faster)')
+    print(f'I am running free-threaded Python (faster), version {v}')
 else:
-    print('I am running GIL locked Python (slower)')
+    print(f'I am running GIL locked Python (slower) version {v}')
