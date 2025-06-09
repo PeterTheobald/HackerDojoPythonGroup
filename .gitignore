@@ -3,6 +3,7 @@ venv/
 .venv/
 .ipynb_checkpoints/
 __pycache__/
+.env
 .DS_Store
 *.swp
 *.Zone.Identifier

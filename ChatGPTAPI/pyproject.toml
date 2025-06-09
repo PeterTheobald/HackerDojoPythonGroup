@@ -1,0 +1,14 @@
+[project]
+name = "chatgptapi"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dotenv>=0.9.9",
+    "fastapi>=0.115.12",
+    "openai>=1.85.0",
+    "python-multipart>=0.0.20",
+    "textual>=3.3.0",
+    "uvicorn>=0.34.3",
+]
