@@ -6,6 +6,7 @@
 - helps other developers understand your code
 - helps IDEs and tools (linters, CI/CD, test runners etc) work with your code
 
+```
 my_app/
 ├── src/
 │   └── my_app/
@@ -15,6 +16,7 @@ my_app/
 ├── README.md
 ├── .gitignore
 └── LICENSE
+```
 
 *Note: Take a look at [Cookiecutter](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) for easy to install template projects.*
 ## src/
