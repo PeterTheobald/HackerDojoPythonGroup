@@ -277,3 +277,8 @@ Every time you commit a new version, update this, or use a tool like `setuptools
 
 
 
+___
+To add:
+- more details on build systems
+- more details on stucturing modules in a large python project
+
