@@ -31,6 +31,7 @@ Coming Up:
 Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-06-24 [Pyodide Python in the browser](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pyodide)
 - 2025-06-17 [Python Project Structure](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Projects_Packaging/ProjectStructure.md) - best practices
 - 2025-06-10 [An AI powered app in Python using ChatGPT API](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/ChatGPTAPI)
 - 2025-06-03 [Flask vs. FasAPI](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/FlaskFastAPI) and [GIL slow threads vs. GIL-less fast free-threading in Python 3.13t](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Multiprocessing/time_threads.py)
