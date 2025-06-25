@@ -1,0 +1,9 @@
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script>
+  async function main() {
+    let pyodide = await loadPyodide();
+    await pyodide.runPythonAsync("print('Hello from Pyodide')");
+  }
+  main();
+</script>
+

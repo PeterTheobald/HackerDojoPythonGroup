@@ -21,6 +21,7 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - PyDantic and AI
 - Troubleshooting memory leaks
 - Multithreaded programming, locks and thread safety
+- Multithreading: threading.Threads vs. concurrent.futures
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 

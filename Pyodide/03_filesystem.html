@@ -1,0 +1,19 @@
+<script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+<script>
+async function main() {
+  const pyodide = await loadPyodide();
+
+  // write ten numbers
+  await pyodide.runPythonAsync(`
+import os
+with open("numbers.txt", "w") as f:
+    for i in range(10):
+        f.write(f"{i}\\n")
+
+# list the in-browser file system
+print(os.listdir("."))
+`);
+}
+main();
+</script>
+

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>Pyodide Calculator</title></head>
+<body>
+  <input id="a" type="number" value="3">
+  <select id="op">
+    <option value="+">+</option><option value="-">−</option>
+    <option value="*">*</option><option value="/">÷</option>
+  </select>
+  <input id="b" type="number" value="4">
+  <button id="calc">=</button>
+  <span id="result"></span>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <script>
+    async function init() {
+      // 1️⃣ spin up Pyodide
+      const pyodide = await loadPyodide();
+
+      // 2️⃣ define a Python helper once
+      await pyodide.runPythonAsync(`
+def calc(a, b, op):
+    if op == '+':  return a + b
+    if op == '-':  return a - b
+    if op == '*':  return a * b
+    if op == '/':  return a / b
+    raise ValueError("bad op")
+`);
+
+      // 3️⃣ wire the “=” button
+      document.getElementById("calc").addEventListener("click", () => {
+        // JS → Python: move operands into the global namespace
+        pyodide.globals.set("a", +document.getElementById("a").value);
+        pyodide.globals.set("b", +document.getElementById("b").value);
+        pyodide.globals.set("op", document.getElementById("op").value);
+
+        // run synchronously (cheap calculation)
+        const result = pyodide.runPython("calc(a, b, op)");
+        document.getElementById("result").textContent = result;
+      });
+    }
+    init();
+  </script>
+</body>
+</html>
+
+

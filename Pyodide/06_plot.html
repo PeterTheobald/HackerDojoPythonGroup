@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pyodide NumPy / Pandas / Matplotlib Demo</title>
+</head>
+<body>
+  <h2>Sine-wave plot rendered entirely in the browser</h2>
+  <div id="plot">Loading Pyodide…</div>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+  <script>
+    async function main() {
+      const pyodide = await loadPyodide();
+
+      /* load heavy scientific packages (downloaded once, then cached) */
+      await pyodide.loadPackage(["numpy", "pandas", "matplotlib"]);
+
+      /* run Python code asynchronously */
+      const svg = await pyodide.runPythonAsync(`
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import io
+
+# quick Pandas / NumPy demo (prints to browser console)
+df = pd.DataFrame({"x": np.arange(5), "y": np.random.randn(5)})
+print("DataFrame:\\n", df)
+
+# generate sine-wave plot
+x = np.linspace(0, 2*np.pi, 200)
+y = np.sin(x)
+
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set(title="Sine wave (Matplotlib in Pyodide)",
+       xlabel="x", ylabel="sin(x)")
+
+# return SVG as a string for JS
+buf = io.BytesIO()
+fig.savefig(buf, format="svg")
+buf.getvalue().decode() # Pyodide capture the final expression and returns it to JS
+`);
+
+      /* insert SVG into the page */
+      document.getElementById("plot").innerHTML = svg;
+    }
+
+    main();
+  </script>
+</body>
+</html>
+
+
