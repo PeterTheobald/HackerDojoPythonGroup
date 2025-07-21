@@ -35,7 +35,7 @@ dependencies = [
 ]
 ```
 
-# Now for Python Gotchya's:
+# Now for Python Pitfalls's:
 
 ## implicit string concatenation
 
