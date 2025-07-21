@@ -1,16 +1,16 @@
-# First, working with uv when others are using venv and pip
+# First a digression: mixing uv and venv/pip on a project
 
 ## Stop using requirements.txt
-requirements.txt is a very old format. pip has been able to use pyproject.toml for a long time with `pip install .`
+requirements.txt is a very old format. pip has been able to use pyproject.toml for a long time with `pip install .`  
+uv uses pyproject.toml, as does modern pip and poetry and others.  
 
-uv uses pyproject.toml, as does modern pip and poetry and others.
 Convert a requirements.txt to a modern pyproject.toml and .venv directory:
 ```
 uv init --bare # creates pyproject.toml
 uv add -r requirements.txt # convert to pyproject.toml
 ```
 
-Now uv people keep woring using `uv run` and it will find the `pyproject.toml` and `.venv`
+Now uv people keep working using `uv run` and it will find the `pyproject.toml` and `.venv`  
 And pip/venv people keep working using `source .venv/bin/activate`
 
 To add new libraries, uv people `uv add library`, pip people manually edit `pyproject.toml` and `pip install .`
