@@ -30,11 +30,11 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
-- 2025-07-22 Python Pitfalls: a number of easy-to-miss issues that lead to bugs
+- 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
 
 Past meetings:
 - 2025-07-15 Share your project
-- 2025-07-08 LLM Demo: Parsing NY Times Connections puzzle - John Hanley
+- 2025-07-08 [ollama LLM Demo: Parsing NY Times Connections puzzle](https://github.com/jhanley634/dojo-blackboard/blob/main/talks/out/2025-07-08-connections.pdf) - John Hanley
 - 2025-07-01 [Pyodide Python in the browser](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pyodide)
 - 2025-06-24 [Claude Code demo - AI code assistant](https://gist.github.com/malpern/50818345b562e8be6dc11013c2579886) - Micah Alpern
 - 2025-06-17 [Python Project Structure](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Projects_Packaging/ProjectStructure.md) - best practices
