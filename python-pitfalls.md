@@ -285,3 +285,45 @@ Don't put code that could fail, error or take a long time at the top module leve
 
 Unlike stricter languages, in Python you can create a self.my_var object instance variable just about anywhere, but don't do that. It becomes confusing. In your `__init__()` constructor declare all of your instance variables, even if it's just `self.my_var = None` if you don't need a value yet. It serves as a Table of Contents for your class.
 
+## Accessing dicts
+
+When accessing a dict, consider what happens if the key doesn't exist:
+```
+url = config["url"]
+# raises KeyError
+```
+So in cases where you aren't 100% sure the key will exist you should handle it.
+
+The simplest solution:
+```
+url = config.get("url", None)
+or
+url = config.get("url", "")
+```
+Depending on which works better for you.
+
+What if None is a perfectly valid value for your dict entry? Make up your own unique sentinel value:
+```
+DoesntExist = object()
+url = config.get("url", DoesntExist)
+if url is DoesntExist:
+  # handle it
+```
+
+For completion's sake here are all the ways you could handle a missing key:
+```
+try:
+  url = config["url"]
+except KeyError:
+  # handle it
+```
+```
+url = config.get("url", None) # or other sentinel value like "" or custom object like DoesntExist
+```
+```
+from collections import defaultdict
+config = defaultdict(str) # default will be ""
+
+url = config["url"]
+```
+
