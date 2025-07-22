@@ -68,7 +68,7 @@ t3 = 1, # this is a tuple! the comma makes it so
 my_int = 1, # nope, it's a tuple
 ```
 
-## Mutable defaults
+## Mutable Mischief: Mutable Defaults
 
 Function arguments can be optional with a default value:
 ```
@@ -101,6 +101,8 @@ def add_item(item: str, target: list[str] = None) -> list[str]:
   return target
 ```
 
+## More Mutable Mischief: Star Repeat Operator
+
 A related problem: The '*' operator can be used to make multiple copies of a literal:
 ```
 >>> 'a'*10
@@ -125,7 +127,73 @@ The solution:
 [['O', 'X', 'X'], ['X', 'X', 'X'], ['X', 'X', 'X']]
 ```
 
+## More Mutable Mischief: Passing Mutable Data to Functions
 
+Be careful when passing mutable data like Lists and Dicts into functions. The function can change the shared copy. This is useful when it's what you intend, but hard to debug when it isn't.
+
+```
+def use_list( x: List[Any]):
+  x[1] = 'CHANGED'
+
+my_list = [1,2,3]
+use_list(my_list)
+print(my_list)
+
+[1,'CHANGED',3]
+```
+Solution:
+```
+def use_list( x: List[Any]):
+  my_x=x.copy() # shallow copy
+my_list = [1,2,3]
+use_list(my_list)
+print(my_list)
+
+[1,2,3]
+```
+
+Copy only copies the top level of mutable data, so if you have an embedded list or dict it could still be vulnerable to being changed:
+```
+def use_list( x: List[Any]):
+  my_x=x.copy() # shallow copy
+  my_x[1][0] = 'CHANGED'
+
+my_list = [1, ['a','b','c'], 3]
+use_list(my_list)
+print(my_list)
+[1, ['CHANGED','b','c'], 3]
+```
+Solution:
+```
+import copy
+def use_list( x: List[Any]):
+  my_x=copy.deepcopy(x) # shallow copy
+  my_x[1][0] = 'CHANGED'
+
+my_list = [1, ['a','b','c'], 3]
+use_list(my_list)
+print(my_list)
+[1, ['CHANGED','b','c'], 3]
+```
+## More Mutable Mischief: Modifying Lists while iterating over them:
+
+```
+nums = [2, 4, 6, 8]
+for n in nums:
+    if n % 2 == 0: # remove even nums
+        nums.remove(n)
+
+print(nums)
+[4, 8] # <- incorrect!
+```
+What?! It skipped some because the remove shifted them over and the for loop thought it already handled that item.
+Better:
+```
+nums = [2, 4, 6, 8]
+nums = [ num in nums if num % 2 != 0] # build new filtered list
+print(nums)
+[]
+```
 
 ## for/else, while/else, try/except/else
 Unlike if/else,
