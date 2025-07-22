@@ -277,8 +277,11 @@ if __name__ == "__main__":
         send_alert_to_ops()
 ```
 
-## mixing "compile time"(-ish) and "run-time"
+## Mixing "compile time"(-ish) and "run-time"
 
 Don't put code that could fail, error or take a long time at the top module level of your program. Put all your imports at the top, then all your function "def"s, perhaps declare some global variables, then put any other code in your main() function. If any global variables need more than a literal initialization consider putting that in the main or another function. That way your program's behavior will be more predictable. All your imports and function definitions will happen before any run-time errors. You can try/except anything that could fail.
 
+## Creating object instance variables all over the place
+
+Unlike stricter languages, in Python you can create a self.my_var object instance variable just about anywhere, but don't do that. It becomes confusing. In your `__init__()` constructor declare all of your instance variables, even if it's just `self.my_var = None` if you don't need a value yet. It serves as a Table of Contents for your class.
 
