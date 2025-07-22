@@ -326,4 +326,11 @@ config = defaultdict(str) # default will be ""
 
 url = config["url"]
 ```
+Defaultdict can use any function to return any default value you want:
+```
+from collections import defaultdict
+DoesntExist = object()
+config = defaultdict(lambda: DoesntExist) # default will be DoesntExist
 
+url = config["url"]
+```
