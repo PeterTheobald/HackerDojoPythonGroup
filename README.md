@@ -12,7 +12,7 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 
 ## Ideas for upcoming meeting topics:
 
-- CircuitPython/MicroPython on controllers (Raspberry Pico)
+- CircuitPython/MicroPython on controllers (Raspberry Pico) (Micah?)
 - FastHTML web framework
 - Regex deep dive
 - revisit core topics (see history below)
@@ -23,6 +23,15 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Multithreaded programming, locks and thread safety
 - Multithreading: threading.Threads vs. concurrent.futures
 - Python's new T-Strings
+- Packing/Unpacking (*args, **kwargs, tuple unpacking, **dict, iterable unpacking *rest b=seq, kw only args, zip(*iter), dataclass/namedtuple field unpacking, *assignments *_, last=seq)
+- try/catch deep dive
+- Claude Code update
+- ml stats
+- agentic AI
+- How to get started w AI (LLM? ML? PyTorch?)
+- Programming fundamentals (DRY, WET, separation of concerns, etc)
+- Agent Development Kit (Josue?)
+- Database SOLID SQL
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
@@ -30,9 +39,9 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
-- 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
 
 Past meetings:
+- 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
 - 2025-07-15 Share your project
 - 2025-07-08 [ollama LLM Demo: Parsing NY Times Connections puzzle](https://github.com/jhanley634/dojo-blackboard/blob/main/talks/out/2025-07-08-connections.pdf) - John Hanley
 - 2025-07-01 [Pyodide Python in the browser](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pyodide)
