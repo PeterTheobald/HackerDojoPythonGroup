@@ -220,7 +220,7 @@ else:
     print("Invalid input: not an integer")
 ```
 
-Python uses this itself in the implementation of Iterators. Python iteration uses StopIteration to signal the end of a sequence. This is how for loops work under the hood. Here is a custom iterator; See how it raises a StopIteration exception to signal the end of the sequence:
+Python uses this itself in the implementation of Iterators. Python iteration raises StopIteration to signal the end of a sequence. This is how `for` loops work under the hood. Here is a custom iterator; See how it raises a StopIteration exception to signal the end of the sequence:
 ``` python
 class Countdown:
     def __init__(self, start):
@@ -243,7 +243,7 @@ for number in Countdown(3):
 
 ## Detailed exception information
 
-You can get lost of detailed information about an exception to print or log very helpful messages. This can be especially useful if your exception went up more than one caller in the stack before being caught and printed, making it not obvious where the exception happened.
+You can get lots of detailed information about an exception to print or log very helpful messages. This can be especially useful if your exception bubbled up more than one caller in the stack before being caught and printed, making it not obvious where the exception happened.
 
 ``` python
 import traceback
