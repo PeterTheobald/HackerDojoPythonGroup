@@ -183,6 +183,15 @@ except (KeyError, ValueError) as e:
     print(f"Error retrieving user age: {e}")
 ```
 
+You can use `raise` by itself to re-raise the current exception to the caller:
+``` python
+try:
+    # dangerous code
+except ValueError:
+    log_error()
+    raise  # re-raises the same exception
+```
+
 ## try except else finally
 
 Python exception handling also has an "else" and "finally" block for executing code after an exception is handled. They can be confusing. The 'except' block is only run if there is an error/exception. The 'else' block is only run if there was NO exception. The 'finally' block is always run after the try/except blocks EVEN IF THE try/except blocks caused an uncaught exception or the function exitted with `return` or the try/except/finally block was skipped by a `break` or `continue` or even if the program was aborted with `sys.exit()`. 'finally' ALWAYS RUNS. Any code placed after the entire try/except will run afterwards unless there the function aborted with an uncaught exception or a return.
@@ -191,7 +200,7 @@ Python exception handling also has an "else" and "finally" block for executing c
 try:
   print('try to run this risky code')
 except ValueError:
-  print('this runs to handle a ValueError exception'
+  print('this runs to handle a ValueError exception')
 else: # noexcept
   print('this runs if there was NO exception')
 finally:
@@ -241,6 +250,11 @@ for number in Countdown(3):
     print(number)
 ```
 
+Python uses `assert` and `AssertionError` as debugging tools:
+``` python
+assert x > 0, "x must be positive"
+```
+
 ## Detailed exception information
 
 You can get lots of detailed information about an exception to print or log very helpful messages. This can be especially useful if your exception bubbled up more than one caller in the stack before being caught and printed, making it not obvious where the exception happened.
@@ -279,6 +293,7 @@ except Exception:
 - Try to keep the least code possible in the try block, only the dangerous code.
 - Don't blindly catch every exception. Catch exactly the one you expect in the try block and catch anything else at the top of your program.
 - Put a broad general purpose try/except around your main function for any other uncaught exceptions
+- In production systems it's best to log exceptions instead of just printing
 ``` python
 try:
   # lots of code
@@ -299,8 +314,7 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as e:
-        print(f"Unhandled exception: {e}")
-        put_details_in_log_file()
+        logging.error(f"Unhandled exception: {e}")
         send_alert_to_ops()
 ```
 
