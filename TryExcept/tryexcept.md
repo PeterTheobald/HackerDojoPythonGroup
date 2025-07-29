@@ -1,5 +1,7 @@
 # Exception Handling in Python
 
+## The old way
+
 There are two ways to handle unexpected events or responses in most languages.
 
 1. Return a special "sentinel" value (None, -1, a unique object, "", 0, etc)
@@ -38,6 +40,8 @@ for i in range(5):
             error = True
             break  # exit inner loop
 ```
+
+## The modern way
 
 A better way is to have a way to handle exceptions that interrupts the normal flow of the program. Python introduced "try/except" blocks for this. Most modern languages since C have support for exception handling with try/except blocks. (Javascript calls it try/catch)
 
@@ -84,6 +88,8 @@ except (TypeError, ValueError) as e:
     print(f"Handled error: {e}")
 ```
 
+## Bubbling up...
+
 Any exceptions you don't specifically catch will exit the function and check if the calling function catches it, and if not that function's calling function and so on all the way up the stack to your main program.
 It is a best practice to catch the most specific error you can in your try/except block and have a broad general purpose try/except in your main function for any uncaught exceptions.
 
@@ -111,6 +117,8 @@ def main():
 
 main()
 ```
+
+## Exception objects
 
 The exceptions that you can catch come from a list of standard Python exceptions that are all objects inherited from the parent Exception object. You can find a list of all the built-in exceptions here: https://docs.python.org/3/library/exceptions.html
 Exception objects have a number of attributes on them that give you additional information about the exception.
@@ -192,12 +200,6 @@ finally:
 
 print('this runs after the try/except unless there was an uncaught exception or return()')
 ```
-
-
-
-
-... getting function name, line number and stack traces
-... other languages tend to use try/except only for errors, python encourages them for any sort of out of the normal flow, see iteration
 
 ## Pythonic exception handling
 
