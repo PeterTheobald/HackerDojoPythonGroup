@@ -24,7 +24,6 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Multithreading: threading.Threads vs. concurrent.futures
 - Python's new T-Strings
 - Packing/Unpacking (*args, **kwargs, tuple unpacking, **dict, iterable unpacking *rest b=seq, kw only args, zip(*iter), dataclass/namedtuple field unpacking, *assignments *_, last=seq)
-- try/catch deep dive
 - Claude Code update
 - ml stats
 - agentic AI
@@ -41,6 +40,7 @@ Coming Up:
 Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-07-29 [Exception handling best practices](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TryExcept/tryexcept.md)
 - 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
 - 2025-07-15 Share your project
 - 2025-07-08 [ollama LLM Demo: Parsing NY Times Connections puzzle](https://github.com/jhanley634/dojo-blackboard/blob/main/talks/out/2025-07-08-connections.pdf) - John Hanley
