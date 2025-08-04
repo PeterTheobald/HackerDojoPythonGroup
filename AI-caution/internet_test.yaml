@@ -1,0 +1,3 @@
+# Example config for internet_test.py
+num_tests: 5
+test_url: "https://www.google.com/"
