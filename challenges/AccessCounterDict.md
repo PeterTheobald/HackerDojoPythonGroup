@@ -9,6 +9,8 @@ It should also provide a method to reset the access counts.
 
 Does that cover everything we need to count accesses?
 We check `dir(dict)` to see what methods we can override.
+dict has a lot of methods! They are implemented in C for efficiency and directly access the dict's keys and values.
+We may need to implement all of these to accurately count access.
 
 Here are other ways someone might access a dictionary that we should consider:
 
@@ -37,6 +39,21 @@ Ways to bulk access all keys or values:
 - Iterating over the dictionary: `for key in dict` (`uses dict.iter()`)
     - Using `list(dict)` (calls `dict.iter()` to create a list of keys)
 - Using `update()` method: `dict.update(other_dict)` (accesses keys from otherdict)
+- Using `dict1 == dict2` it uses `__eq__` to compare the dicts, also ` > < != >= <= ` which use `__gt__() __lt__() __ne__() __ge__() __le__()`
 
 Should key deletion remove the count for that key?
 - using `del` `pop` `popitem` `clear`
+
+---
+
+How do we know we handled everything correctly?
+We need tests!
+Write a bunch of pytest tests that try different variations of access dicts, then checking that the resulting access counters are what you expect them to be!
+
+That way any time you update your code, you just run `pytest` and you know if you broke anything.
+
+---
+
+Wouldn't it be nice if all of those dict methods internally used `__getitem__()` so we could add our custom code in one place and everything works?
+
+The library collections has a class UserDict that is made specifically for writing custom dictionary classes.
