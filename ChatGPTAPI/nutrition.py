@@ -1,8 +1,10 @@
 # nutrition.py
 import os
 import json
+import pprint
 from dotenv import load_dotenv
 from openai import AsyncOpenAI
+
 
 load_dotenv()
 client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -20,6 +22,7 @@ async def fetch_nutrition(food_items: list[str]) -> dict[str, dict[str, float]]:
         messages=[{"role": "system", "content": prompt}],
         temperature=0
     )
+    pprint.pprint(resp)
     return json.loads(resp.choices[0].message.content)
 
 def calculate_totals(nutrition_data: dict[str, dict[str, float]]) -> tuple[int, float]:
