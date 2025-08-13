@@ -37,9 +37,12 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 ## Calendar of meeting topics:
 
 Coming Up:
-Next week's challenge: Write a Python program that takes input and sends a question to an AI, then displays the response.
+Challenges:
+- Write a class AccessCounterDict that extends dict to count accesses to keys.
+- Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-08-05 An AI coding tool cautionary tale - Peter Theobald; The design of BrainDaily.ai - Sam Mirazi
 - 2025-07-29 [Exception handling best practices](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TryExcept/tryexcept.md)
 - 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
 - 2025-07-15 Share your project
