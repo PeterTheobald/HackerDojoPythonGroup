@@ -5,10 +5,15 @@ It should count accesses in the form of `dict[key]` and `dict.get(key, default)`
 It should provide a method to get the access counts for each key.
 It should also provide a method to reset the access counts.
 
+Purpose:
+Some reasons one would want to count accesses:
+- To periodically delete items that are never used
+- To provide stats on the most used items
+
 ---
 
-Does that cover everything we need to count accesses?
-We check `dir(dict)` to see what methods we can override.
+Does `dict[key]` and `dict.get(key, default)` that cover everything we need to count accesses?
+We check `dir(dict)` to see what other methods we might want to override.
 dict has a lot of methods! They are implemented in C for efficiency and directly access the dict's keys and values.
 We may need to implement all of these to accurately count access.
 
@@ -54,6 +59,6 @@ That way any time you update your code, you just run `pytest` and you know if yo
 
 ---
 
-Wouldn't it be nice if all of those dict methods internally used `__getitem__()` so we could add our custom code in one place and everything works?
+Wouldn't it be nice if all of those dict methods internally used `__getitem__()` to access the item instead of accessing it directly, so we could add our custom code in one place and everything works?
 
-The library collections has a class UserDict that is made specifically for writing custom dictionary classes.
+The library collections has a class UserDict that does this and is made specifically for writing custom dictionary classes.

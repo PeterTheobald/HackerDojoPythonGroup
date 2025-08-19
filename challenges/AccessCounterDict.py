@@ -45,3 +45,26 @@ class AccessCounterDict(dict):
         """
         self._access_counts.clear()
 
+# A demonstration if this module is run directly instead of imported:
+def main():
+    # Create an AccessCounterDict and populate it
+    acd = AccessCounterDict({'a': 1, 'b': 2, 'c': 3})
+
+    # Access keys using bracket notation
+    print("acd['a']:", acd['a'])
+    print("acd['b']:", acd['b'])
+
+    # Access key using get()
+    print("acd.get('a'):", acd.get('a'))
+    print("acd.get('c'):", acd.get('c'))
+    print("acd.get('d', 0):", acd.get('d', 0))  # Non-existent key
+
+    # Show access counts
+    print("Access counts:", acd.get_access_counts())
+
+    # Reset access counts
+    acd.reset_access_counts()
+    print("Access counts after reset:", acd.get_access_counts())
+
+if __name__ == "__main__":
+    main()
