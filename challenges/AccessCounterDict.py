@@ -1,3 +1,5 @@
+#!/usr/bin/env uv
+# uv:python=3.14 --free-threaded
 """
 This module provides AccessCounterDict, a dictionary subclass that counts accesses to each key.
 """
