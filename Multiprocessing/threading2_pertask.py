@@ -1,10 +1,3 @@
-# /// script
-# requires-python = "==3.14+freethreaded"
-# dependencies = [
-#     "requests",
-# ]
-# ///
-
 # Thread-per-task URL fetcher using requests; downloads the entire page
 import threading, time, requests
 

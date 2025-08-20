@@ -1,8 +1,3 @@
-# /// script
-# requires-python = "==3.14+freethreaded"
-# dependencies = [ ]
-# ///
-
 # One UI thread (Tkinter) + one worker thread (tasks); shows task progress
 import threading, queue, random, time, tkinter as tk
 from tkinter import ttk
