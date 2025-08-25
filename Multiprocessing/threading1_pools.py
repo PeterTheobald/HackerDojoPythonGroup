@@ -1,8 +1,3 @@
-# /// script
-# requires-python = "==3.14+freethreaded"
-# dependencies = []
-# ///
-
 import concurrent.futures as cf
 import time, random
 
