@@ -42,6 +42,8 @@ Challenges:
 - Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-08-19 [Multi-Threaded programming](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Multiprocessing/threading.md)
+- 2025-08-12 [Regex](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Regex/regex.ipynb)
 - 2025-08-05 An AI coding tool cautionary tale - Peter Theobald; The design of BrainDaily.ai - Sam Mirazi
 - 2025-07-29 [Exception handling best practices](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/TryExcept/tryexcept.md)
 - 2025-07-22 [Python Pitfalls: a number of easy-to-miss issues that lead to bugs](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/python-pitfalls.md)
