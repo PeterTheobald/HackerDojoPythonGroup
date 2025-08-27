@@ -14,7 +14,6 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 
 - CircuitPython/MicroPython on controllers (Raspberry Pico) (Micah?)
 - FastHTML web framework
-- Regex deep dive
 - revisit core topics (see history below)
 - git, source control
 - testing with GreatExpectations
@@ -38,10 +37,10 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 
 Coming Up:
 Challenges:
-- Write a class AccessCounterDict that extends dict to count accesses to keys.
 - Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-08-26 [PyTorch ML Image recognition "Hot Dog or Not Hot Dog?"](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PyTorch)
 - 2025-08-19 [Multi-Threaded programming](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Multiprocessing/threading.md)
 - 2025-08-12 [Regex](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Regex/regex.ipynb)
 - 2025-08-05 An AI coding tool cautionary tale - Peter Theobald; The design of BrainDaily.ai - Sam Mirazi
