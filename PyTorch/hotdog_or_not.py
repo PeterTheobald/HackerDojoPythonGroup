@@ -19,6 +19,8 @@ def is_hotdog(image_path: str, threshold: float = 0.5):
         probs = F.softmax(logits, dim=1)[0]
 
     recognized_class_names = weights.meta["categories"]
+    for name in recognized_class_names:
+        print(name)
     hotdog_idx = next(i for i, name in enumerate(recognized_class_names) if "hotdog" in name.lower() or "hot dog" in name.lower())
     # Note: next(generator) is a nice idiom. It returns the first item without calling for the entire list.
     #       [list comprehension][0] would execute the entire list first

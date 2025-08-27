@@ -3,6 +3,7 @@ name = "hacker-dojo-python-group"
 version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
+    "open-clip-torch>=3.1.0",
     "pillow>=11.3.0",
     "torch>=2.8.0",
     "torchvision>=0.23.0",
