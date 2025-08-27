@@ -18,8 +18,10 @@ def is_hotdog(image_path: str, threshold: float = 0.5):
         logits = model(x)
         probs = F.softmax(logits, dim=1)[0]
 
-    classes = weights.meta["categories"]
-    hotdog_idx = next(i for i, name in enumerate(classes) if "hotdog" in name.lower() or "hot dog" in name.lower())
+    recognized_class_names = weights.meta["categories"]
+    hotdog_idx = next(i for i, name in enumerate(recognized_class_names) if "hotdog" in name.lower() or "hot dog" in name.lower())
+    # Note: next(generator) is a nice idiom. It returns the first item without calling for the entire list.
+    #       [list comprehension][0] would execute the entire list first
     p_hotdog = float(probs[hotdog_idx].item())
     label = "HOT DOG" if p_hotdog >= threshold else "NOT HOT DOG"
     return label, p_hotdog
