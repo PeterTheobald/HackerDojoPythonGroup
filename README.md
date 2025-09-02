@@ -30,6 +30,8 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Programming fundamentals (DRY, WET, separation of concerns, etc)
 - Agent Development Kit (Josue?)
 - Database SOLID SQL
+- Numpy
+- Pandas
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
@@ -38,6 +40,7 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 Coming Up:
 Challenges:
 - Write a Python program that takes input and sends a question to an AI, then displays the response.
+- 2025-09-02 Beginner's Python topics
 
 Past meetings:
 - 2025-08-26 [PyTorch ML Image recognition "Hot Dog or Not Hot Dog?"](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PyTorch)
