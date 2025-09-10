@@ -5,3 +5,8 @@ requires-python = ">=3.13"
 dependencies = [
     "torch>=2.8.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "BART-Caltrain-map",
+]
