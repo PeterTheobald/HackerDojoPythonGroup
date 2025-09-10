@@ -7,6 +7,7 @@ import pytest
 import json
 import os
 import tempfile
+import requests
 from unittest.mock import Mock, patch, MagicMock
 from datetime import datetime
 import requests_mock
