@@ -9,4 +9,5 @@ __pycache__/
 *.Zone.Identifier
 *Zone.Identifier
 *_secret.sh
+*_secrets.sh
 

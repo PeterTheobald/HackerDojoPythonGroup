@@ -22,22 +22,26 @@ class TestTransitHTTPRequestHandler:
     
     def test_cors_headers(self):
         """Test that CORS headers are added correctly"""
-        # Create a mock handler
+        # Create a more complete mock handler
         handler = Mock(spec=TransitHTTPRequestHandler)
         handler.send_header = Mock()
+        handler.request_version = 'HTTP/1.1'  # Add required attribute
+        handler.wfile = Mock()  # Add wfile attribute
         
-        # Call the real end_headers method
-        TransitHTTPRequestHandler.end_headers(handler)
-        
-        # Check that CORS headers were sent
-        expected_calls = [
-            ('Access-Control-Allow-Origin', '*'),
-            ('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),
-            ('Access-Control-Allow-Headers', 'Content-Type')
-        ]
-        
-        for header, value in expected_calls:
-            handler.send_header.assert_any_call(header, value)
+        # Mock the parent class method
+        with patch('http.server.SimpleHTTPRequestHandler.end_headers'):
+            # Call the real end_headers method
+            TransitHTTPRequestHandler.end_headers(handler)
+            
+            # Check that CORS headers were sent
+            expected_calls = [
+                ('Access-Control-Allow-Origin', '*'),
+                ('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),
+                ('Access-Control-Allow-Headers', 'Content-Type')
+            ]
+            
+            for header, value in expected_calls:
+                handler.send_header.assert_any_call(header, value)
 
 
 class TestServerFunctions:

@@ -7,3 +7,12 @@ dependencies = [
     "protobuf>=6.32.0",
     "requests>=2.32.5",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-asyncio>=1.1.0",
+    "pytest-mock>=3.15.0",
+    "requests-mock>=1.12.1",
+    "selenium>=4.35.0",
+]

@@ -54,49 +54,54 @@ class TestLocationTracker:
             assert isinstance(data['lon'], (int, float))
             assert isinstance(data['name'], str)
     
-    @requests_mock.Mocker()
-    def test_fetch_bart_locations_success(self, m):
+    def test_fetch_bart_locations_success(self, requests_mock):
         """Test successful BART data fetching"""
         # Mock GTFS-RT protobuf data
         mock_response = b'\x08\x01\x12\x1a\n\x04test\x12\x12\x08\x00\x12\x0e\n\x04A10-1\x1a\x06\x08\xc0\x84\x03'
         
-        m.get(self.tracker.bart_trip_updates_url, content=mock_response)
+        requests_mock.get(self.tracker.bart_trip_updates_url, content=mock_response)
         
         # Mock the protobuf parsing
         with patch('location_tracker.gtfs_realtime_pb2.FeedMessage') as mock_feed:
             mock_entity = Mock()
             mock_entity.id = "test_trip"
             mock_entity.HasField.return_value = True
-            mock_entity.trip_update.stop_time_update = [Mock()]
-            mock_entity.trip_update.stop_time_update[0].stop_id = "A10-1"
-            mock_entity.trip_update.stop_time_update[0].departure.delay = 300
-            mock_entity.trip_update.vehicle.id = "1234"
+            
+            # Create proper trip_update mock
+            mock_trip_update = Mock()
+            mock_stop_time_update = Mock()
+            mock_stop_time_update.stop_id = "A10-1"
+            mock_stop_time_update.HasField.return_value = True
+            mock_stop_time_update.arrival.delay = 300
+            
+            mock_trip_update.stop_time_update = [mock_stop_time_update]
+            mock_trip_update.trip.trip_id = "1234"
+            
+            mock_entity.trip_update = mock_trip_update
             
             mock_feed_instance = Mock()
             mock_feed_instance.entity = [mock_entity]
             mock_feed.return_value = mock_feed_instance
             
-            locations = self.tracker.fetch_bart_locations()
+            locations = self.tracker.get_bart_locations()
             
             assert len(locations) == 1
             assert locations[0]['vehicle_id'] == "1234"
             assert locations[0]['station'] == "Pittsburg/Bay Point"
             assert locations[0]['delay_seconds'] == 300
     
-    @requests_mock.Mocker()
-    def test_fetch_bart_locations_network_error(self, m):
+    def test_fetch_bart_locations_network_error(self, requests_mock):
         """Test BART data fetching with network error"""
-        m.get(self.tracker.bart_trip_updates_url, exc=requests.exceptions.RequestException)
+        requests_mock.get(self.tracker.bart_trip_updates_url, exc=requests.exceptions.RequestException)
         
-        locations = self.tracker.fetch_bart_locations()
+        locations = self.tracker.get_bart_locations()
         assert locations == []
     
-    @requests_mock.Mocker()
-    def test_fetch_caltrain_locations_success(self, m):
+    def test_fetch_caltrain_locations_success(self, requests_mock):
         """Test successful Caltrain data fetching"""
         mock_response = b'\x08\x01\x12\x1a\n\x04test\x12\x12\x08\x00\x12\x0e\n\x041234\x1a\x06\x08\xc0\x84\x03'
         
-        m.get(self.tracker.caltrain_vehicle_url, content=mock_response)
+        requests_mock.get(self.tracker.caltrain_vehicle_url, content=mock_response)
         
         # Mock the protobuf parsing
         with patch('location_tracker.gtfs_realtime_pb2.FeedMessage') as mock_feed:
@@ -113,7 +118,7 @@ class TestLocationTracker:
             mock_feed_instance.entity = [mock_entity]
             mock_feed.return_value = mock_feed_instance
             
-            locations = self.tracker.fetch_caltrain_locations()
+            locations = self.tracker.get_caltrain_locations()
             
             assert len(locations) == 1
             assert locations[0]['vehicle_id'] == "1234"
@@ -122,11 +127,10 @@ class TestLocationTracker:
             assert locations[0]['speed_mps'] == 15.0
             assert locations[0]['bearing'] == 90.0
     
-    @requests_mock.Mocker()
-    def test_fetch_caltrain_locations_no_api_key(self, m):
+    def test_fetch_caltrain_locations_no_api_key(self, requests_mock):
         """Test Caltrain data fetching without API key"""
         tracker = LocationTracker()  # No API key
-        locations = tracker.fetch_caltrain_locations()
+        locations = tracker.get_caltrain_locations()
         assert locations == []
     
     def test_save_location_data(self):
@@ -134,34 +138,31 @@ class TestLocationTracker:
         with tempfile.TemporaryDirectory() as tmp_dir:
             os.chdir(tmp_dir)
             
-            test_data = {
-                'timestamp': '2025-09-09T12:00:00',
-                'total_vehicles': 2,
-                'bart_count': 1,
-                'caltrain_count': 1,
-                'locations': [
-                    {
-                        'system': 'BART',
-                        'vehicle_id': '1234',
-                        'latitude': 37.7749,
-                        'longitude': -122.4194,
-                        'station': 'Embarcadero',
-                        'delay_seconds': 0,
-                        'gps_source': 'estimated_from_station'
-                    },
-                    {
-                        'system': 'Caltrain',
-                        'vehicle_id': '5678',
-                        'latitude': 37.5052,
-                        'longitude': -122.2751,
-                        'speed_mps': 20.0,
-                        'bearing': 180.0,
-                        'gps_source': 'gps'
-                    }
-                ]
-            }
+            bart_locations = [
+                {
+                    'system': 'BART',
+                    'vehicle_id': '1234',
+                    'latitude': 37.7749,
+                    'longitude': -122.4194,
+                    'station': 'Embarcadero',
+                    'delay_seconds': 0,
+                    'gps_source': 'estimated_from_station'
+                }
+            ]
             
-            filename = self.tracker.save_location_data(test_data)
+            caltrain_locations = [
+                {
+                    'system': 'Caltrain',
+                    'vehicle_id': '5678',
+                    'latitude': 37.5052,
+                    'longitude': -122.2751,
+                    'speed_mps': 20.0,
+                    'bearing': 180.0,
+                    'gps_source': 'gps'
+                }
+            ]
+            
+            filename = self.tracker.save_locations(bart_locations, caltrain_locations)
             
             # Check file was created
             assert os.path.exists(filename)
@@ -172,10 +173,13 @@ class TestLocationTracker:
             with open(filename, 'r') as f:
                 saved_data = json.load(f)
             
-            assert saved_data == test_data
+            assert saved_data['total_vehicles'] == 2
+            assert saved_data['bart_count'] == 1
+            assert saved_data['caltrain_count'] == 1
+            assert len(saved_data['locations']) == 2
     
-    @patch('location_tracker.LocationTracker.fetch_bart_locations')
-    @patch('location_tracker.LocationTracker.fetch_caltrain_locations')
+    @patch('location_tracker.LocationTracker.get_bart_locations')
+    @patch('location_tracker.LocationTracker.get_caltrain_locations')
     def test_collect_all_locations(self, mock_caltrain, mock_bart):
         """Test collecting data from both BART and Caltrain"""
         mock_bart.return_value = [
@@ -202,13 +206,23 @@ class TestLocationTracker:
             }
         ]
         
-        data = self.tracker.collect_all_locations()
-        
-        assert data['total_vehicles'] == 2
-        assert data['bart_count'] == 1
-        assert data['caltrain_count'] == 1
-        assert len(data['locations']) == 2
-        assert 'timestamp' in data
+        # Call the main function to collect and save data
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            os.chdir(tmp_dir)
+            
+            bart_locs = self.tracker.get_bart_locations()
+            caltrain_locs = self.tracker.get_caltrain_locations()
+            filename = self.tracker.save_locations(bart_locs, caltrain_locs)
+            
+            # Check file exists and has correct data
+            assert os.path.exists(filename)
+            with open(filename, 'r') as f:
+                data = json.load(f)
+            
+            assert data['total_vehicles'] == 2
+            assert data['bart_count'] == 1
+            assert data['caltrain_count'] == 1
+            assert 'timestamp' in data
     
     def test_unknown_station_handling(self):
         """Test handling of unknown BART station codes"""
@@ -231,7 +245,7 @@ class TestLocationTracker:
                 
                 # Capture print output to check unknown station logging
                 with patch('builtins.print') as mock_print:
-                    locations = self.tracker.fetch_bart_locations()
+                    locations = self.tracker.get_bart_locations()
                     
                     # Should print unknown station warning
                     mock_print.assert_called()
