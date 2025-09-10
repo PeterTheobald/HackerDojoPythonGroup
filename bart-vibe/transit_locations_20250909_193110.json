@@ -1,0 +1,230 @@
+{
+  "timestamp": "2025-09-09T19:31:10.546296",
+  "total_vehicles": 26,
+  "bart_count": 14,
+  "caltrain_count": 12,
+  "locations": [
+    {
+      "system": "BART",
+      "vehicle_id": "1771615",
+      "latitude": 37.7801,
+      "longitude": -122.4135,
+      "station": "Civic Center",
+      "delay_seconds": 232,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771616",
+      "latitude": 37.8933,
+      "longitude": -122.1237,
+      "station": "Lafayette",
+      "delay_seconds": 720,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771617",
+      "latitude": 38.0033,
+      "longitude": -122.0253,
+      "station": "North Concord",
+      "delay_seconds": 408,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771667",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 45,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771714",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771897",
+      "latitude": 37.7894,
+      "longitude": -122.4017,
+      "station": "Montgomery",
+      "delay_seconds": 101,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771715",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771898",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 235,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771711",
+      "latitude": 38.0033,
+      "longitude": -122.0253,
+      "station": "North Concord",
+      "delay_seconds": 81,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771712",
+      "latitude": 37.8933,
+      "longitude": -122.1237,
+      "station": "Lafayette",
+      "delay_seconds": 30,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771713",
+      "latitude": 37.7894,
+      "longitude": -122.4017,
+      "station": "Montgomery",
+      "delay_seconds": 77,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771829",
+      "latitude": 37.6003,
+      "longitude": -122.3867,
+      "station": "Millbrae",
+      "delay_seconds": 657,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771559",
+      "latitude": 37.6159,
+      "longitude": -122.3925,
+      "station": "SFO Airport",
+      "delay_seconds": 8,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771498",
+      "latitude": 37.9737,
+      "longitude": -122.0297,
+      "station": "Concord",
+      "delay_seconds": 336,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "154",
+      "latitude": 37.37049865722656,
+      "longitude": -121.99758911132812,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "155",
+      "latitude": 37.655399322509766,
+      "longitude": -122.40550231933594,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "156",
+      "latitude": 37.52119827270508,
+      "longitude": -122.2763900756836,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "157",
+      "latitude": 37.454898834228516,
+      "longitude": -122.18240356445312,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "158",
+      "latitude": 37.754600524902344,
+      "longitude": -122.3926010131836,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "159",
+      "latitude": 37.33539962768555,
+      "longitude": -121.90560150146484,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "161",
+      "latitude": 37.329898834228516,
+      "longitude": -121.90319061279297,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "162",
+      "latitude": 37.775901794433594,
+      "longitude": -122.39569091796875,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "163",
+      "latitude": 37.33000183105469,
+      "longitude": -121.90299224853516,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "164",
+      "latitude": 37.775699615478516,
+      "longitude": -122.39540100097656,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "428",
+      "latitude": 37.44350051879883,
+      "longitude": -122.16490173339844,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "429",
+      "latitude": 37.58369827270508,
+      "longitude": -122.35340118408203,
+      "speed_mps": null,
+      "bearing": null
+    }
+  ]
+}

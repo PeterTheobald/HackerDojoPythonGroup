@@ -24,6 +24,8 @@ def wgs84_to_web_mercator(lon, lat):
     y = math.log(math.tan((math.pi/4.0) + (lat * math.pi/360.0))) * k
     return x, y
 
+HEADERS = {"Accept": "application/json"}
+
 @lru_cache(maxsize=1)
 def get_operator_ids():
     """Return {'BART': 'BA', 'Caltrain': '<id>'} by querying 511 Operators API once."""
@@ -35,17 +37,50 @@ def get_operator_ids():
         entries = ops["content"]
     else:
         entries = ops
-    bart = next((o["Id"] for o in entries if "bart" in o.get("Name","").lower()), "BA")
+    
+    # Debug: print all operators to see what we get
+    print("Available operators:")
+    for op in entries:
+        print(f"  ID: {op.get('Id')}, Name: {op.get('Name')}")
+    
+    # Look specifically for BART by exact name matches only
+    bart = None
+    for op in entries:
+        name = op.get("Name", "")
+        # Look for exact BART matches, not partial
+        if name == "Bay Area Rapid Transit":
+            bart = op["Id"]
+            print(f"Found exact BART match: {op}")
+            break
+    
+    # Force use of BA if no exact match (we know from output that BA = Bay Area Rapid Transit)
+    if not bart:
+        bart = "BA"
+        print(f"Using fallback BART operator ID: BA")
+    
     caltrain = next((o["Id"] for o in entries if "caltrain" in o.get("Name","").lower()), None)
+    
+    print(f"Final selected operators - BART: {bart}, Caltrain: {caltrain}")
     return {"BART": bart, "Caltrain": caltrain}
 
 def fetch_vehicle_monitoring(operator_id):
     """Call SIRI VehicleMonitoring JSON; return list of dicts with lon/lat/line/veh/ts/bearing."""
     if not operator_id:
         return []
-    r = requests.get(f"{BASE}/VehicleMonitoring", params={"api_key": API_KEY, "agency": operator_id, "format": "json"}, headers=HEADERS, timeout=20)
-    r.raise_for_status()
-    data = safe_json(r)
+    print(f"Fetching vehicles for operator: {operator_id}")
+    try:
+        r = requests.get(f"{BASE}/VehicleMonitoring", params={"api_key": API_KEY, "agency": operator_id, "format": "json"}, headers=HEADERS, timeout=20)
+        r.raise_for_status()
+        
+        # Check if response is the rate limit error
+        if "exceeded" in r.text.lower():
+            print(f"Rate limit exceeded for operator {operator_id}: {r.text}")
+            return []
+            
+        data = safe_json(r)
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data for operator {operator_id}: {e}")
+        return []
     # Navigate SIRI JSON safely
     sd = data.get("Siri", {}).get("ServiceDelivery", {})
     vmd = sd.get("VehicleMonitoringDelivery") or []
@@ -61,17 +96,28 @@ def fetch_vehicle_monitoring(operator_id):
                 lon = float(loc.get("Longitude"))
             except (TypeError, ValueError):
                 continue
-            out.append({
+            
+            # Filter to Bay Area bounds: lat [36.8, 38.7], lon [-123.1, -121.2]
+            if not (36.8 <= lat <= 38.7 and -123.1 <= lon <= -121.2):
+                continue
+            
+            vehicle_data = {
                 "lat": lat,
                 "lon": lon,
                 "line": str(mvj.get("LineRef") or ""),
                 "vehicle": str(mvj.get("VehicleRef") or ""),
                 "bearing": mvj.get("Bearing"),
                 "updated": act.get("RecordedAtTime") or sd.get("ResponseTimestamp"),
-            })
+            }
+            
+            # Debug: print a few sample coordinates to see if they look reasonable
+            if len(out) < 3:  # Only print first few to avoid spam
+                print(f"  Vehicle {vehicle_data['vehicle']} at lat={lat:.4f}, lon={lon:.4f}, line={vehicle_data['line']}")
+            
+            out.append(vehicle_data)
+    
+    print(f"Found {len(out)} vehicles for operator {operator_id}")
     return out
-
-HEADERS = {"Accept": "application/json"}
 
 def safe_json(r):
     try:
@@ -115,6 +161,15 @@ def refresh():
     try:
         bart = fetch_vehicle_monitoring(OPS.get("BART"))
         cal  = fetch_vehicle_monitoring(OPS.get("Caltrain"))
+        
+        # Debug what we're getting from each operator
+        print(f"DEBUG: Raw BART data has {len(bart)} vehicles")
+        print(f"DEBUG: Raw Caltrain data has {len(cal)} vehicles")
+        
+        # Show some sample BART data to verify we're getting actual trains
+        for i, rec in enumerate(bart[:3]):
+            print(f"  BART vehicle {i}: lat={rec['lat']:.4f}, lon={rec['lon']:.4f}, line='{rec['line']}', vehicle='{rec['vehicle']}'")
+        
         bx, by, cx, cy = [], [], [], []
         for rec in bart:
             x,y = wgs84_to_web_mercator(rec["lon"], rec["lat"])
@@ -141,7 +196,7 @@ def refresh():
     except Exception as e:
         status_div.text = f"<b>Error:</b> {e}"
 
-# initial & periodic
+# initial & periodic - refresh every 60 seconds to stay within rate limits
 refresh()
-curdoc().add_periodic_callback(refresh, 10_000)
+curdoc().add_periodic_callback(refresh, 60_000)  # 60 seconds instead of 10
 

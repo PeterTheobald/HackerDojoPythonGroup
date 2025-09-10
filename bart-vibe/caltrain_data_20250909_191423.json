@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-09-09T19:14:23.986285",
+  "vehicle_positions": null,
+  "trip_updates": null,
+  "trains": [],
+  "error": "Caltrain API key not provided. Get one from https://511.org/open-data/token"
+}

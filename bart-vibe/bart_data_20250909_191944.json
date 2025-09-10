@@ -1,0 +1,461 @@
+{
+  "timestamp": "2025-09-09T19:19:44.232796",
+  "trip_updates": {
+    "feed_timestamp": 1757470784,
+    "entities_count": 75
+  },
+  "alerts": null,
+  "trains": [
+    {
+      "trip_id": "1771615",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 3
+    },
+    {
+      "trip_id": "1771616",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 9
+    },
+    {
+      "trip_id": "1771617",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 12
+    },
+    {
+      "trip_id": "1771618",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 18
+    },
+    {
+      "trip_id": "1771619",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 21
+    },
+    {
+      "trip_id": "1771665",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 5
+    },
+    {
+      "trip_id": "1771666",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 11
+    },
+    {
+      "trip_id": "1771667",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 16
+    },
+    {
+      "trip_id": "1771896",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771714",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771897",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 5
+    },
+    {
+      "trip_id": "1771715",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771898",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 10
+    },
+    {
+      "trip_id": "1771899",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 15
+    },
+    {
+      "trip_id": "1771900",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771709",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771901",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771710",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 8
+    },
+    {
+      "trip_id": "1771711",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 12
+    },
+    {
+      "trip_id": "1771712",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771895",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771713",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771957",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1772015",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 19
+    },
+    {
+      "trip_id": "1771958",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 21
+    },
+    {
+      "trip_id": "1772016",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 23
+    },
+    {
+      "trip_id": "1771959",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 24
+    },
+    {
+      "trip_id": "1771827",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 2
+    },
+    {
+      "trip_id": "1771764",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 5
+    },
+    {
+      "trip_id": "1771960",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 24
+    },
+    {
+      "trip_id": "1771828",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 6
+    },
+    {
+      "trip_id": "1771765",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 11
+    },
+    {
+      "trip_id": "1771829",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 14
+    },
+    {
+      "trip_id": "1771766",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771830",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 18
+    },
+    {
+      "trip_id": "1771767",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 22
+    },
+    {
+      "trip_id": "1771954",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1772012",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771768",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 25
+    },
+    {
+      "trip_id": "1771955",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 4
+    },
+    {
+      "trip_id": "1772013",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 8
+    },
+    {
+      "trip_id": "1771769",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 25
+    },
+    {
+      "trip_id": "1771956",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 12
+    },
+    {
+      "trip_id": "1772014",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 15
+    },
+    {
+      "trip_id": "1771313",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 7
+    },
+    {
+      "trip_id": "1771314",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 13
+    },
+    {
+      "trip_id": "1771315",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 18
+    },
+    {
+      "trip_id": "1771316",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 22
+    },
+    {
+      "trip_id": "1771407",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771317",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 23
+    },
+    {
+      "trip_id": "1771408",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 7
+    },
+    {
+      "trip_id": "1771318",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "1771409",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 13
+    },
+    {
+      "trip_id": "1771410",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 20
+    },
+    {
+      "trip_id": "1771411",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 22
+    },
+    {
+      "trip_id": "1771500",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771557",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 8
+    },
+    {
+      "trip_id": "1771501",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771558",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 12
+    },
+    {
+      "trip_id": "1771559",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 16
+    },
+    {
+      "trip_id": "1771560",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771497",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 4
+    },
+    {
+      "trip_id": "1771561",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 17
+    },
+    {
+      "trip_id": "1771498",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 7
+    },
+    {
+      "trip_id": "1771499",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 14
+    },
+    {
+      "trip_id": "682",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "684",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "686",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "688",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "689",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 2
+    },
+    {
+      "trip_id": "690",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    },
+    {
+      "trip_id": "691",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 2
+    },
+    {
+      "trip_id": "693",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 2
+    },
+    {
+      "trip_id": "695",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 2
+    },
+    {
+      "trip_id": "697",
+      "route_id": "Unknown",
+      "vehicle_id": "Unknown",
+      "stop_updates_count": 1
+    }
+  ],
+  "error": null
+}

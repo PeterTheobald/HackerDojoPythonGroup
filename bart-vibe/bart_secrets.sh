@@ -1,0 +1,2 @@
+#!/bin/bash
+export CALTRAIN_API_KEY=a30e3efc-163e-4016-8e06-0c7103099802

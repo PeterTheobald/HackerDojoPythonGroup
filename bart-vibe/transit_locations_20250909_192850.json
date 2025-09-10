@@ -1,0 +1,128 @@
+{
+  "timestamp": "2025-09-09T19:28:50.528702",
+  "total_vehicles": 15,
+  "bart_count": 15,
+  "caltrain_count": 0,
+  "locations": [
+    {
+      "system": "BART",
+      "vehicle_id": "1771615",
+      "latitude": 37.7801,
+      "longitude": -122.4135,
+      "station": "Civic Center",
+      "delay_seconds": 232
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771616",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 737
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771617",
+      "latitude": 38.0187,
+      "longitude": -121.9453,
+      "station": "Pittsburg/Bay Point",
+      "delay_seconds": 430
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771667",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 45
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771714",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771897",
+      "latitude": 37.8297,
+      "longitude": -122.2661,
+      "station": "MacArthur",
+      "delay_seconds": 113
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771715",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771898",
+      "latitude": 37.9527,
+      "longitude": -122.0565,
+      "station": "Pleasant Hill",
+      "delay_seconds": 206
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771711",
+      "latitude": 38.0033,
+      "longitude": -122.0253,
+      "station": "North Concord",
+      "delay_seconds": 81
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771712",
+      "latitude": 37.8784,
+      "longitude": -122.1837,
+      "station": "Orinda",
+      "delay_seconds": 35
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771713",
+      "latitude": 37.7894,
+      "longitude": -122.4017,
+      "station": "Montgomery",
+      "delay_seconds": 77
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771558",
+      "latitude": 38.0187,
+      "longitude": -121.9453,
+      "station": "Pittsburg/Bay Point",
+      "delay_seconds": 22
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771559",
+      "latitude": 37.6159,
+      "longitude": -122.3925,
+      "station": "SFO Airport",
+      "delay_seconds": 22
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771497",
+      "latitude": 37.6159,
+      "longitude": -122.3925,
+      "station": "SFO Airport",
+      "delay_seconds": 575
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771498",
+      "latitude": 38.0033,
+      "longitude": -122.0253,
+      "station": "North Concord",
+      "delay_seconds": 338
+    }
+  ]
+}

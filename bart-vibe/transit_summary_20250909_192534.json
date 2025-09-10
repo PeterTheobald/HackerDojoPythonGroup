@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-09-09T19:25:34.766355",
+  "bart_trips": {
+    "count": 72,
+    "error": null
+  },
+  "bart_vehicles": {
+    "count": 0,
+    "error": "Error fetching BART vehicle positions: 404 Client Error: Not Found for url: https://api.bart.gov/gtfsrt/vehiclepositions.aspx"
+  },
+  "caltrain": {
+    "trains_count": 0,
+    "error": "Error fetching Caltrain data: 400 Client Error: Bad Request for url: https://api.511.org/transit/VehiclePositions?api_key=a30e3efc-163e-4016-8e06-0c7103099802&operator_id=CT&format=gtfs-rt"
+  }
+}

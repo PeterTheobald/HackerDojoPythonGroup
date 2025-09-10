@@ -1,0 +1,2031 @@
+{
+  "timestamp": "2025-09-09T19:25:32.886840",
+  "trip_updates": {
+    "feed_timestamp": 1757471133,
+    "entities_count": 72
+  },
+  "alerts": null,
+  "trains": [
+    {
+      "entity_id": "1771615",
+      "trip_id": "1771615",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "S20-1",
+          "arrival_delay": 229,
+          "arrival_time": 1757471166,
+          "departure_delay": 229,
+          "departure_time": 1757471184
+        },
+        {
+          "stop_id": "S40-1",
+          "arrival_delay": 156,
+          "arrival_time": 1757471554,
+          "departure_delay": 156,
+          "departure_time": 1757471572
+        }
+      ]
+    },
+    {
+      "entity_id": "1771616",
+      "trip_id": "1771616",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 8,
+      "stop_updates": [
+        {
+          "stop_id": "A40-1",
+          "arrival_delay": 736,
+          "arrival_time": 1757471163,
+          "departure_delay": 736,
+          "departure_time": 1757471181
+        },
+        {
+          "stop_id": "A50-1",
+          "arrival_delay": 709,
+          "arrival_time": 1757471361,
+          "departure_delay": 709,
+          "departure_time": 1757471383
+        },
+        {
+          "stop_id": "A60-1",
+          "arrival_delay": 686,
+          "arrival_time": 1757471608,
+          "departure_delay": 686,
+          "departure_time": 1757471626
+        }
+      ]
+    },
+    {
+      "entity_id": "1771617",
+      "trip_id": "1771617",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 11,
+      "stop_updates": [
+        {
+          "stop_id": "A10-1",
+          "arrival_delay": 430,
+          "arrival_time": 1757471367,
+          "departure_delay": 430,
+          "departure_time": 1757471403
+        },
+        {
+          "stop_id": "A20-1",
+          "arrival_delay": 388,
+          "arrival_time": 1757471577,
+          "departure_delay": 388,
+          "departure_time": 1757471595
+        },
+        {
+          "stop_id": "A30-1",
+          "arrival_delay": 382,
+          "arrival_time": 1757471763,
+          "departure_delay": 382,
+          "departure_time": 1757471781
+        }
+      ]
+    },
+    {
+      "entity_id": "1771618",
+      "trip_id": "1771618",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "M50-2",
+          "arrival_delay": 226,
+          "arrival_time": 1757471152,
+          "departure_delay": 226,
+          "departure_time": 1757471170
+        },
+        {
+          "stop_id": "M40-2",
+          "arrival_delay": 193,
+          "arrival_time": 1757471264,
+          "departure_delay": 193,
+          "departure_time": 1757471287
+        },
+        {
+          "stop_id": "M30-2",
+          "arrival_delay": 190,
+          "arrival_time": 1757471356,
+          "departure_delay": 190,
+          "departure_time": 1757471378
+        }
+      ]
+    },
+    {
+      "entity_id": "1771619",
+      "trip_id": "1771619",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 21,
+      "stop_updates": [
+        {
+          "stop_id": "M90-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471263,
+          "departure_delay": 0,
+          "departure_time": 1757471268
+        },
+        {
+          "stop_id": "M80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471707,
+          "departure_delay": 0,
+          "departure_time": 1757471725
+        },
+        {
+          "stop_id": "M70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471845,
+          "departure_delay": 0,
+          "departure_time": 1757471863
+        }
+      ]
+    },
+    {
+      "entity_id": "1771665",
+      "trip_id": "1771665",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 3,
+      "stop_updates": [
+        {
+          "stop_id": "M60-1",
+          "arrival_delay": 19,
+          "arrival_time": 1757471095,
+          "departure_delay": 19,
+          "departure_time": 1757471113
+        },
+        {
+          "stop_id": "M70-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471245,
+          "departure_delay": 0,
+          "departure_time": 1757471263
+        },
+        {
+          "stop_id": "M80-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471383,
+          "departure_delay": 0,
+          "departure_time": 1757471401
+        }
+      ]
+    },
+    {
+      "entity_id": "1771666",
+      "trip_id": "1771666",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 9,
+      "stop_updates": [
+        {
+          "stop_id": "M10-1",
+          "arrival_delay": 105,
+          "arrival_time": 1757471398,
+          "departure_delay": 105,
+          "departure_time": 1757471421
+        },
+        {
+          "stop_id": "M16-1",
+          "arrival_delay": 75,
+          "arrival_time": 1757471781,
+          "departure_delay": 75,
+          "departure_time": 1757471807
+        },
+        {
+          "stop_id": "M20-1",
+          "arrival_delay": 63,
+          "arrival_time": 1757471872,
+          "departure_delay": 63,
+          "departure_time": 1757471893
+        }
+      ]
+    },
+    {
+      "entity_id": "1771667",
+      "trip_id": "1771667",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 14,
+      "stop_updates": [
+        {
+          "stop_id": "A50-2",
+          "arrival_delay": 45,
+          "arrival_time": 1757471269,
+          "departure_delay": 45,
+          "departure_time": 1757471287
+        },
+        {
+          "stop_id": "A40-2",
+          "arrival_delay": 34,
+          "arrival_time": 1757471488,
+          "departure_delay": 34,
+          "departure_time": 1757471506
+        },
+        {
+          "stop_id": "A30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471707,
+          "departure_delay": 0,
+          "departure_time": 1757471725
+        }
+      ]
+    },
+    {
+      "entity_id": "1771714",
+      "trip_id": "1771714",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 20,
+      "stop_updates": [
+        {
+          "stop_id": "S50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471214,
+          "departure_delay": 0,
+          "departure_time": 1757472052
+        },
+        {
+          "stop_id": "S40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472293,
+          "departure_delay": 0,
+          "departure_time": 1757472311
+        },
+        {
+          "stop_id": "S20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472750,
+          "departure_delay": 0,
+          "departure_time": 1757472768
+        }
+      ]
+    },
+    {
+      "entity_id": "1771897",
+      "trip_id": "1771897",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 3,
+      "stop_updates": [
+        {
+          "stop_id": "A90-1",
+          "arrival_delay": 98,
+          "arrival_time": 1757471325,
+          "departure_delay": 98,
+          "departure_time": 1757471343
+        },
+        {
+          "stop_id": "S20-1",
+          "arrival_delay": 64,
+          "arrival_time": 1757471667,
+          "departure_delay": 64,
+          "departure_time": 1757471685
+        },
+        {
+          "stop_id": "S40-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757472064,
+          "departure_delay": 0,
+          "departure_time": 1757472082
+        }
+      ]
+    },
+    {
+      "entity_id": "1771715",
+      "trip_id": "1771715",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 20,
+      "stop_updates": [
+        {
+          "stop_id": "S50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472383,
+          "departure_delay": 0,
+          "departure_time": 1757473252
+        },
+        {
+          "stop_id": "S40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473493,
+          "departure_delay": 0,
+          "departure_time": 1757473511
+        },
+        {
+          "stop_id": "S20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473950,
+          "departure_delay": 0,
+          "departure_time": 1757473968
+        }
+      ]
+    },
+    {
+      "entity_id": "1771898",
+      "trip_id": "1771898",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 8,
+      "stop_updates": [
+        {
+          "stop_id": "A40-1",
+          "arrival_delay": 206,
+          "arrival_time": 1757471298,
+          "departure_delay": 206,
+          "departure_time": 1757471316
+        },
+        {
+          "stop_id": "A50-1",
+          "arrival_delay": 162,
+          "arrival_time": 1757471481,
+          "departure_delay": 162,
+          "departure_time": 1757471502
+        },
+        {
+          "stop_id": "A60-1",
+          "arrival_delay": 163,
+          "arrival_time": 1757471751,
+          "departure_delay": 163,
+          "departure_time": 1757471769
+        }
+      ]
+    },
+    {
+      "entity_id": "1771899",
+      "trip_id": "1771899",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 14,
+      "stop_updates": [
+        {
+          "stop_id": "K30-2",
+          "arrival_delay": 39,
+          "arrival_time": 1757470959,
+          "departure_delay": 39,
+          "departure_time": 1757471100
+        },
+        {
+          "stop_id": "K20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471279,
+          "departure_delay": 0,
+          "departure_time": 1757471308
+        },
+        {
+          "stop_id": "K10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471405,
+          "departure_delay": 0,
+          "departure_time": 1757471453
+        }
+      ]
+    },
+    {
+      "entity_id": "1771900",
+      "trip_id": "1771900",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 19,
+      "stop_updates": [
+        {
+          "stop_id": "R50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471234,
+          "departure_delay": 0,
+          "departure_time": 1757471258
+        },
+        {
+          "stop_id": "R40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471422,
+          "departure_delay": 0,
+          "departure_time": 1757471446
+        },
+        {
+          "stop_id": "R30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471630,
+          "departure_delay": 0,
+          "departure_time": 1757471654
+        }
+      ]
+    },
+    {
+      "entity_id": "1771901",
+      "trip_id": "1771901",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 20,
+      "stop_updates": [
+        {
+          "stop_id": "R60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472206,
+          "departure_delay": 0,
+          "departure_time": 1757472211
+        },
+        {
+          "stop_id": "R50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472554,
+          "departure_delay": 0,
+          "departure_time": 1757472578
+        },
+        {
+          "stop_id": "R40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472742,
+          "departure_delay": 0,
+          "departure_time": 1757472766
+        }
+      ]
+    },
+    {
+      "entity_id": "1771710",
+      "trip_id": "1771710",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 6,
+      "stop_updates": [
+        {
+          "stop_id": "K30-1",
+          "arrival_delay": 249,
+          "arrival_time": 1757471127,
+          "departure_delay": 249,
+          "departure_time": 1757471167
+        },
+        {
+          "stop_id": "R10-1",
+          "arrival_delay": 225,
+          "arrival_time": 1757471319,
+          "departure_delay": 225,
+          "departure_time": 1757471330
+        },
+        {
+          "stop_id": "R20-1",
+          "arrival_delay": 220,
+          "arrival_time": 1757471451,
+          "departure_delay": 220,
+          "departure_time": 1757471475
+        }
+      ]
+    },
+    {
+      "entity_id": "1771902",
+      "trip_id": "1771902",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 20,
+      "stop_updates": [
+        {
+          "stop_id": "R60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473406,
+          "departure_delay": 0,
+          "departure_time": 1757473411
+        },
+        {
+          "stop_id": "R50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473754,
+          "departure_delay": 0,
+          "departure_time": 1757473778
+        },
+        {
+          "stop_id": "R40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473942,
+          "departure_delay": 0,
+          "departure_time": 1757473966
+        }
+      ]
+    },
+    {
+      "entity_id": "1771711",
+      "trip_id": "1771711",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 11,
+      "stop_updates": [
+        {
+          "stop_id": "A30-2",
+          "arrival_delay": 79,
+          "arrival_time": 1757471186,
+          "departure_delay": 79,
+          "departure_time": 1757471204
+        },
+        {
+          "stop_id": "A20-2",
+          "arrival_delay": 64,
+          "arrival_time": 1757471370,
+          "departure_delay": 64,
+          "departure_time": 1757471388
+        },
+        {
+          "stop_id": "A10-2",
+          "arrival_delay": 36,
+          "arrival_time": 1757471611,
+          "departure_delay": 36,
+          "departure_time": 1757471629
+        }
+      ]
+    },
+    {
+      "entity_id": "1771712",
+      "trip_id": "1771712",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 15,
+      "stop_updates": [
+        {
+          "stop_id": "A70-2",
+          "arrival_delay": 42,
+          "arrival_time": 1757471385,
+          "departure_delay": 42,
+          "departure_time": 1757471402
+        },
+        {
+          "stop_id": "A60-2",
+          "arrival_delay": 31,
+          "arrival_time": 1757471614,
+          "departure_delay": 31,
+          "departure_time": 1757471632
+        },
+        {
+          "stop_id": "A50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471825,
+          "departure_delay": 0,
+          "departure_time": 1757471843
+        }
+      ]
+    },
+    {
+      "entity_id": "1771895",
+      "trip_id": "1771895",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "S50-1",
+          "arrival_delay": 88,
+          "arrival_time": 1757470040,
+          "departure_delay": 88,
+          "departure_time": 1757470050
+        }
+      ]
+    },
+    {
+      "entity_id": "1771713",
+      "trip_id": "1771713",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 19,
+      "stop_updates": [
+        {
+          "stop_id": "S40-2",
+          "arrival_delay": 74,
+          "arrival_time": 1757471167,
+          "departure_delay": 74,
+          "departure_time": 1757471185
+        },
+        {
+          "stop_id": "S20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471550,
+          "departure_delay": 0,
+          "departure_time": 1757471568
+        },
+        {
+          "stop_id": "A90-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471926,
+          "departure_delay": 0,
+          "departure_time": 1757471944
+        }
+      ]
+    },
+    {
+      "entity_id": "1771957",
+      "trip_id": "1771957",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 16,
+      "stop_updates": [
+        {
+          "stop_id": "K30-4",
+          "arrival_delay": 226,
+          "arrival_time": 1757471145,
+          "departure_delay": 226,
+          "departure_time": 1757471175
+        },
+        {
+          "stop_id": "K20-2",
+          "arrival_delay": 217,
+          "arrival_time": 1757471351,
+          "departure_delay": 217,
+          "departure_time": 1757471377
+        },
+        {
+          "stop_id": "K10-2",
+          "arrival_delay": 173,
+          "arrival_time": 1757471434,
+          "departure_delay": 173,
+          "departure_time": 1757471457
+        }
+      ]
+    },
+    {
+      "entity_id": "1772015",
+      "trip_id": "1772015",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 18,
+      "stop_updates": [
+        {
+          "stop_id": "C20-2",
+          "arrival_delay": 32,
+          "arrival_time": 1757471133,
+          "departure_delay": 32,
+          "departure_time": 1757471151
+        },
+        {
+          "stop_id": "C10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471446,
+          "departure_delay": 0,
+          "departure_time": 1757471463
+        },
+        {
+          "stop_id": "K30-4",
+          "arrival_delay": 0,
+          "arrival_time": 1757471634,
+          "departure_delay": 0,
+          "departure_time": 1757471663
+        }
+      ]
+    },
+    {
+      "entity_id": "1771958",
+      "trip_id": "1771958",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 19,
+      "stop_updates": [
+        {
+          "stop_id": "C30-2",
+          "arrival_delay": 48,
+          "arrival_time": 1757471340,
+          "departure_delay": 48,
+          "departure_time": 1757471358
+        },
+        {
+          "stop_id": "C20-2",
+          "arrival_delay": 31,
+          "arrival_time": 1757471618,
+          "departure_delay": 31,
+          "departure_time": 1757471636
+        },
+        {
+          "stop_id": "C10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471932,
+          "departure_delay": 0,
+          "departure_time": 1757471949
+        }
+      ]
+    },
+    {
+      "entity_id": "1772016",
+      "trip_id": "1772016",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 22,
+      "stop_updates": [
+        {
+          "stop_id": "C60-2",
+          "arrival_delay": 22,
+          "arrival_time": 1757471263,
+          "departure_delay": 22,
+          "departure_time": 1757471281
+        },
+        {
+          "stop_id": "C50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471547,
+          "departure_delay": 0,
+          "departure_time": 1757471565
+        },
+        {
+          "stop_id": "C40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471725,
+          "departure_delay": 0,
+          "departure_time": 1757471743
+        }
+      ]
+    },
+    {
+      "entity_id": "1771959",
+      "trip_id": "1771959",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 24,
+      "stop_updates": [
+        {
+          "stop_id": "C80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471223,
+          "departure_delay": 0,
+          "departure_time": 1757471247
+        },
+        {
+          "stop_id": "C70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471612,
+          "departure_delay": 0,
+          "departure_time": 1757471630
+        },
+        {
+          "stop_id": "C60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471847,
+          "departure_delay": 0,
+          "departure_time": 1757471865
+        }
+      ]
+    },
+    {
+      "entity_id": "1771764",
+      "trip_id": "1771764",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 4,
+      "stop_updates": [
+        {
+          "stop_id": "C50-1",
+          "arrival_delay": 202,
+          "arrival_time": 1757471107,
+          "departure_delay": 202,
+          "departure_time": 1757471125
+        },
+        {
+          "stop_id": "C60-1",
+          "arrival_delay": 186,
+          "arrival_time": 1757471405,
+          "departure_delay": 186,
+          "departure_time": 1757471423
+        },
+        {
+          "stop_id": "C70-1",
+          "arrival_delay": 169,
+          "arrival_time": 1757471610,
+          "departure_delay": 169,
+          "departure_time": 1757471628
+        }
+      ]
+    },
+    {
+      "entity_id": "1771960",
+      "trip_id": "1771960",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 24,
+      "stop_updates": [
+        {
+          "stop_id": "C80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472423,
+          "departure_delay": 0,
+          "departure_time": 1757472447
+        },
+        {
+          "stop_id": "C70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472812,
+          "departure_delay": 0,
+          "departure_time": 1757472830
+        },
+        {
+          "stop_id": "C60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473047,
+          "departure_delay": 0,
+          "departure_time": 1757473065
+        }
+      ]
+    },
+    {
+      "entity_id": "1771828",
+      "trip_id": "1771828",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 5,
+      "stop_updates": [
+        {
+          "stop_id": "C30-1",
+          "arrival_delay": 208,
+          "arrival_time": 1757471155,
+          "departure_delay": 208,
+          "departure_time": 1757471173
+        },
+        {
+          "stop_id": "C40-1",
+          "arrival_delay": 182,
+          "arrival_time": 1757471402,
+          "departure_delay": 182,
+          "departure_time": 1757471422
+        },
+        {
+          "stop_id": "C50-1",
+          "arrival_delay": 174,
+          "arrival_time": 1757471571,
+          "departure_delay": 174,
+          "departure_time": 1757471589
+        }
+      ]
+    },
+    {
+      "entity_id": "1771765",
+      "trip_id": "1771765",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 9,
+      "stop_updates": [
+        {
+          "stop_id": "K30-3",
+          "arrival_delay": 247,
+          "arrival_time": 1757471124,
+          "departure_delay": 247,
+          "departure_time": 1757471147
+        },
+        {
+          "stop_id": "C10-1",
+          "arrival_delay": 229,
+          "arrival_time": 1757471274,
+          "departure_delay": 229,
+          "departure_time": 1757471292
+        },
+        {
+          "stop_id": "C20-1",
+          "arrival_delay": 219,
+          "arrival_time": 1757471585,
+          "departure_delay": 219,
+          "departure_time": 1757471603
+        }
+      ]
+    },
+    {
+      "entity_id": "1771961",
+      "trip_id": "1771961",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 24,
+      "stop_updates": [
+        {
+          "stop_id": "C80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473623,
+          "departure_delay": 0,
+          "departure_time": 1757473647
+        },
+        {
+          "stop_id": "C70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757474012,
+          "departure_delay": 0,
+          "departure_time": 1757474030
+        },
+        {
+          "stop_id": "C60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757474247,
+          "departure_delay": 0,
+          "departure_time": 1757474265
+        }
+      ]
+    },
+    {
+      "entity_id": "1771829",
+      "trip_id": "1771829",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 11,
+      "stop_updates": [
+        {
+          "stop_id": "M10-2",
+          "arrival_delay": 672,
+          "arrival_time": 1757471416,
+          "departure_delay": 672,
+          "departure_time": 1757471438
+        },
+        {
+          "stop_id": "K10-3",
+          "arrival_delay": 594,
+          "arrival_time": 1757471634,
+          "departure_delay": 594,
+          "departure_time": 1757471658
+        },
+        {
+          "stop_id": "K20-3",
+          "arrival_delay": 591,
+          "arrival_time": 1757471715,
+          "departure_delay": 591,
+          "departure_time": 1757471753
+        }
+      ]
+    },
+    {
+      "entity_id": "1771766",
+      "trip_id": "1771766",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 15,
+      "stop_updates": [
+        {
+          "stop_id": "M30-2",
+          "arrival_delay": 324,
+          "arrival_time": 1757471153,
+          "departure_delay": 324,
+          "departure_time": 1757471175
+        },
+        {
+          "stop_id": "M20-2",
+          "arrival_delay": 289,
+          "arrival_time": 1757471213,
+          "departure_delay": 289,
+          "departure_time": 1757471233
+        },
+        {
+          "stop_id": "M16-2",
+          "arrival_delay": 273,
+          "arrival_time": 1757471294,
+          "departure_delay": 273,
+          "departure_time": 1757471315
+        }
+      ]
+    },
+    {
+      "entity_id": "1771830",
+      "trip_id": "1771830",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "M60-2",
+          "arrival_delay": 61,
+          "arrival_time": 1757471022,
+          "departure_delay": 61,
+          "departure_time": 1757471040
+        },
+        {
+          "stop_id": "M50-2",
+          "arrival_delay": 32,
+          "arrival_time": 1757471113,
+          "departure_delay": 32,
+          "departure_time": 1757471130
+        },
+        {
+          "stop_id": "M40-2",
+          "arrival_delay": 45,
+          "arrival_time": 1757471270,
+          "departure_delay": 45,
+          "departure_time": 1757471294
+        }
+      ]
+    },
+    {
+      "entity_id": "1771767",
+      "trip_id": "1771767",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 21,
+      "stop_updates": [
+        {
+          "stop_id": "M90-2",
+          "arrival_delay": 19,
+          "arrival_time": 1757471142,
+          "departure_delay": 19,
+          "departure_time": 1757471165
+        },
+        {
+          "stop_id": "M80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471369,
+          "departure_delay": 0,
+          "departure_time": 1757471387
+        },
+        {
+          "stop_id": "M70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471507,
+          "departure_delay": 0,
+          "departure_time": 1757471525
+        }
+      ]
+    },
+    {
+      "entity_id": "1771768",
+      "trip_id": "1771768",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 25,
+      "stop_updates": [
+        {
+          "stop_id": "Y10-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471210,
+          "departure_delay": 0,
+          "departure_time": 1757471472
+        },
+        {
+          "stop_id": "W30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471672,
+          "departure_delay": 0,
+          "departure_time": 1757471690
+        },
+        {
+          "stop_id": "W20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471864,
+          "departure_delay": 0,
+          "departure_time": 1757471882
+        }
+      ]
+    },
+    {
+      "entity_id": "1771955",
+      "trip_id": "1771955",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 3,
+      "stop_updates": [
+        {
+          "stop_id": "W10-1",
+          "arrival_delay": 175,
+          "arrival_time": 1757471131,
+          "departure_delay": 175,
+          "departure_time": 1757471149
+        },
+        {
+          "stop_id": "W20-1",
+          "arrival_delay": 167,
+          "arrival_time": 1757471303,
+          "departure_delay": 167,
+          "departure_time": 1757471321
+        },
+        {
+          "stop_id": "W30-1",
+          "arrival_delay": 162,
+          "arrival_time": 1757471490,
+          "departure_delay": 162,
+          "departure_time": 1757471508
+        }
+      ]
+    },
+    {
+      "entity_id": "1772013",
+      "trip_id": "1772013",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 5,
+      "stop_updates": [
+        {
+          "stop_id": "M80-1",
+          "arrival_delay": 43,
+          "arrival_time": 1757471195,
+          "departure_delay": 43,
+          "departure_time": 1757471213
+        },
+        {
+          "stop_id": "M90-3",
+          "arrival_delay": 40,
+          "arrival_time": 1757471442,
+          "departure_delay": 40,
+          "departure_time": 1757471466
+        },
+        {
+          "stop_id": "W10-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471670,
+          "departure_delay": 0,
+          "departure_time": 1757471688
+        }
+      ]
+    },
+    {
+      "entity_id": "1771769",
+      "trip_id": "1771769",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 25,
+      "stop_updates": [
+        {
+          "stop_id": "Y10-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757472330,
+          "departure_delay": 0,
+          "departure_time": 1757472672
+        },
+        {
+          "stop_id": "W30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472872,
+          "departure_delay": 0,
+          "departure_time": 1757472890
+        },
+        {
+          "stop_id": "W20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473064,
+          "departure_delay": 0,
+          "departure_time": 1757473082
+        }
+      ]
+    },
+    {
+      "entity_id": "1771956",
+      "trip_id": "1771956",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 9,
+      "stop_updates": [
+        {
+          "stop_id": "M40-1",
+          "arrival_delay": 17,
+          "arrival_time": 1757471085,
+          "departure_delay": 17,
+          "departure_time": 1757471105
+        },
+        {
+          "stop_id": "M50-1",
+          "arrival_delay": 16,
+          "arrival_time": 1757471229,
+          "departure_delay": 16,
+          "departure_time": 1757471247
+        },
+        {
+          "stop_id": "M60-1",
+          "arrival_delay": 14,
+          "arrival_time": 1757471347,
+          "departure_delay": 14,
+          "departure_time": 1757471365
+        }
+      ]
+    },
+    {
+      "entity_id": "1772014",
+      "trip_id": "1772014",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 13,
+      "stop_updates": [
+        {
+          "stop_id": "M10-1",
+          "arrival_delay": 90,
+          "arrival_time": 1757471153,
+          "departure_delay": 90,
+          "departure_time": 1757471176
+        },
+        {
+          "stop_id": "M16-1",
+          "arrival_delay": 62,
+          "arrival_time": 1757471539,
+          "departure_delay": 62,
+          "departure_time": 1757471564
+        },
+        {
+          "stop_id": "M20-1",
+          "arrival_delay": 64,
+          "arrival_time": 1757471642,
+          "departure_delay": 64,
+          "departure_time": 1757471664
+        }
+      ]
+    },
+    {
+      "entity_id": "1771313",
+      "trip_id": "1771313",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 5,
+      "stop_updates": [
+        {
+          "stop_id": "R10-1",
+          "arrival_delay": 460,
+          "arrival_time": 1757471170,
+          "departure_delay": 460,
+          "departure_time": 1757471181
+        },
+        {
+          "stop_id": "R20-1",
+          "arrival_delay": 466,
+          "arrival_time": 1757471313,
+          "departure_delay": 466,
+          "departure_time": 1757471337
+        },
+        {
+          "stop_id": "R30-1",
+          "arrival_delay": 471,
+          "arrival_time": 1757471462,
+          "departure_delay": 471,
+          "departure_time": 1757471480
+        }
+      ]
+    },
+    {
+      "entity_id": "1771314",
+      "trip_id": "1771314",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 10,
+      "stop_updates": [
+        {
+          "stop_id": "M16-2",
+          "arrival_delay": 441,
+          "arrival_time": 1757471137,
+          "departure_delay": 441,
+          "departure_time": 1757471158
+        },
+        {
+          "stop_id": "M10-2",
+          "arrival_delay": 407,
+          "arrival_time": 1757471535,
+          "departure_delay": 407,
+          "departure_time": 1757471556
+        },
+        {
+          "stop_id": "K10-1",
+          "arrival_delay": 405,
+          "arrival_time": 1757471769,
+          "departure_delay": 405,
+          "departure_time": 1757471790
+        }
+      ]
+    },
+    {
+      "entity_id": "1771315",
+      "trip_id": "1771315",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "M80-2",
+          "arrival_delay": 70,
+          "arrival_time": 1757471115,
+          "departure_delay": 70,
+          "departure_time": 1757471133
+        },
+        {
+          "stop_id": "M70-2",
+          "arrival_delay": 62,
+          "arrival_time": 1757471245,
+          "departure_delay": 62,
+          "departure_time": 1757471261
+        },
+        {
+          "stop_id": "M60-2",
+          "arrival_delay": 64,
+          "arrival_time": 1757471409,
+          "departure_delay": 64,
+          "departure_time": 1757471427
+        }
+      ]
+    },
+    {
+      "entity_id": "1771316",
+      "trip_id": "1771316",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 22,
+      "stop_updates": [
+        {
+          "stop_id": "Y10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471100,
+          "departure_delay": 0,
+          "departure_time": 1757471208
+        },
+        {
+          "stop_id": "W30-2",
+          "arrival_delay": 10,
+          "arrival_time": 1757471418,
+          "departure_delay": 10,
+          "departure_time": 1757471436
+        },
+        {
+          "stop_id": "W20-2",
+          "arrival_delay": 3,
+          "arrival_time": 1757471603,
+          "departure_delay": 3,
+          "departure_time": 1757471621
+        }
+      ]
+    },
+    {
+      "entity_id": "1771317",
+      "trip_id": "1771317",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 23,
+      "stop_updates": [
+        {
+          "stop_id": "W40-3",
+          "arrival_delay": 0,
+          "arrival_time": 1757471285,
+          "departure_delay": 0,
+          "departure_time": 1757472036
+        },
+        {
+          "stop_id": "Y10-2",
+          "arrival_delay": 10,
+          "arrival_time": 1757472400,
+          "departure_delay": 10,
+          "departure_time": 1757472408
+        },
+        {
+          "stop_id": "W30-2",
+          "arrival_delay": 10,
+          "arrival_time": 1757472618,
+          "departure_delay": 10,
+          "departure_time": 1757472636
+        }
+      ]
+    },
+    {
+      "entity_id": "1771408",
+      "trip_id": "1771408",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 5,
+      "stop_updates": [
+        {
+          "stop_id": "M90-3",
+          "arrival_delay": 54,
+          "arrival_time": 1757471222,
+          "departure_delay": 54,
+          "departure_time": 1757471240
+        },
+        {
+          "stop_id": "W10-1",
+          "arrival_delay": 32,
+          "arrival_time": 1757471438,
+          "departure_delay": 32,
+          "departure_time": 1757471456
+        },
+        {
+          "stop_id": "W20-1",
+          "arrival_delay": 33,
+          "arrival_time": 1757471619,
+          "departure_delay": 33,
+          "departure_time": 1757471637
+        }
+      ]
+    },
+    {
+      "entity_id": "1771318",
+      "trip_id": "1771318",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 23,
+      "stop_updates": [
+        {
+          "stop_id": "W40-3",
+          "arrival_delay": 0,
+          "arrival_time": 1757473226,
+          "departure_delay": 0,
+          "departure_time": 1757473236
+        },
+        {
+          "stop_id": "Y10-2",
+          "arrival_delay": 10,
+          "arrival_time": 1757473600,
+          "departure_delay": 10,
+          "departure_time": 1757473618
+        },
+        {
+          "stop_id": "W30-2",
+          "arrival_delay": 10,
+          "arrival_time": 1757473818,
+          "departure_delay": 10,
+          "departure_time": 1757473836
+        }
+      ]
+    },
+    {
+      "entity_id": "1771409",
+      "trip_id": "1771409",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 13,
+      "stop_updates": [
+        {
+          "stop_id": "M16-1",
+          "arrival_delay": 32,
+          "arrival_time": 1757471275,
+          "departure_delay": 32,
+          "departure_time": 1757471300
+        },
+        {
+          "stop_id": "M20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471345,
+          "departure_delay": 0,
+          "departure_time": 1757471366
+        },
+        {
+          "stop_id": "M30-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471447,
+          "departure_delay": 0,
+          "departure_time": 1757471476
+        }
+      ]
+    },
+    {
+      "entity_id": "1771410",
+      "trip_id": "1771410",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 18,
+      "stop_updates": [
+        {
+          "stop_id": "R20-2",
+          "arrival_delay": 68,
+          "arrival_time": 1757471122,
+          "departure_delay": 68,
+          "departure_time": 1757471146
+        },
+        {
+          "stop_id": "R10-2",
+          "arrival_delay": 54,
+          "arrival_time": 1757471251,
+          "departure_delay": 54,
+          "departure_time": 1757471271
+        },
+        {
+          "stop_id": "K30-2",
+          "arrival_delay": 42,
+          "arrival_time": 1757471441,
+          "departure_delay": 42,
+          "departure_time": 1757471470
+        }
+      ]
+    },
+    {
+      "entity_id": "1771411",
+      "trip_id": "1771411",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 22,
+      "stop_updates": [
+        {
+          "stop_id": "R60-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471360,
+          "departure_delay": 0,
+          "departure_time": 1757471365
+        },
+        {
+          "stop_id": "R50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471708,
+          "departure_delay": 0,
+          "departure_time": 1757471732
+        },
+        {
+          "stop_id": "R40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471896,
+          "departure_delay": 0,
+          "departure_time": 1757471920
+        }
+      ]
+    },
+    {
+      "entity_id": "1771500",
+      "trip_id": "1771500",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "M90-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757470997,
+          "departure_delay": 0,
+          "departure_time": 1757471305
+        },
+        {
+          "stop_id": "M80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471509,
+          "departure_delay": 0,
+          "departure_time": 1757471527
+        },
+        {
+          "stop_id": "M70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471647,
+          "departure_delay": 0,
+          "departure_time": 1757471665
+        }
+      ]
+    },
+    {
+      "entity_id": "1771557",
+      "trip_id": "1771557",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 6,
+      "stop_updates": [
+        {
+          "stop_id": "M30-1",
+          "arrival_delay": 22,
+          "arrival_time": 1757471153,
+          "departure_delay": 22,
+          "departure_time": 1757471176
+        },
+        {
+          "stop_id": "M40-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471233,
+          "departure_delay": 0,
+          "departure_time": 1757471252
+        },
+        {
+          "stop_id": "M50-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471377,
+          "departure_delay": 0,
+          "departure_time": 1757471395
+        }
+      ]
+    },
+    {
+      "entity_id": "1771501",
+      "trip_id": "1771501",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "M90-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757472052,
+          "departure_delay": 0,
+          "departure_time": 1757472841
+        },
+        {
+          "stop_id": "M80-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473045,
+          "departure_delay": 0,
+          "departure_time": 1757473063
+        },
+        {
+          "stop_id": "M70-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473183,
+          "departure_delay": 0,
+          "departure_time": 1757473201
+        }
+      ]
+    },
+    {
+      "entity_id": "1771558",
+      "trip_id": "1771558",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 11,
+      "stop_updates": [
+        {
+          "stop_id": "A20-2",
+          "arrival_delay": 11,
+          "arrival_time": 1757471137,
+          "departure_delay": 11,
+          "departure_time": 1757471155
+        },
+        {
+          "stop_id": "A10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471395,
+          "departure_delay": 0,
+          "departure_time": 1757471413
+        },
+        {
+          "stop_id": "M10-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471713,
+          "departure_delay": 0,
+          "departure_time": 1757471743
+        }
+      ]
+    },
+    {
+      "entity_id": "1771559",
+      "trip_id": "1771559",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 15,
+      "stop_updates": [
+        {
+          "stop_id": "L10-2",
+          "arrival_delay": 22,
+          "arrival_time": 1757471380,
+          "departure_delay": 22,
+          "departure_time": 1757471398
+        },
+        {
+          "stop_id": "A50-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471645,
+          "departure_delay": 0,
+          "departure_time": 1757471663
+        },
+        {
+          "stop_id": "A40-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471874,
+          "departure_delay": 0,
+          "departure_time": 1757471892
+        }
+      ]
+    },
+    {
+      "entity_id": "1771560",
+      "trip_id": "1771560",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "L30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471403,
+          "departure_delay": 0,
+          "departure_time": 1757471408
+        },
+        {
+          "stop_id": "L20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471591,
+          "departure_delay": 0,
+          "departure_time": 1757471609
+        },
+        {
+          "stop_id": "L10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472198,
+          "departure_delay": 0,
+          "departure_time": 1757472216
+        }
+      ]
+    },
+    {
+      "entity_id": "1771497",
+      "trip_id": "1771497",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "L10-1",
+          "arrival_delay": 575,
+          "arrival_time": 1757471312,
+          "departure_delay": 575,
+          "departure_time": 1757471330
+        },
+        {
+          "stop_id": "L20-1",
+          "arrival_delay": 567,
+          "arrival_time": 1757471881,
+          "departure_delay": 567,
+          "departure_time": 1757471899
+        }
+      ]
+    },
+    {
+      "entity_id": "1771561",
+      "trip_id": "1771561",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "L30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472363,
+          "departure_delay": 0,
+          "departure_time": 1757472368
+        },
+        {
+          "stop_id": "L20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472551,
+          "departure_delay": 0,
+          "departure_time": 1757472569
+        },
+        {
+          "stop_id": "L10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473158,
+          "departure_delay": 0,
+          "departure_time": 1757473176
+        }
+      ]
+    },
+    {
+      "entity_id": "1771498",
+      "trip_id": "1771498",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 7,
+      "stop_updates": [
+        {
+          "stop_id": "A10-1",
+          "arrival_delay": 348,
+          "arrival_time": 1757471087,
+          "departure_delay": 348,
+          "departure_time": 1757471123
+        },
+        {
+          "stop_id": "A20-1",
+          "arrival_delay": 323,
+          "arrival_time": 1757471314,
+          "departure_delay": 323,
+          "departure_time": 1757471332
+        },
+        {
+          "stop_id": "A30-1",
+          "arrival_delay": 317,
+          "arrival_time": 1757471500,
+          "departure_delay": 317,
+          "departure_time": 1757471518
+        }
+      ]
+    },
+    {
+      "entity_id": "1771562",
+      "trip_id": "1771562",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 17,
+      "stop_updates": [
+        {
+          "stop_id": "L30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473563,
+          "departure_delay": 0,
+          "departure_time": 1757473568
+        },
+        {
+          "stop_id": "L20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473751,
+          "departure_delay": 0,
+          "departure_time": 1757473769
+        },
+        {
+          "stop_id": "L10-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757474358,
+          "departure_delay": 0,
+          "departure_time": 1757474376
+        }
+      ]
+    },
+    {
+      "entity_id": "1771499",
+      "trip_id": "1771499",
+      "route_id": "Unknown",
+      "vehicle_id": "3-door",
+      "stop_updates_count": 12,
+      "stop_updates": [
+        {
+          "stop_id": "M40-2",
+          "arrival_delay": 336,
+          "arrival_time": 1757471209,
+          "departure_delay": 336,
+          "departure_time": 1757471230
+        },
+        {
+          "stop_id": "M30-2",
+          "arrival_delay": 331,
+          "arrival_time": 1757471299,
+          "departure_delay": 331,
+          "departure_time": 1757471322
+        },
+        {
+          "stop_id": "M20-2",
+          "arrival_delay": 322,
+          "arrival_time": 1757471387,
+          "departure_delay": 322,
+          "departure_time": 1757471406
+        }
+      ]
+    },
+    {
+      "entity_id": "682",
+      "trip_id": "682",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757471252,
+          "departure_delay": 0,
+          "departure_time": 1757471282
+        }
+      ]
+    },
+    {
+      "entity_id": "684",
+      "trip_id": "684",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757472551,
+          "departure_delay": 0,
+          "departure_time": 1757472581
+        }
+      ]
+    },
+    {
+      "entity_id": "686",
+      "trip_id": "686",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757473751,
+          "departure_delay": 0,
+          "departure_time": 1757473781
+        }
+      ]
+    },
+    {
+      "entity_id": "688",
+      "trip_id": "688",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757474951,
+          "departure_delay": 0,
+          "departure_time": 1757474981
+        }
+      ]
+    },
+    {
+      "entity_id": "689",
+      "trip_id": "689",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "E30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471028,
+          "departure_delay": 0,
+          "departure_time": 1757471328
+        },
+        {
+          "stop_id": "E20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757471772,
+          "departure_delay": 0,
+          "departure_time": 1757471802
+        }
+      ]
+    },
+    {
+      "entity_id": "690",
+      "trip_id": "690",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E20-1",
+          "arrival_delay": 0,
+          "arrival_time": 1757476151,
+          "departure_delay": 0,
+          "departure_time": 1757476181
+        }
+      ]
+    },
+    {
+      "entity_id": "691",
+      "trip_id": "691",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "E30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472228,
+          "departure_delay": 0,
+          "departure_time": 1757472528
+        },
+        {
+          "stop_id": "E20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757472972,
+          "departure_delay": 0,
+          "departure_time": 1757473002
+        }
+      ]
+    },
+    {
+      "entity_id": "693",
+      "trip_id": "693",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "E30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757473428,
+          "departure_delay": 0,
+          "departure_time": 1757473728
+        },
+        {
+          "stop_id": "E20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757474172,
+          "departure_delay": 0,
+          "departure_time": 1757474202
+        }
+      ]
+    },
+    {
+      "entity_id": "695",
+      "trip_id": "695",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 2,
+      "stop_updates": [
+        {
+          "stop_id": "E30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757474628,
+          "departure_delay": 0,
+          "departure_time": 1757474928
+        },
+        {
+          "stop_id": "E20-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757475372,
+          "departure_delay": 0,
+          "departure_time": 1757475402
+        }
+      ]
+    },
+    {
+      "entity_id": "697",
+      "trip_id": "697",
+      "route_id": "Unknown",
+      "vehicle_id": "2-door",
+      "stop_updates_count": 1,
+      "stop_updates": [
+        {
+          "stop_id": "E30-2",
+          "arrival_delay": 0,
+          "arrival_time": 1757475828,
+          "departure_delay": 0,
+          "departure_time": 1757476128
+        }
+      ]
+    }
+  ],
+  "error": null
+}

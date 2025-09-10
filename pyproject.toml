@@ -9,4 +9,5 @@ dependencies = [
 [tool.uv.workspace]
 members = [
     "BART-Caltrain-map",
+    "bart-vibe",
 ]

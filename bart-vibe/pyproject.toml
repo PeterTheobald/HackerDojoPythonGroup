@@ -1,0 +1,9 @@
+[project]
+name = "bart-vibe"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "gtfs-realtime-bindings>=1.0.0",
+    "protobuf>=6.32.0",
+    "requests>=2.32.5",
+]

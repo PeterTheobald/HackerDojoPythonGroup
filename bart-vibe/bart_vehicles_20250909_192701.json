@@ -1,0 +1,5 @@
+{
+  "timestamp": "2025-09-09T19:27:00.908959",
+  "vehicles": [],
+  "error": "Error fetching BART vehicle positions: 404 Client Error: Not Found for url: https://api.bart.gov/gtfsrt/vehiclepositions.aspx"
+}

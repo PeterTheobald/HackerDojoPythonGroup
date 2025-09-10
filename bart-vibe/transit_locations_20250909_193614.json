@@ -1,0 +1,375 @@
+{
+  "timestamp": "2025-09-09T19:36:14.364977",
+  "total_vehicles": 42,
+  "bart_count": 31,
+  "caltrain_count": 11,
+  "locations": [
+    {
+      "system": "BART",
+      "vehicle_id": "1771616",
+      "latitude": 37.8784,
+      "longitude": -122.1837,
+      "station": "Orinda",
+      "delay_seconds": 717,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771617",
+      "latitude": 37.9737,
+      "longitude": -122.0297,
+      "station": "Concord",
+      "delay_seconds": 398,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771618",
+      "latitude": 37.4087,
+      "longitude": -121.919,
+      "station": "Milpitas",
+      "delay_seconds": 266,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771667",
+      "latitude": 37.9527,
+      "longitude": -122.0565,
+      "station": "Pleasant Hill",
+      "delay_seconds": 403,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771714",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771897",
+      "latitude": 37.7801,
+      "longitude": -122.4135,
+      "station": "Civic Center",
+      "delay_seconds": 120,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771715",
+      "latitude": 37.7656,
+      "longitude": -122.4197,
+      "station": "16th Street",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771898",
+      "latitude": 37.8933,
+      "longitude": -122.1237,
+      "station": "Lafayette",
+      "delay_seconds": 219,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771899",
+      "latitude": 38.0187,
+      "longitude": -121.9453,
+      "station": "Pittsburg/Bay Point",
+      "delay_seconds": 253,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771711",
+      "latitude": 38.0187,
+      "longitude": -121.9453,
+      "station": "Pittsburg/Bay Point",
+      "delay_seconds": 322,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771712",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 89,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771713",
+      "latitude": 37.8297,
+      "longitude": -122.2661,
+      "station": "MacArthur",
+      "delay_seconds": 88,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771957",
+      "latitude": 37.4087,
+      "longitude": -121.919,
+      "station": "Milpitas",
+      "delay_seconds": 142,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1772015",
+      "latitude": 37.6372,
+      "longitude": -122.4165,
+      "station": "San Bruno",
+      "delay_seconds": 31,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771958",
+      "latitude": 37.8041,
+      "longitude": -122.2711,
+      "station": "12th St Oakland City Center",
+      "delay_seconds": 76,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1772016",
+      "latitude": 37.8534,
+      "longitude": -122.2593,
+      "station": "Rockridge",
+      "delay_seconds": 34,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771765",
+      "latitude": 37.8169,
+      "longitude": -122.2681,
+      "station": "MacArthur",
+      "delay_seconds": 233,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771766",
+      "latitude": 37.6003,
+      "longitude": -122.3867,
+      "station": "Millbrae",
+      "delay_seconds": 261,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1772013",
+      "latitude": 37.8047,
+      "longitude": -122.2951,
+      "station": "West Oakland",
+      "delay_seconds": 126,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771314",
+      "latitude": 37.6003,
+      "longitude": -122.3867,
+      "station": "Millbrae",
+      "delay_seconds": 448,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771316",
+      "latitude": 37.8047,
+      "longitude": -122.2951,
+      "station": "West Oakland",
+      "delay_seconds": 130,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771410",
+      "latitude": 37.6372,
+      "longitude": -122.4165,
+      "station": "San Bruno",
+      "delay_seconds": 150,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771558",
+      "latitude": 37.4087,
+      "longitude": -121.919,
+      "station": "Milpitas",
+      "delay_seconds": 14,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771559",
+      "latitude": 37.9066,
+      "longitude": -122.0654,
+      "station": "Walnut Creek",
+      "delay_seconds": 282,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771560",
+      "latitude": 37.6159,
+      "longitude": -122.3925,
+      "station": "SFO Airport",
+      "delay_seconds": 5,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771498",
+      "latitude": 37.9527,
+      "longitude": -122.0565,
+      "station": "Pleasant Hill",
+      "delay_seconds": 334,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "1771499",
+      "latitude": 37.4087,
+      "longitude": -121.919,
+      "station": "Milpitas",
+      "delay_seconds": 305,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "684",
+      "latitude": 37.87,
+      "longitude": -122.268,
+      "station": "Downtown Berkeley",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "686",
+      "latitude": 37.87,
+      "longitude": -122.268,
+      "station": "Downtown Berkeley",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "688",
+      "latitude": 37.87,
+      "longitude": -122.268,
+      "station": "Downtown Berkeley",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "BART",
+      "vehicle_id": "690",
+      "latitude": 37.87,
+      "longitude": -122.268,
+      "station": "Downtown Berkeley",
+      "delay_seconds": 0,
+      "gps_source": "estimated_from_station"
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "155",
+      "latitude": 37.70790100097656,
+      "longitude": -122.40180206298828,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "156",
+      "latitude": 37.487300872802734,
+      "longitude": -122.23390197753906,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "157",
+      "latitude": 37.48590087890625,
+      "longitude": -122.2315902709961,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "158",
+      "latitude": 37.691001892089844,
+      "longitude": -122.4010009765625,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "159",
+      "latitude": 37.358299255371094,
+      "longitude": -121.94740295410156,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "161",
+      "latitude": 37.329898834228516,
+      "longitude": -121.90319061279297,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "162",
+      "latitude": 37.775901794433594,
+      "longitude": -122.39569091796875,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "163",
+      "latitude": 37.33000183105469,
+      "longitude": -121.90299224853516,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "164",
+      "latitude": 37.775699615478516,
+      "longitude": -122.39550018310547,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "428",
+      "latitude": 37.42100143432617,
+      "longitude": -122.12899017333984,
+      "speed_mps": null,
+      "bearing": null
+    },
+    {
+      "system": "Caltrain",
+      "vehicle_id": "429",
+      "latitude": 37.626800537109375,
+      "longitude": -122.40950012207031,
+      "speed_mps": null,
+      "bearing": null
+    }
+  ]
+}

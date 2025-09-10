@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-09-09T19:14:23.987412",
+  "bart": {
+    "trains_count": 76,
+    "error": null
+  },
+  "caltrain": {
+    "trains_count": 0,
+    "error": "Caltrain API key not provided. Get one from https://511.org/open-data/token"
+  }
+}

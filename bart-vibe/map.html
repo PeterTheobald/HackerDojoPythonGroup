@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BART & Caltrain Real-Time Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin=""/>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .train-count {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        
+        .bart-train { color: #0066cc; }
+        .caltrain-train { color: #ff6600; }
+        
+        .legend {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+        
+        .legend-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .bart-icon { background-color: #0066cc; }
+        .caltrain-icon { background-color: #ff6600; }
+        
+        .refresh-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .refresh-btn:hover {
+            background: #45a049;
+        }
+        
+        .last-update {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .loading {
+            color: #ff9800;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div class="info-panel">
+        <h3>🚆 Bay Area Transit</h3>
+        <div id="train-counts">
+            <div class="train-count bart-train">BART: <span id="bart-count">0</span> trains</div>
+            <div class="train-count caltrain-train">Caltrain: <span id="caltrain-count">0</span> vehicles</div>
+            <div class="train-count">Total: <span id="total-count">0</span> vehicles</div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-icon bart-icon"></div>
+                <span>BART (estimated positions)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-icon caltrain-icon"></div>
+                <span>Caltrain (GPS positions)</span>
+            </div>
+        </div>
+        
+        <button class="refresh-btn" onclick="loadTransitData()">🔄 Refresh Data</button>
+        <div class="last-update" id="last-update">Loading...</div>
+    </div>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
+
+    <script>
+        // Initialize the map centered on San Francisco Bay Area
+        const map = L.map('map').setView([37.7749, -122.4194], 10);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Store markers for easy removal
+        let trainMarkers = [];
+
+        // Custom icons for different transit systems
+        const bartIcon = L.divIcon({
+            className: 'custom-div-icon',
+            html: '<div style="background-color: #0066cc; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3);"></div>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+        });
+
+        const caltrainIcon = L.divIcon({
+            className: 'custom-div-icon',
+            html: '<div style="background-color: #ff6600; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.3);"></div>',
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+        });
+
+        // Function to clear existing markers
+        function clearMarkers() {
+            trainMarkers.forEach(marker => map.removeLayer(marker));
+            trainMarkers = [];
+        }
+
+        // Function to create popup content
+        function createPopupContent(train) {
+            let content = `<b>${train.system} ${train.vehicle_id}</b><br>`;
+            content += `📍 ${train.latitude.toFixed(4)}, ${train.longitude.toFixed(4)}<br>`;
+            
+            if (train.station) {
+                content += `🚉 Near: ${train.station}<br>`;
+            }
+            
+            if (train.delay_seconds !== undefined) {
+                const delayMinutes = Math.round(train.delay_seconds / 60);
+                if (delayMinutes > 0) {
+                    content += `⏰ Delay: ${delayMinutes} min<br>`;
+                } else {
+                    content += `✅ On time<br>`;
+                }
+            }
+            
+            if (train.speed_mps) {
+                const speedMph = Math.round(train.speed_mps * 2.237);
+                content += `🚀 Speed: ${speedMph} mph<br>`;
+            }
+            
+            if (train.gps_source) {
+                content += `📡 ${train.gps_source === 'estimated_from_station' ? 'Estimated position' : 'GPS position'}`;
+            }
+            
+            return content;
+        }
+
+        // Function to load and display transit data
+        async function loadTransitData() {
+            try {
+                document.getElementById('last-update').innerHTML = '<span class="loading">Loading...</span>';
+                
+                // Find the most recent transit data file
+                const response = await fetch('./');
+                const text = await response.text();
+                
+                // Extract transit_locations files from directory listing
+                const fileMatches = text.match(/transit_locations_\d{8}_\d{6}\.json/g);
+                
+                if (!fileMatches || fileMatches.length === 0) {
+                    throw new Error('No transit data files found');
+                }
+                
+                // Get the most recent file (files are named with timestamps)
+                const latestFile = fileMatches.sort().pop();
+                
+                // Load the transit data
+                const dataResponse = await fetch(latestFile);
+                const transitData = await dataResponse.json();
+                
+                // Clear existing markers
+                clearMarkers();
+                
+                // Add markers for each vehicle
+                transitData.locations.forEach(train => {
+                    const icon = train.system === 'BART' ? bartIcon : caltrainIcon;
+                    
+                    const marker = L.marker([train.latitude, train.longitude], { icon })
+                        .addTo(map)
+                        .bindPopup(createPopupContent(train));
+                    
+                    trainMarkers.push(marker);
+                });
+                
+                // Update counts
+                const bartCount = transitData.locations.filter(t => t.system === 'BART').length;
+                const caltrainCount = transitData.locations.filter(t => t.system === 'Caltrain').length;
+                
+                document.getElementById('bart-count').textContent = bartCount;
+                document.getElementById('caltrain-count').textContent = caltrainCount;
+                document.getElementById('total-count').textContent = transitData.total_vehicles;
+                
+                // Update timestamp
+                const updateTime = new Date(transitData.timestamp).toLocaleTimeString();
+                document.getElementById('last-update').textContent = `Updated: ${updateTime}`;
+                
+                console.log(`Loaded ${transitData.total_vehicles} vehicles from ${latestFile}`);
+                
+            } catch (error) {
+                console.error('Error loading transit data:', error);
+                document.getElementById('last-update').innerHTML = `<span style="color: red;">Error: ${error.message}</span>`;
+            }
+        }
+
+        // Function to manually load a specific file (for development)
+        async function loadSpecificFile(filename) {
+            try {
+                const response = await fetch(filename);
+                const transitData = await response.json();
+                
+                clearMarkers();
+                
+                transitData.locations.forEach(train => {
+                    const icon = train.system === 'BART' ? bartIcon : caltrainIcon;
+                    
+                    const marker = L.marker([train.latitude, train.longitude], { icon })
+                        .addTo(map)
+                        .bindPopup(createPopupContent(train));
+                    
+                    trainMarkers.push(marker);
+                });
+                
+                const bartCount = transitData.locations.filter(t => t.system === 'BART').length;
+                const caltrainCount = transitData.locations.filter(t => t.system === 'Caltrain').length;
+                
+                document.getElementById('bart-count').textContent = bartCount;
+                document.getElementById('caltrain-count').textContent = caltrainCount;
+                document.getElementById('total-count').textContent = transitData.total_vehicles;
+                
+                const updateTime = new Date(transitData.timestamp).toLocaleTimeString();
+                document.getElementById('last-update').textContent = `Updated: ${updateTime}`;
+                
+            } catch (error) {
+                console.error('Error loading file:', error);
+            }
+        }
+
+        // Load initial data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Try to load the most recent file, or fall back to a specific file for testing
+            loadTransitData().catch(() => {
+                // If auto-detection fails, try to load a known file
+                loadSpecificFile('transit_locations_20250909_193110.json');
+            });
+        });
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadTransitData, 30000);
+    </script>
+</body>
+</html>

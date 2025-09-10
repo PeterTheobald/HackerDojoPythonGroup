@@ -1,0 +1,7 @@
+{
+  "timestamp": "2025-09-09T19:19:44.508646",
+  "vehicle_positions": null,
+  "trip_updates": null,
+  "trains": [],
+  "error": "Error fetching Caltrain data: 400 Client Error: Bad Request for url: https://api.511.org/transit/VehiclePositions?api_key=a30e3efc-163e-4016-8e06-0c7103099802&operator_id=CT&format=gtfs-rt"
+}
