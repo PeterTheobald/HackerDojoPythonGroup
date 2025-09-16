@@ -18,7 +18,7 @@ We can install uv on a brand new system with no other dependencies (no Python, n
 `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
 
 Or we can install uv on a system that already has Python and pip:
-`pip install uv`
+`deactivate; pip install uv`
 Note: Don't install `uv` inside an activated venv. Be sure to `deactivate` first. You want `uv` available from anywhere on your system
 
 ## What can uv manage?
@@ -39,6 +39,8 @@ uv can manage a few different things:
 
 Add requirements as inline comments in the script source code
 `uv add --script example.py requests rich`
+
+Adds this to your Python script:
 ```
 # /// script
 # requires-python = ">=3.12"
@@ -64,8 +66,9 @@ $ ./runme.py
 I am now running.
 ```
 
-Many more options, like don't use any versions later than a certain date, etc.
+There are many more options, like don't use any versions later than a certain date, etc.
 Test my script with a different version of python:
+`uv run --python 3.6 example.py`
 `uv run --python 3.13 example.py`
 
 Note: On Windows if your program extension is `.pyw` it will run it as a GUI program without a command window. Useful for programs using tkinter, wxwidgets, or QT that open their own graphical windows.
@@ -75,6 +78,7 @@ Note: On Windows if your program extension is `.pyw` it will run it as a GUI pro
 `uv init myproject`
 Creates a directory myproject with a README.md, a pyproject.toml, a main.py a .python-version, a .venv, and a uv.lock
 or `uv init` in the current directory.
+or `uv init --bare` to create just the pyproject.toml, all you actually need to start. I use this every time.
 
 pyproject.toml:
 ```
@@ -93,7 +97,7 @@ In a project your dependencies don't go in inline comments, they go in the pypro
 
 To run your project just use `uv run` and uv will make sure all the right libraries and python version is install in your `.venv`
 `uv run example.py`
-Note: to run something under flask you would use:
+Note: Flask is a little different, to run something under flask you would use:
 `uv run -- flask run -p 3000`
 When you run your project it will automatically create your uv.lock file with your exact versions.
 
@@ -126,4 +130,8 @@ You can still work with the same old workflow you are used to instead of allowin
 `uv lock`
 `uv export --format requirements-txt`
 
+## Some workflow recipes:
+If you have a hierarchy of subdirectories and want to know which .venv uv is using from a subdirectory, use:
+`uv run python -c "import os,sys; print(os.environ.get('VIRTUAL_ENV') or sys.prefix)"`
 
+What Python is uv using: `uv run which python; uv run python --version`

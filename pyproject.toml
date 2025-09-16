@@ -10,4 +10,5 @@ dependencies = [
 members = [
     "BART-Caltrain-map",
     "bart-vibe",
+    "PatternMatching",
 ]
