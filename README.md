@@ -42,6 +42,8 @@ Challenges:
 - Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-09-16 Python [Pattern Matching match/case](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PatternMatching)
+- 2025-09-09 Vibe Coding with VSCode+CoPilot+Claude Sonnet to quickly code [a map that displays real-time BART and Caltrain locations](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bart-vibe)
 - 2025-09-02 Beginner's Python - REPL, IDE, Jupyter, Procedural, Object Oriented, Functional
 - 2025-08-26 [PyTorch ML Image recognition "Hot Dog or Not Hot Dog?"](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PyTorch)
 - 2025-08-19 [Multi-Threaded programming](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/Multiprocessing/threading.md)
