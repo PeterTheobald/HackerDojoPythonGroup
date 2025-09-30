@@ -32,6 +32,7 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Database SOLID SQL
 - Numpy
 - Pandas
+- algorithms, data structures, and big-O notation of complexity
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
