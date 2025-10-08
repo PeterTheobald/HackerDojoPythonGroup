@@ -128,3 +128,10 @@ print( render_HTML(template))
 
 ```
 
+## For next week:
+The challenge is: You have a large list of numbers. Two of them add up to a target number.
+There will only be TWO that add up to the target. Find those two numbers.
+
+def find_two_sum( nums: list[int], target: int) -> tuple[int, int]:
+  # ??
+
