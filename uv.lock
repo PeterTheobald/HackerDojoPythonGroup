@@ -12,6 +12,7 @@ members = [
     "bart-vibe",
     "hacker-dojo-python-group",
     "patternmatching",
+    "python3-14",
 ]
 
 [[package]]
@@ -1500,6 +1501,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/9e/de/d3144a0bceede957f
 wheels = [
     { url = "https://files.pythonhosted.org/packages/08/20/0f2523b9e50a8052bc6a8b732dfc8568abbdc42010aef03a2d750bdab3b2/python_json_logger-3.3.0-py3-none-any.whl", hash = "sha256:dd980fae8cffb24c13caf6e158d3d61c0d6d22342f932cb6e9deedab3d35eec7", size = 15163, upload-time = "2025-03-07T07:08:25.627Z" },
 ]
+
+[[package]]
+name = "python3-14"
+version = "0.1.0"
+source = { virtual = "Python3.14" }
 
 [[package]]
 name = "pytz"

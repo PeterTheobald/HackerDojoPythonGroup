@@ -11,4 +11,5 @@ members = [
     "BART-Caltrain-map",
     "bart-vibe",
     "PatternMatching",
+    "Python3.14",
 ]
