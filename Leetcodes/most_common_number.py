@@ -12,9 +12,9 @@ from typing import Callable, Iterable, Dict, List, Tuple
 # Here are my solutions:
 
 # Naiive first solution, slow O(n)
-# Specifically loops n once to build counter,
-# then loops again in to find max(counter)
-# O(2n) = O(n)
+# Specifically loops x 1,000,000 once to build counter,
+# then loops x 1000 to find max(counter)
+# O(n)
 
 def most_common_simple(l):
     counter={}
