@@ -24,7 +24,7 @@ class DojoDict:
 
     def set(self, key: str, value: Any) -> None:
         i = self._find_index(key)
-        self._buckets(i) = value
+        self._buckets[i] = value
         # PROBLEM! What do we do if two keys have the same index?!
  
     def get(self, key: str, default: Optional[Any] = None) -> Any:
