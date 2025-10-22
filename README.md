@@ -21,7 +21,6 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Troubleshooting memory leaks
 - Multithreaded programming, locks and thread safety
 - Multithreading: threading.Threads vs. concurrent.futures
-- Python's new T-Strings
 - Packing/Unpacking (*args, **kwargs, tuple unpacking, **dict, iterable unpacking *rest b=seq, kw only args, zip(*iter), dataclass/namedtuple field unpacking, *assignments *_, last=seq)
 - Claude Code update
 - ml stats
@@ -32,17 +31,19 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Database SOLID SQL
 - Numpy
 - Pandas
-- algorithms, data structures, and big-O notation of complexity
 
 Share more ideas in our [Discord channel](https://discord.com/channels/698267668918173827/1111141001818537985)!
 
 ## Calendar of meeting topics:
 
 Coming Up:
-Challenges:
-- Write a Python program that takes input and sends a question to an AI, then displays the response.
 
 Past meetings:
+- 2025-10-21 [Coding challenge](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/wait_warmer.md); VSCode debugger - Sam Mirazi; [Implementing "dict"](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/dojodict.md); [Implementing an LLM RAG (Nightvid)](https://github.com/ncole1/RAG_with_relevance_scores)
+- 2025-10-14 [Algorithms and Big-O notation](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/big-O-scalability)
+- 2025-10-07 [Python4.14: T-strings and full speed multithreading](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Python3.14)
+- 2025-09-30 [Recursion](https://github.com/jhanley634/dojo-blackboard/blob/main/talks/out/2025-09-30-recursion.pdf) - John Hanley
+- 2025-09-23 ... no meeting
 - 2025-09-16 Python [Pattern Matching match/case](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PatternMatching)
 - 2025-09-09 Vibe Coding with VSCode+CoPilot+Claude Sonnet to quickly code [a map that displays real-time BART and Caltrain locations](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/bart-vibe)
 - 2025-09-02 Beginner's Python - REPL, IDE, Jupyter, Procedural, Object Oriented, Functional
@@ -80,8 +81,8 @@ Past meetings:
 - 2025-01-21 [Make a simple videogame from scratch with PyGame](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Pygame)
 - 2025-01-14 [Serialization for data persistence and transmission, CSV, JSON, Pickle, DBM, Protobuf, and more](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/serialize.md)
 - 2025-01-07 Python Power Tools, huge results with minimal code: ORTools, Gooey, Seaborn, Streamlit, etc
-- 2024-12-31 .. no meeting - holiday
-- 2024-12-24 .. no meeting - holiday
+- 2024-12-31 ... no meeting - holiday
+- 2024-12-24 ... no meeting - holiday
 - 2024-12-17 Itertools, Functools, Toolz Part 2
 - 2024-12-10 Machine Learning - John Hanley
 - 2024-12-03 Itertools, Functools, Toolz
