@@ -1,6 +1,8 @@
 # Given a list of 1 million random integers with values from 0 to 999, find the number that appears the most.
 
 import os
+import sys
+import sysconfig
 import time
 from collections import Counter
 
@@ -66,6 +68,8 @@ def most_common_numpy(nums):
 # Merge the results and find the max count
 
 
+def is_nogil_python() -> bool:
+    return sysconfig.get_config_var("Py_GIL_DISABLED") == 1 and not sys._is_gil_enabled()
 
 def most_common_parallel(nums, p=None, k=1000) -> int:
     arr = np.asarray(nums, dtype=np.int32)
@@ -78,7 +82,6 @@ def most_common_parallel(nums, p=None, k=1000) -> int:
         for h in ex.map(hist, (c for c in chunks if c.size)):
             np.add(totals, h, out=totals)   # no temporary stack
     return int(totals.argmax())
-
 
 
 # Now wrap it all up in a framework that tries each of these
@@ -101,6 +104,12 @@ def main():
     rng = np.random.default_rng()
     nums_np= rng.integers(0, 1000, size=1_000_000, dtype=np.int32)
     nums_list = nums_np.tolist()
+
+    if is_nogil_python():
+        print('(Note: Running threaded algorithm in NOGIL Python)')
+    else:
+        print('Warning: Running threaded algorithm in crippled GIL Python')
+        print('         try running with `uv run --python 3.14t most_common_number.py`')
 
     tests = [
         ("simple", most_common_simple, nums_list),
