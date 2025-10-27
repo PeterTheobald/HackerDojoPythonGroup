@@ -44,22 +44,6 @@ def most_common_array(nums: List[int]) -> int:
     counts = [0] * 1000
     for x in nums:
         counts[x] += 1
-    # In case of ties, this returns the smallest value with the max count.
-    best = 0
-    best_count = -1
-    for v, c in enumerate(counts):
-        if c > best_count:
-            best, best_count = v, c
-    return best
-    # Note: it is faster to scan the 1,000 counts than
-    #       than to test and track the most_common_so_far
-    #       1,000,000 times in the first loop
-
-def most_common_array2(nums: List[int]) -> int:
-    # nums can only be 0-999
-    counts = [0] * 1000
-    for x in nums:
-        counts[x] += 1
     return max(range(1000), key=counts.__getitem__)
 
 # How could we beat that? Use numpy. numpy has this
@@ -122,7 +106,6 @@ def main():
         ("simple", most_common_simple, nums_list),
         ("counter", most_common_counter, nums_list),
         ("array", most_common_array, nums_list),
-        ("array2", most_common_array2, nums_list),
         ("numpy", most_common_numpy, nums_np),
         ("parallel", most_common_parallel, nums_np)
     ]
