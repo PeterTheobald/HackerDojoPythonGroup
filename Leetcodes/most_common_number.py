@@ -58,10 +58,6 @@ def most_common_numpy(nums):
 # Calc the counters of each part,
 # Merge the results and find the max count
 
-
-def is_nogil_python() -> bool:
-    return sysconfig.get_config_var("Py_GIL_DISABLED") == 1 and not sys._is_gil_enabled()
-
 def most_common_parallel(nums, p=None, k=1000) -> int:
     arr = np.asarray(nums, dtype=np.int32)
     chunks = np.array_split(arr, p or os.cpu_count() or 4)
@@ -91,13 +87,16 @@ def benchmark( fn: Callable, data: Iterable[int]) -> Tuple[int, float, float, fl
         times.append(t_end - t_start)
     return result, min(times), stats.mean(times), sum(times)
 
+def is_nogil_python() -> bool:
+    return sysconfig.get_config_var("Py_GIL_DISABLED") == 1 and not sys._is_gil_enabled()
+
 def main():
     rng = np.random.default_rng()
     nums_np= rng.integers(0, 1000, size=1_000_000, dtype=np.int32)
     nums_list = nums_np.tolist()
 
     if is_nogil_python():
-        print('(Note: Running threaded algorithm in NOGIL Python)')
+        print(f'(Note: Running threaded algorithm in NOGIL Python, with {os.cpu_count()} cores)')
     else:
         print('Warning: Running threaded algorithm in crippled GIL Python')
         print('         try running with `uv run --python 3.14t most_common_number.py`')
