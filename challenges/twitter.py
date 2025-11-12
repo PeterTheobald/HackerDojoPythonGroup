@@ -1,3 +1,9 @@
+###
+# based on the Leet challenge: https://leetcode.com/problems/design-twitter/
+# but slightly different.
+# You can follow either this spec, or the Leetcode one
+###
+
 from typing import List, Dict
 
 # Globals / storage
