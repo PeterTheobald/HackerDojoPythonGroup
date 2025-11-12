@@ -92,7 +92,8 @@ def is_nogil_python() -> bool:
 
 def main():
     rng = np.random.default_rng()
-    nums_np= rng.integers(0, 1000, size=1_000_000, dtype=np.int32)
+    # nums_np= rng.integers(0, 1000, size=1_000_000, dtype=np.int32)
+    nums_np= rng.integers(0, 1000, size=10_000_000, dtype=np.int32)
     nums_list = nums_np.tolist()
 
     if is_nogil_python():
@@ -102,9 +103,9 @@ def main():
         print('         try running with `uv run --python 3.14t most_common_number.py`')
 
     tests = [
-        ("simple", most_common_simple, nums_list),
-        ("counter", most_common_counter, nums_list),
-        ("array", most_common_array, nums_list),
+#         ("simple", most_common_simple, nums_list),
+#        ("counter", most_common_counter, nums_list),
+#        ("array", most_common_array, nums_list),
         ("numpy", most_common_numpy, nums_np),
         ("parallel", most_common_parallel, nums_np)
     ]
