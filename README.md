@@ -21,7 +21,6 @@ A formatted and styled version of this webpage [lives here](https://petertheobal
 - Troubleshooting memory leaks
 - Multithreaded programming, locks and thread safety
 - Multithreading: threading.Threads vs. concurrent.futures
-- Packing/Unpacking (*args, **kwargs, tuple unpacking, **dict, iterable unpacking *rest b=seq, kw only args, zip(*iter), dataclass/namedtuple field unpacking, *assignments *_, last=seq)
 - Claude Code update
 - ml stats
 - agentic AI
@@ -39,6 +38,9 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 Coming Up:
 
 Past meetings:
+- 2025-11-11 PyBay, Leet challenges: [find-ips](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/find_ips.py), [twitter clone](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/twitter.py)
+- 2025-11-04 most_common_number challenge, [Packing and Unpacking with \* and \*\*](https://colab.research.google.com/drive/10Ah3ldNRJTJKinRB3R2CH-k-dsE5KRvM#scrollTo=fBMiVfLMU6c4), find-ips challenge
+- 2025-10-28 No Mtg
 - 2025-10-21 [Coding challenge](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/wait_warmer.md); VSCode debugger - Sam Mirazi; [Implementing "dict"](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/dojodict.md); [Implementing an LLM RAG (Nightvid)](https://github.com/ncole1/RAG_with_relevance_scores)
 - 2025-10-14 [Algorithms and Big-O notation](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/big-O-scalability)
 - 2025-10-07 [Python4.14: T-strings and full speed multithreading](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/Python3.14)
