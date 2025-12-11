@@ -338,7 +338,7 @@ def main():
         },
     ]
     results = benchmark.run(algorithms, REPEAT=NUM_RUNS)
-    print("\nExample results for each algorithm:")
+    print("\nResults for each algorithm:")
     for res in results:
         print(f"{res['title']}: {res['last_result']}")
 

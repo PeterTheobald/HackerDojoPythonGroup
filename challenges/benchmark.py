@@ -12,10 +12,16 @@ def run(algorithms, REPEAT=1000, verbose=True):
     results = []
     best_idx = None
     best_total = float('inf')
+    num_algos = len(algorithms)
+    
     for idx, algo in enumerate(algorithms):
         title = algo.get('title', 'Untitled')
         method_fn = algo['method_fn']
         setup_fn = algo.get('setup_fn', lambda: None)
+        
+        if verbose:
+            print(f"[{idx+1}/{num_algos}] Running: {title}...", end='', flush=True)
+        
         # Setup timing
         t_setup0 = time.perf_counter()
         setup_data = setup_fn()
@@ -26,12 +32,23 @@ def run(algorithms, REPEAT=1000, verbose=True):
         # Timing
         result = None
         t0 = time.perf_counter()
-        for _ in range(REPEAT):
+        
+        # Show progress every 10% or at key intervals
+        progress_interval = max(1, REPEAT // 10)
+        for i in range(REPEAT):
             result = method_fn(setup_data)
+            if verbose and (i + 1) % progress_interval == 0:
+                percent = (i + 1) / REPEAT * 100
+                print(f"\r[{idx+1}/{num_algos}] Running: {title}... {percent:.0f}%", end='', flush=True)
+        
         t1 = time.perf_counter()
         elapsed = t1 - t0
         avg = elapsed / REPEAT
         total_perf = setup_time + elapsed
+        
+        if verbose:
+            print(f"\r[{idx+1}/{num_algos}] Running: {title}... Done ({elapsed:.2f}s)")
+        
         results.append({
             'title': title,
             'setup_time': setup_time,
