@@ -2,6 +2,22 @@ import heapq
 import time
 from collections import defaultdict, deque
 
+# LeetCode style challenge (from #127 https://leetcode.com/problems/word-ladder/)
+# Given two words (beginWord and endWord), and a dictionary's word list,
+# find the length of shortest transformation sequence from beginWord to endWord,
+# such that:
+# 1. Only one letter can be changed at a time.
+# 2. Each transformed word must exist in the word list.
+# Note that beginWord is not a transformed word.
+# For example,
+# Given:
+# beginWord = "hit",
+# endWord = "cog",
+# wordList = ["hot","dot","dog","lot","log","cog"]
+# As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+
+# NOTE: obsolete, see word_ladder2.py for improved versions
+
 ### Breadth-First-Search
 ### trying every letter a-z in each position
 

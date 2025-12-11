@@ -3,6 +3,22 @@ from collections import defaultdict, deque
 import heapq
 import benchmark
 
+# LeetCode style challenge (from #127 https://leetcode.com/problems/word-ladder/)
+# Given two words (beginWord and endWord), and a dictionary's word list,
+# find the length of shortest transformation sequence from beginWord to endWord,
+# such that:
+# 1. Only one letter can be changed at a time.
+# 2. Each transformed word must exist in the word list.
+# Note that beginWord is not a transformed word.
+# For example,
+# Given:
+# beginWord = "hit",
+# endWord = "cog",
+# wordList = ["hot","dot","dog","lot","log","cog"]
+# As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+
+# Simple Breadth-First-Search
+### trying every letter a-z in each position
 def find_word_path_a_z(start_word, target_word, word_set):
     if target_word not in word_set:
         return []
@@ -23,6 +39,7 @@ def find_word_path_a_z(start_word, target_word, word_set):
                     queue.append(path + [next_word])
     return []
 
+# slight variation using prev dict to reconstruct path
 def find_word_path_a_z2(start, target, word_set):
     if target not in word_set:
         return []
@@ -48,6 +65,8 @@ def find_word_path_a_z2(start, target, word_set):
                     q.append(nxt)
     return []
 
+# Build full graph of words differing by one letter
+# for use by find_word_path_graph
 def build_full_graph(word_list):
     words = list(set(word_list))
     neighbors = {w: [] for w in words}
@@ -68,6 +87,8 @@ def build_full_graph(word_list):
                 neighbors[w2].append(w1)
     return neighbors
 
+# BFS on prebuilt graph
+# the idea: finding neighbors is O(1) instead of O(26·L) trying every letter
 def find_word_path_graph(start_word, target_word, word_graph):
     neighbors = word_graph
     if start_word not in neighbors or target_word not in neighbors:
@@ -90,6 +111,7 @@ def find_word_path_graph(start_word, target_word, word_graph):
                 queue.append(nxt)
     return []
 
+# Build wildcard graph for use by find_word_path_wildcard
 def build_wildcard_graph(words):
     buckets = defaultdict(list)
     for w in words:
@@ -99,6 +121,12 @@ def build_wildcard_graph(words):
             buckets[pattern].append(w)
     return buckets
 
+# BFS on wildcard graph
+# the idea: finding neighbors is O(L) instead of O(26·L) trying every letter
+# But the full graph in find_word_path_graph took a very long time to build,
+# so this is a compromise: building buckets is O(N·L^2) instead of O(N^2·L)
+# Using wildcard patterns as "neighbor gathering nodes" to find neighbors on the fly
+# Eg: all the words "hot", "hit", "hat", "hut" connect via "h*t"
 def find_word_path_wildcard(start_word, target_word, buckets):
     queue = deque([start_word])
     visited = {start_word}
@@ -125,9 +153,13 @@ def find_word_path_wildcard(start_word, target_word, buckets):
                     queue.append(nxt)
     return []
 
+# A* Search with Hamming distance heuristic 
 def _heuristic_hamming(word, target):
     return sum(1 for a, b in zip(word, target) if a != b)
 
+# A* Search implementation
+# Similar to BFS but instead of blindly exploring neighbors,
+# we use a priority queue to explore the most promising nodes first
 def find_word_path_astar(start_word, target_word, word_set):
     if target_word not in word_set:
         return []
@@ -163,6 +195,8 @@ def find_word_path_astar(start_word, target_word, word_set):
                     heapq.heappush(open_heap, (f_nxt, tentative_g, nxt))
     return []
 
+# A* Search with letter frequency heuristic
+# Maybe searching most "common" words first helps?
 def _heuristic_frequencies(word):
     # English letter frequency (ETAOIN SHRDLU...)
     # Source: https://en.wikipedia.org/wiki/Letter_frequency
@@ -176,6 +210,7 @@ def _heuristic_frequencies(word):
     # Heuristic: sum of letter frequencies in the word
     return sum(freq.get(c, 0) for c in word)
 
+# A* Search implementation with frequency heuristic
 def find_word_path_astar2(start_word, target_word, word_set):
     if target_word not in word_set:
         return []
@@ -211,6 +246,7 @@ def find_word_path_astar2(start_word, target_word, word_set):
                     heapq.heappush(open_heap, (f_nxt, tentative_g, nxt))
     return []
 
+# A* Search on wildcard graph, combines both ideas
 def find_word_path_astar_wildcard(start_word, target_word, buckets):
     open_heap = []
     g_score = {start_word: 0}
@@ -242,6 +278,8 @@ def find_word_path_astar_wildcard(start_word, target_word, buckets):
                         f_nxt = tentative_g + sum(a != b for a, b in zip(nxt, target_word))
                         heapq.heappush(open_heap, (f_nxt, tentative_g, nxt))
     return []
+
+# Utility functions and main benchmarking
 
 def read_dict():
     words = []
