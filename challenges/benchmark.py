@@ -8,9 +8,9 @@ def run(
     """
     Run a benchmark on a list of algorithms.
     Each algorithm is a dict with keys:
-        'method_fn': function to benchmark (takes setup result as input)
+        'algorithm_fn': function to benchmark (takes setup result as input)
         'title': string title for reporting
-        'setup_fn': function to call before timing (no args, returns input for method_fn)
+        'setup_fn': function to call before timing (no args, returns input for algorithm_fn)
     """
     results: List[Dict[str, Any]] = []
     best_idx = None
@@ -19,7 +19,7 @@ def run(
 
     for idx, algo in enumerate(algorithms):
         title = algo.get("title", "Untitled")
-        method_fn = algo["method_fn"]
+        algorithm_fn = algo["algorithm_fn"]
         setup_fn = algo.get("setup_fn", lambda: None)
 
         if verbose:
@@ -31,7 +31,7 @@ def run(
         t_setup1 = time.perf_counter()
         setup_time = t_setup1 - t_setup0
         # Warmup (optional, not timed)
-        method_fn(setup_data)
+        algorithm_fn(setup_data)
         # Timing
         result = None
         t0 = time.perf_counter()
@@ -39,7 +39,7 @@ def run(
         # Show progress every 10% or at key intervals
         progress_interval = max(1, REPEAT // 10)
         for i in range(REPEAT):
-            result = method_fn(setup_data)
+            result = algorithm_fn(setup_data)
             if verbose and (i + 1) % progress_interval == 0:
                 percent = (i + 1) / REPEAT * 100
                 print(

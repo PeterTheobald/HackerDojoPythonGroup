@@ -454,7 +454,7 @@ def run_benchmark(
         benchmark_algos.append(
             {
                 "title": algo["name"],
-                "method_fn": make_wrapper(algo["function"]),
+                "algorithm_fn": make_wrapper(algo["function"]),
                 "setup_fn": make_setup(grid, (n, m)),
             }
         )
@@ -514,7 +514,7 @@ def main():
     # animation_speed controls delay between steps (larger = slower)
     # For large maps, use very small delay or set animate=False
     run_benchmark(
-        grid, num_runs=100, visualize=True, animate=True, animation_speed=0.005
+        grid, num_runs=1000, visualize=True, animate=True, animation_speed=0.005
     )
 
 

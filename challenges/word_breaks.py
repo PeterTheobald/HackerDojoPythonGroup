@@ -269,47 +269,47 @@ def main() -> None:
     algorithms = [
         {
             "title": "Naive Recursive Word Break",
-            "method_fn": lambda ws: find_words_naive(s, ws),
+            "algorithm_fn": lambda ws: find_words_naive(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "Naive Iterative Word Break",
-            "method_fn": lambda ws: find_words_naive_recursive(s, ws),
+            "algorithm_fn": lambda ws: find_words_naive_recursive(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "DP Word Break",
-            "method_fn": lambda ws: find_words_dp(s, ws),
+            "algorithm_fn": lambda ws: find_words_dp(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "Sam's Memoized Word Break",
-            "method_fn": lambda ws: wordBreakSam(s, ws),
+            "algorithm_fn": lambda ws: wordBreakSam(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "DP on Prefixes",
-            "method_fn": lambda ws: find_words_dp_prefix(s, ws),
+            "algorithm_fn": lambda ws: find_words_dp_prefix(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "DFS + Memoization",
-            "method_fn": lambda ws: find_words_dfs_memo(s, ws),
+            "algorithm_fn": lambda ws: find_words_dfs_memo(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "BFS on Indices",
-            "method_fn": lambda ws: find_words_bfs_indices(s, ws),
+            "algorithm_fn": lambda ws: find_words_bfs_indices(s, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "Trie-based Optimization",
-            "method_fn": lambda trie: find_words_trie(s, trie),
+            "algorithm_fn": lambda trie: find_words_trie(s, trie),
             "setup_fn": lambda: build_trie(set(word_list)),
         },
         {
             "title": "ChatGPTs best: Length-Pruned DFS+Memo",
-            "method_fn": lambda data: find_words_length_pruned(s, data),
+            "algorithm_fn": lambda data: find_words_length_pruned(s, data),
             "setup_fn": lambda: prepare_word_data_with_lengths(word_list),
         },
     ]

@@ -358,37 +358,37 @@ def main() -> None:
     algorithms = [
         {
             "title": "A-Z BFS   O(26·N·L)~O(N·L)",
-            "method_fn": lambda ws: find_word_path_a_z(start, end, ws),
+            "algorithm_fn": lambda ws: find_word_path_a_z(start, end, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "A-Z2 BFS  O(26·N·L)~O(N·L)",
-            "method_fn": lambda ws: find_word_path_a_z2(start, end, ws),
+            "algorithm_fn": lambda ws: find_word_path_a_z2(start, end, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "Full Graph BFS O(N^2·L) + O(N·G)~O(N^2)",
-            "method_fn": lambda g: find_word_path_graph(start, end, g),
+            "algorithm_fn": lambda g: find_word_path_graph(start, end, g),
             "setup_fn": lambda: build_full_graph(word_list),
         },
         {
             "title": "Wildcard Graph BFS O(N·L^2)",
-            "method_fn": lambda b: find_word_path_wildcard(start, end, b),
+            "algorithm_fn": lambda b: find_word_path_wildcard(start, end, b),
             "setup_fn": lambda: build_wildcard_graph(word_list),
         },
         {
             "title": "A* Search hamming O(N·L·logN)",
-            "method_fn": lambda ws: find_word_path_astar(start, end, ws),
+            "algorithm_fn": lambda ws: find_word_path_astar(start, end, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "A*2 Search frequencies O(N·L·logN)",
-            "method_fn": lambda ws: find_word_path_astar2(start, end, ws),
+            "algorithm_fn": lambda ws: find_word_path_astar2(start, end, ws),
             "setup_fn": lambda: set(word_list),
         },
         {
             "title": "both: A* & Wildcard O(N·L·logN)",
-            "method_fn": lambda b: find_word_path_astar_wildcard(start, end, b),
+            "algorithm_fn": lambda b: find_word_path_astar_wildcard(start, end, b),
             "setup_fn": lambda: build_wildcard_graph(word_list),
         },
     ]
