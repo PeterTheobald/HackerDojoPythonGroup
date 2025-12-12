@@ -1,5 +1,6 @@
 import time
 from collections import defaultdict, deque
+from typing import List, Set, Dict, Optional, DefaultDict
 import heapq
 import benchmark
 
@@ -19,8 +20,8 @@ import benchmark
 
 # Simple Breadth-First-Search
 ### trying every letter a-z in each position
-def find_word_path_a_z(start_word, target_word, word_set):
-    if target_word not in word_set:
+def find_word_path_a_z(start_word: str, target_word: str, words: Set[str]) -> List[str]:
+    if target_word not in words:
         return []
     queue = deque([[start_word]])
     visited = {start_word}
@@ -34,14 +35,14 @@ def find_word_path_a_z(start_word, target_word, word_set):
                 if c == word[i]:
                     continue
                 next_word = word[:i] + c + word[i+1:]
-                if next_word in word_set and next_word not in visited:
+                if next_word in words and next_word not in visited:
                     visited.add(next_word)
                     queue.append(path + [next_word])
     return []
 
 # slight variation using prev dict to reconstruct path
-def find_word_path_a_z2(start, target, word_set):
-    if target not in word_set:
+def find_word_path_a_z2(start: str, target: str, words: Set[str]) -> List[str]:
+    if target not in words:
         return []
     q = deque([start])
     visited = {start}
@@ -59,7 +60,7 @@ def find_word_path_a_z2(start, target, word_set):
                 if c == w[i]:
                     continue
                 nxt = w[:i] + c + w[i+1:]
-                if nxt in word_set and nxt not in visited:
+                if nxt in words and nxt not in visited:
                     visited.add(nxt)
                     prev[nxt] = w
                     q.append(nxt)
@@ -67,7 +68,7 @@ def find_word_path_a_z2(start, target, word_set):
 
 # Build full graph of words differing by one letter
 # for use by find_word_path_graph
-def build_full_graph(word_list):
+def build_full_graph(word_list: List[str]) -> Dict[str, List[str]]:
     words = list(set(word_list))
     neighbors = {w: [] for w in words}
     n = len(words)
@@ -89,7 +90,7 @@ def build_full_graph(word_list):
 
 # BFS on prebuilt graph
 # the idea: finding neighbors is O(1) instead of O(26·L) trying every letter
-def find_word_path_graph(start_word, target_word, word_graph):
+def find_word_path_graph(start_word: str, target_word: str, word_graph: Dict[str, List[str]]) -> List[str]:
     neighbors = word_graph
     if start_word not in neighbors or target_word not in neighbors:
         return []
@@ -112,8 +113,8 @@ def find_word_path_graph(start_word, target_word, word_graph):
     return []
 
 # Build wildcard graph for use by find_word_path_wildcard
-def build_wildcard_graph(words):
-    buckets = defaultdict(list)
+def build_wildcard_graph(words: List[str]) -> DefaultDict[str, List[str]]:
+    buckets: DefaultDict[str, List[str]] = defaultdict(list)
     for w in words:
         L = len(w)
         for i in range(L):
@@ -127,7 +128,7 @@ def build_wildcard_graph(words):
 # so this is a compromise: building buckets is O(N·L^2) instead of O(N^2·L)
 # Using wildcard patterns as "neighbor gathering nodes" to find neighbors on the fly
 # Eg: all the words "hot", "hit", "hat", "hut" connect via "h*t"
-def find_word_path_wildcard(start_word, target_word, buckets):
+def find_word_path_wildcard(start_word: str, target_word: str, buckets: DefaultDict[str, List[str]]) -> List[str]:
     queue = deque([start_word])
     visited = {start_word}
     prev = {start_word: None}
@@ -154,14 +155,14 @@ def find_word_path_wildcard(start_word, target_word, buckets):
     return []
 
 # A* Search with Hamming distance heuristic 
-def _heuristic_hamming(word, target):
+def _heuristic_hamming(word: str, target: str) -> int:
     return sum(1 for a, b in zip(word, target) if a != b)
 
 # A* Search implementation
 # Similar to BFS but instead of blindly exploring neighbors,
 # we use a priority queue to explore the most promising nodes first
-def find_word_path_astar(start_word, target_word, word_set):
-    if target_word not in word_set:
+def find_word_path_astar(start_word: str, target_word: str, words: Set[str]) -> List[str]:
+    if target_word not in words:
         return []
     open_heap = []
     g_score = {start_word: 0}
@@ -185,7 +186,7 @@ def find_word_path_astar(start_word, target_word, word_set):
                 if c == word[i]:
                     continue
                 nxt = word[:i] + c + word[i+1:]
-                if nxt not in word_set:
+                if nxt not in words:
                     continue
                 tentative_g = g + 1
                 if tentative_g < g_score.get(nxt, float("inf")):
@@ -197,7 +198,7 @@ def find_word_path_astar(start_word, target_word, word_set):
 
 # A* Search with letter frequency heuristic
 # Maybe searching most "common" words first helps?
-def _heuristic_frequencies(word):
+def _heuristic_frequencies(word: str) -> float:
     # English letter frequency (ETAOIN SHRDLU...)
     # Source: https://en.wikipedia.org/wiki/Letter_frequency
     freq = {
@@ -211,8 +212,8 @@ def _heuristic_frequencies(word):
     return sum(freq.get(c, 0) for c in word)
 
 # A* Search implementation with frequency heuristic
-def find_word_path_astar2(start_word, target_word, word_set):
-    if target_word not in word_set:
+def find_word_path_astar2(start_word: str, target_word: str, words: Set[str]) -> List[str]:
+    if target_word not in words:
         return []
     open_heap = []
     g_score = {start_word: 0}
@@ -236,7 +237,7 @@ def find_word_path_astar2(start_word, target_word, word_set):
                 if c == word[i]:
                     continue
                 nxt = word[:i] + c + word[i+1:]
-                if nxt not in word_set:
+                if nxt not in words:
                     continue
                 tentative_g = g + 1
                 if tentative_g < g_score.get(nxt, float("inf")):
@@ -247,7 +248,7 @@ def find_word_path_astar2(start_word, target_word, word_set):
     return []
 
 # A* Search on wildcard graph, combines both ideas
-def find_word_path_astar_wildcard(start_word, target_word, buckets):
+def find_word_path_astar_wildcard(start_word: str, target_word: str, buckets: DefaultDict[str, List[str]]) -> List[str]:
     open_heap = []
     g_score = {start_word: 0}
     came_from = {}
@@ -281,7 +282,7 @@ def find_word_path_astar_wildcard(start_word, target_word, buckets):
 
 # Utility functions and main benchmarking
 
-def read_dict():
+def read_wordlist() -> List[str]:
     words = []
     with open("ubuntu-wordlist.txt") as f:
         for line in f:
@@ -290,14 +291,14 @@ def read_dict():
                 words.append(word)
     return words
 
-def build_set(word_list):
+def build_set(word_list: List[str]) -> Set[str]:
     return set(word_list)
 
-def main():
+def main() -> None:
     NUM_RUNS = 50
     start = "small"
     end = "large"
-    word_list = read_dict()
+    word_list = read_wordlist()
     word_list.append(start)
     word_list.append(end)
     algorithms = [

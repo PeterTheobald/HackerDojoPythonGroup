@@ -1,7 +1,8 @@
 
 import time
+from typing import List, Dict, Any, Callable, Optional
 
-def run(algorithms, REPEAT=1000, verbose=True):
+def run(algorithms: List[Dict[str, Any]], REPEAT: int = 1000, verbose: bool = True) -> List[Dict[str, Any]]:
     """
     Run a benchmark on a list of algorithms.
     Each algorithm is a dict with keys:
@@ -9,7 +10,7 @@ def run(algorithms, REPEAT=1000, verbose=True):
         'title': string title for reporting
         'setup_fn': function to call before timing (no args, returns input for method_fn)
     """
-    results = []
+    results: List[Dict[str, Any]] = []
     best_idx = None
     best_total = float('inf')
     num_algos = len(algorithms)
