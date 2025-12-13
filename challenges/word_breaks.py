@@ -1,3 +1,4 @@
+import argparse
 import time
 from collections import deque
 from typing import Dict, List, Set, Tuple
@@ -262,7 +263,10 @@ def read_dictionary() -> List[str]:
 
 
 def main() -> None:
-    NUM_RUNS = 1000000
+    parser = argparse.ArgumentParser(description='Benchmark word break algorithms')
+    parser.add_argument('--repeat', type=int, default=1000000, help='Number of iterations for each benchmark (default: 1000000)')
+    args = parser.parse_args()
+    
     s = "nowhere"
     word_list = read_dictionary()
 
@@ -313,7 +317,7 @@ def main() -> None:
             "setup_fn": lambda: prepare_word_data_with_lengths(word_list),
         },
     ]
-    results = benchmark.run(algorithms, REPEAT=NUM_RUNS)
+    results = benchmark.run(algorithms, REPEAT=args.repeat)
     print("\nResults for each algorithm:")
     for res in results:
         print(f"{res['title']}: {res['last_result']}")

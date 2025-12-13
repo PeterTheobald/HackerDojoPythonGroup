@@ -1,3 +1,4 @@
+import argparse
 import heapq
 import time
 from collections import defaultdict, deque
@@ -349,7 +350,10 @@ def build_set(word_list: List[str]) -> Set[str]:
 
 
 def main() -> None:
-    NUM_RUNS = 50
+    parser = argparse.ArgumentParser(description='Benchmark word ladder algorithms')
+    parser.add_argument('--repeat', type=int, default=50, help='Number of iterations for each benchmark (default: 50)')
+    args = parser.parse_args()
+    
     start = "small"
     end = "large"
     word_list = read_wordlist()
@@ -392,7 +396,7 @@ def main() -> None:
             "setup_fn": lambda: build_wildcard_graph(word_list),
         },
     ]
-    results = benchmark.run(algorithms, REPEAT=NUM_RUNS)
+    results = benchmark.run(algorithms, REPEAT=args.repeat)
     print("\nResults for each algorithm:")
     for res in results:
         print(f"{res['title']}: {res['last_result']}")

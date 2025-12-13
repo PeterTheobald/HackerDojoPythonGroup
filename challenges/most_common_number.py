@@ -1,5 +1,6 @@
 # Given a list of 1 million random integers with values from 0 to 999, find the number that appears the most.
 
+import argparse
 import os
 import sys
 import sysconfig
@@ -74,23 +75,31 @@ def most_common_parallel(nums, p=None, k=1000) -> int:
 # Now wrap it all up in a framework that tries each of these
 # and times them.
 
-REPEAT=1000
-
-def benchmark( fn: Callable, data: Iterable[int]) -> Tuple[int, float, float, float]:
+def benchmark(fn: Callable, data: Iterable[int], repeat: int) -> Tuple[int, float, float, float]:
     _ = fn(data) # call it once throw-away to warm up any caches etc.
     times = []
     result = None
-    for _ in range(REPEAT):
+    progress_interval = max(1, repeat // 20)
+    for i in range(repeat):
         t_start = time.perf_counter()
         result = fn(data)
         t_end = time.perf_counter()
         times.append(t_end - t_start)
+        if (i + 1) % progress_interval == 0:
+            percent = (i + 1) / repeat * 100
+            print(f"\r  Progress: {percent:.0f}%", end="", flush=True)
+    if repeat >= 10:
+        print()  # newline after progress
     return result, min(times), stats.mean(times), sum(times)
 
 def is_nogil_python() -> bool:
     return sysconfig.get_config_var("Py_GIL_DISABLED") == 1 and not sys._is_gil_enabled()
 
 def main():
+    parser = argparse.ArgumentParser(description='Benchmark algorithms to find the most common number')
+    parser.add_argument('--repeat', type=int, default=100, help='Number of iterations for each benchmark (default: 100)')
+    args = parser.parse_args()
+    
     rng = np.random.default_rng()
     # nums_np= rng.integers(0, 1000, size=1_000_000, dtype=np.int32)
     nums_np= rng.integers(0, 1000, size=10_000_000, dtype=np.int32)
@@ -101,6 +110,8 @@ def main():
     else:
         print('Warning: Running threaded algorithm in crippled GIL Python')
         print('         try running with `uv run --python 3.14t most_common_number.py`')
+    
+    print(f'Running {args.repeat} iterations per algorithm...\n')
 
     tests = [
         ("simple", most_common_simple, nums_list),
@@ -109,8 +120,10 @@ def main():
         ("numpy", most_common_numpy, nums_np),
         ("parallel", most_common_parallel, nums_np)
     ]
-    for name, fn, data in tests:
-        result, best_time, avg_time, total_time = benchmark( fn, data)
+    num_tests = len(tests)
+    for idx, (name, fn, data) in enumerate(tests, 1):
+        print(f"[{idx}/{num_tests}] Testing {name}...")
+        result, best_time, avg_time, total_time = benchmark(fn, data, args.repeat)
         print(f"{name:>10}  result={result:4d}, best time={best_time*1000:8.2f} ms, avg time={avg_time*1000:8.2f} ms, total_time={total_time*1000:10.2f} ms")
 
 

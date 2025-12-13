@@ -6,6 +6,7 @@ This system allows easy contribution and comparison of pathfinding algorithms.
 Contributors can add algorithms to map_algorithms.py using the @register_algorithm decorator.
 """
 
+import argparse
 import importlib
 import inspect
 import sys
@@ -353,7 +354,6 @@ def run_benchmark(
     grid: List[List[int]],
     num_runs: int = 1000,
     visualize: bool = True,
-    animate: bool = True,
     animation_speed: float = 0.001,
 ):
     """Run benchmark on all registered algorithms."""
@@ -371,7 +371,7 @@ def run_benchmark(
     n, m = len(grid), len(grid[0])
 
     # First, run animated visualizations
-    if animate and visualize:
+    if visualize:
         visualizer = Visualizer(animation_speed=animation_speed)
 
         for i, algo in enumerate(algorithms):
@@ -503,6 +503,12 @@ def load_map_from_sample():
 
 def main():
     """Main benchmark runner."""
+    parser = argparse.ArgumentParser(description='Benchmark map traversal algorithms with visualization')
+    parser.add_argument('--repeat', type=int, default=1000, help='Number of iterations for each benchmark (default: 1000)')
+    parser.add_argument('--no-visualize', action='store_true', help='Disable visualization')
+    parser.add_argument('--animation-speed', type=float, default=0.005, help='Animation delay in seconds (default: 0.005)')
+    args = parser.parse_args()
+    
     print("=" * 80)
     print("MAP TRAVERSAL ALGORITHM BENCHMARK")
     print("=" * 80)
@@ -512,9 +518,12 @@ def main():
 
     # Run benchmark with real-time animation
     # animation_speed controls delay between steps (larger = slower)
-    # For large maps, use very small delay or set animate=False
+    # For large maps, use very small delay or set visualize=False
     run_benchmark(
-        grid, num_runs=1000, visualize=True, animate=True, animation_speed=0.005
+        grid, 
+        num_runs=args.repeat, 
+        visualize=not args.no_visualize, 
+        animation_speed=args.animation_speed
     )
 
 
