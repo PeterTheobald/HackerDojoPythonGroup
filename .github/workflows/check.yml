@@ -1,0 +1,11 @@
+on: [push, workflow_dispatch]
+name: check
+permissions:
+  contents: read
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - run: cd ./challenges/ && uv run --python 3.14t most_common_number.py
