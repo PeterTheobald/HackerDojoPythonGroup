@@ -1,3 +1,15 @@
+Your project should be structured as a package:
+```
+PyPI/
+├── src/
+│   └── benchmark/
+│       ├── __init__.py (imports from benchmark)
+│       └── benchmark.py (your original code)
+├── benchmark.py (original demo file, can run standalone)
+├── pyproject.toml
+└── README.md
+```
+
 1. Ensure your project has a pyproject.toml with [project] metadata and a [build-system] section.
 2. Build sdist + wheel (creates dist/): uv build --no-sources
        Creates a dist/ folder with a .whl (WHEEL) for pip and uv to install
@@ -23,6 +35,7 @@ uv publish --index testpypi --token "$TESTPYPI_TOKEN"
 ```
 
 
+Think about adding a GitHub page and adding docs to ReadTheDocs.com
 
 
 

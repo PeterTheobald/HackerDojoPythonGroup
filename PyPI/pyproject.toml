@@ -4,9 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "simple_function_benchmark"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple benchmarking library for comparing algorithm runtime"
 authors = [{name = "ControlAltPete", email = "peter@petertheobald.com"}]
+readme = "README.md"
 license = "MIT"
 requires-python = ">=3.7"
 classifiers = [
