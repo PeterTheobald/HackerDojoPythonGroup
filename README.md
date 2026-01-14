@@ -38,6 +38,15 @@ Share more ideas in our [Discord channel](https://discord.com/channels/698267668
 Coming Up:
 
 Past meetings:
+- 2026-01-13 Publishing your module to PyPI
+- 2026-01-06 Breadth First Search vs. Depth First Search vs. A* Algorithm visualized; Vibe Coding a Keyboard Remapper (Micah Alpern)
+- 2025-12-30 group discussion: AI, Fine tuning with Python...
+- 2025-12-23 No Mtg (Holidays)
+- 2025-12-16 Code Challenge: map traversal
+- 2025-12-09 Coding challenge: word_breaks; Vibe Coding 3D Calculator (Sam Mirazi)
+- 2025-12-02 Coding challenges: word_ladder; PyMan multiplayer challenge
+- 2025-11-25 No Mtg (Thanksgiving)
+- 2025-11-18 Coding challenges: word_ladder
 - 2025-11-11 PyBay, Leet challenges: [find-ips](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/find_ips.py), [twitter clone](https://github.com/PeterTheobald/HackerDojoPythonGroup/blob/main/challenges/twitter.py)
 - 2025-11-04 most_common_number challenge, [Packing and Unpacking with \* and \*\*](https://colab.research.google.com/drive/10Ah3ldNRJTJKinRB3R2CH-k-dsE5KRvM#scrollTo=fBMiVfLMU6c4), find-ips challenge
 - 2025-10-28 No Mtg
