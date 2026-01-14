@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple_function_benchmark"
+version = "0.1.0"
+description = "Simple benchmarking library for comparing algorithm runtime"
+authors = [{name = "ControlAltPete", email = "peter@petertheobald.com"}]
+license = "MIT"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
