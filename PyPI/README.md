@@ -1,6 +1,7 @@
 # Benchmark
 
 A simple, easy-to-use Python benchmarking library for comparing algorithm performance.
+[Github page](https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/PyPI)
 
 ## Features
 
@@ -13,7 +14,7 @@ A simple, easy-to-use Python benchmarking library for comparing algorithm perfor
 ## Installation
 
 ```bash
-pip install benchmark
+pip install simple_function_benchmark
 ```
 
 ## Quick Start

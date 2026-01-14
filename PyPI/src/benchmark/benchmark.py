@@ -97,7 +97,7 @@ def run(
                 }
             )
     if verbose:
-        print("\nBenchmark Results:")
+        print("\nBenchmark Results: ")
         for i, res in enumerate(results):
             if res['error']:
                 print(f"{res['title']:40} ERROR: {res['error']}")
