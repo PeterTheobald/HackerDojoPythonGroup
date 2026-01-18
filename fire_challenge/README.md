@@ -77,7 +77,7 @@ visualize_result()
 
 ### `get_map(map=0) -> (grid, max_walls)`
 Load a challenge map.
-- **Parameters**: `map` (int) - Map number (0-3)
+- **Parameters**: `map` (int) - Map number (0-6)
 - **Returns**: Tuple of (2D numpy array, max walls allowed)
 
 ### `place_walls(cells)`
@@ -106,6 +106,9 @@ Display animated visualization of fire spreading.
 - **Map 1**: 10x10 grid with corner fires, 10 walls allowed
 - **Map 2**: 6x6 grid with diagonal fires, 3 walls allowed  
 - **Map 3**: 10x10 grid with multiple fires in a row, 8 walls allowed
+- **Map 4**: 10x10 two rooms with one door - block the door with 1 wall
+- **Map 5**: 10x10 central town with 3 entrances - seal it with 3 walls
+- **Map 6**: 12x7 hallway with multiple rooms - 1 wall to save the most
 
 ## Running the Example
 

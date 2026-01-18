@@ -20,16 +20,23 @@ Usage:
     visualize_result()
 """
 
+import time
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 from matplotlib.patches import Rectangle
+from matplotlib.colors import ListedColormap
 from collections import deque
 from typing import List, Tuple, Optional
 
+# Constants
+CELL_OPEN = 0
+CELL_WATER = 1
+CELL_FIRE = 2
+CELL_WALL = 3
+
 # Global state
 _current_grid: Optional[np.ndarray] = None
-_original_grid: Optional[np.ndarray] = None
+_total_open_cells: int = 0
 _max_walls: int = 0
 _placed_walls: List[Tuple[int, int]] = []
 _highlight_data: dict = {'interest': [], 'candidate': []}
@@ -90,6 +97,48 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 8
     },
+    4: {
+        'grid': np.array([
+            [2, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # Door in middle
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        ]),
+        'max_walls': 1
+    },
+    5: {
+        'grid': np.array([
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 0, 0, 1, 1, 1, 1, 0, 0, 2],
+            [2, 0, 0, 1, 0, 0, 1, 0, 0, 2],
+            [2, 0, 0, 0, 0, 0, 1, 0, 0, 2],  # Left entrance at column 3
+            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],  # Right entrance at column 6
+            [2, 0, 0, 1, 0, 0, 1, 0, 0, 2],
+            [2, 0, 0, 1, 0, 1, 1, 0, 0, 2],  # Bottom entrance at column 4
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+            [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+        ]),
+        'max_walls': 3
+    },
+    6: {
+        'grid': np.array([
+            [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],  # Door to room 1 at col 5
+            [2, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
+            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],  # Hallway at col 1, door to room 2 at col 9
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],  # Door to room 3 at col 11
+            [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        ]),
+        'max_walls': 1
+    },
 }
 
 
@@ -98,20 +147,20 @@ def get_map(map: int = 0) -> Tuple[np.ndarray, int]:
     Get a challenge map for the fire spreading game.
     
     Args:
-        map: Map number (0-3)
+        map: Map number (0-6)
         
     Returns:
         Tuple of (grid, max_walls) where:
             - grid is a 2D numpy array with 0=open, 1=water, 2=fire
             - max_walls is the maximum number of walls allowed
     """
-    global _current_grid, _original_grid, _max_walls, _placed_walls, _highlight_data
+    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data
     
     if map not in CHALLENGE_MAPS:
         raise ValueError(f"Map {map} not found. Available maps: {list(CHALLENGE_MAPS.keys())}")
     
-    _original_grid = CHALLENGE_MAPS[map]['grid'].copy()
-    _current_grid = _original_grid.copy()
+    _current_grid = CHALLENGE_MAPS[map]['grid'].copy()
+    _total_open_cells = int(np.sum(_current_grid == CELL_OPEN))
     _max_walls = CHALLENGE_MAPS[map]['max_walls']
     _placed_walls = []
     _highlight_data = {'interest': [], 'candidate': []}
@@ -145,10 +194,10 @@ def place_walls(cells: List[Tuple[int, int]]) -> None:
         if x < 0 or x >= _current_grid.shape[1] or y < 0 or y >= _current_grid.shape[0]:
             raise ValueError(f"Cell ({x}, {y}) is out of bounds")
         
-        if _original_grid[y, x] != 0:
-            raise ValueError(f"Cannot place wall at ({x}, {y}). Cell must be open (value 0)")
+        if _current_grid[y, x] != CELL_OPEN:
+            raise ValueError(f"Cannot place wall at ({x}, {y}). Cell must be open")
         
-        _current_grid[y, x] = 3  # 3 represents a wall
+        _current_grid[y, x] = CELL_WALL
 
 
 def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray]]:
@@ -169,7 +218,7 @@ def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray
     fire_cells = deque()
     for y in range(height):
         for x in range(width):
-            if current[y, x] == 2:
+            if current[y, x] == CELL_FIRE:
                 fire_cells.append((x, y))
     
     # Spread fire
@@ -189,8 +238,8 @@ def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray
                 nx, ny = x + dx, y + dy
                 
                 if 0 <= nx < width and 0 <= ny < height:
-                    if current[ny, nx] == 0:  # Open cell
-                        current[ny, nx] = 2
+                    if current[ny, nx] == CELL_OPEN:
+                        current[ny, nx] = CELL_FIRE
                         next_fire.append((nx, ny))
         
         if next_fire:
@@ -207,17 +256,12 @@ def test_result() -> int:
     Returns:
         Number of open cells saved from fire
     """
-    global _current_grid, _original_grid
+    global _current_grid
     
     if _current_grid is None:
         raise RuntimeError("Must call get_map() first")
-    
-    # Simulate fire spread
     final_grid, _ = _simulate_fire_spread(_current_grid)
-    
-    # Count saved cells (cells that are still open - value 0)
-    num_saved = np.sum(final_grid == 0)
-    
+    num_saved = np.sum(final_grid == CELL_OPEN)
     return num_saved
 
 
@@ -249,7 +293,7 @@ def visualize_result() -> None:
     """
     Display an animated visualization of the fire spreading across the grid.
     """
-    global _current_grid, _placed_walls, _highlight_data
+    global _current_grid, _placed_walls, _highlight_data, _total_open_cells
     
     if _current_grid is None:
         raise RuntimeError("Must call get_map() first")
@@ -258,63 +302,71 @@ def visualize_result() -> None:
     final_grid, history = _simulate_fire_spread(_current_grid)
     
     # Count saved cells
-    num_saved = np.sum(final_grid == 0)
-    total_open = np.sum(_original_grid == 0)
+    num_saved = np.sum(final_grid == CELL_OPEN)
+    total_open = _total_open_cells
     
     # Create figure
     fig, ax = plt.subplots(figsize=(10, 10))
+    plt.ion()
     
-    # Color map: white=open, blue=water, red=fire, gray=wall
-    colors = {
-        0: '#FFFFFF',  # Open - white
-        1: '#1E90FF',  # Water - blue
-        2: '#FF4500',  # Fire - red
-        3: '#808080',  # Wall - gray
-    }
+    height, width = history[0].shape
+    colors = ['white', 'dodgerblue', 'orangered', 'gray']
+    cmap = ListedColormap(colors)
     
-    def draw_grid(grid_state, frame_num):
-        ax.clear()
-        height, width = grid_state.shape
-        
-        # Draw grid cells
-        for y in range(height):
-            for x in range(width):
-                color = colors.get(grid_state[y, x], '#FFFFFF')
-                rect = Rectangle((x, y), 1, 1, facecolor=color, edgecolor='black', linewidth=0.5)
-                ax.add_patch(rect)
-        
-        # Draw highlight frames
-        for x, y in _highlight_data.get('interest', []):
-            rect = Rectangle((x, y), 1, 1, fill=False, edgecolor='yellow', linewidth=3)
-            ax.add_patch(rect)
-        
-        for x, y in _highlight_data.get('candidate', []):
-            rect = Rectangle((x, y), 1, 1, fill=False, edgecolor='orange', linewidth=3)
-            ax.add_patch(rect)
-        
-        # Set axis properties
-        ax.set_xlim(0, width)
-        ax.set_ylim(0, height)
-        ax.set_aspect('equal')
-        ax.invert_yaxis()
-        ax.set_xticks(range(width))
-        ax.set_yticks(range(height))
-        ax.grid(True, alpha=0.3)
-        
-        # Title with progress
-        title = f'Fire Spread Simulation - Frame {frame_num + 1}/{len(history)}\n'
-        title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
-        ax.set_title(title, fontsize=14, fontweight='bold')
+    # Create image with colormap: 0=white, 1=blue, 2=red, 3=gray
+    img = ax.imshow(history[0], interpolation='nearest', cmap=cmap,
+                    vmin=0, vmax=3, aspect='auto', origin='upper')
     
-    # Create animation
-    def animate(frame):
-        draw_grid(history[frame], frame)
+    # Draw highlights
+    for x, y in _highlight_data.get('interest', []):
+        rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False, 
+                         edgecolor='yellow', linewidth=3)
+        ax.add_patch(rect)
     
-    anim = animation.FuncAnimation(fig, animate, frames=len(history), 
-                                   interval=500, repeat=True)
+    for x, y in _highlight_data.get('candidate', []):
+        rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False, 
+                         edgecolor='orange', linewidth=3)
+        ax.add_patch(rect)
+    
+    ax.set_xlim(-0.5, width - 0.5)
+    ax.set_ylim(height - 0.5, -0.5)
+    ax.set_xticks(np.arange(-0.5, width, 1), minor=True)
+    ax.set_yticks(np.arange(-0.5, height, 1), minor=True)
+    ax.grid(which='minor', alpha=0.5, color='black', linewidth=0.5)
+    ax.tick_params(which='minor', size=0)  # Hide minor tick marks
+    ax.set_xticks(range(width))
+    ax.set_yticks(range(height))
+    
+    title = f'Fire Spread Simulation - Frame 1/{len(history)}\n'
+    title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
+    ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
     
     plt.tight_layout()
-    plt.show()
+    plt.show(block=False)
+    plt.pause(0.1)
+    
+    # Animation loop
+    frame = 0
+    
+    try:
+        while plt.fignum_exists(fig.number):
+            # Update image and title
+            img.set_data(history[frame])
+            title = f'Fire Spread Simulation - Frame {frame + 1}/{len(history)}\n'
+            title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
+            ax.set_title(title, fontsize=14, fontweight='bold')
+            
+            # Redraw and wait
+            fig.canvas.draw_idle()
+            fig.canvas.flush_events()
+            time.sleep(0.5)
+            
+            frame = (frame + 1) % len(history)
+    except KeyboardInterrupt:
+        pass
+    
+    plt.ioff()
+    plt.close(fig)
 
 
 # Export public API
