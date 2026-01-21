@@ -42,6 +42,8 @@ _total_open_cells: int = 0
 _max_walls: int = 0
 _placed_walls: List[Tuple[int, int]] = []
 _highlight_data: dict = {'interest': [], 'candidate': []}
+_map_number: Optional[int] = None
+_map_name: str = ""
 
 
 def get_map(map: int = 0) -> Tuple[np.ndarray, int, str]:
@@ -57,7 +59,7 @@ def get_map(map: int = 0) -> Tuple[np.ndarray, int, str]:
             - max_walls is the maximum number of walls allowed
             - name is the map name
     """
-    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data
+    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data, _map_number, _map_name
     
     if map < 0 or map >= len(CHALLENGE_MAPS):
         raise ValueError(f"Map {map} not found. Available maps: 0-{len(CHALLENGE_MAPS) - 1}")
@@ -67,6 +69,8 @@ def get_map(map: int = 0) -> Tuple[np.ndarray, int, str]:
     _max_walls = CHALLENGE_MAPS[map]['max_walls']
     _placed_walls = []
     _highlight_data = {'interest': [], 'candidate': []}
+    _map_number = map
+    _map_name = CHALLENGE_MAPS[map]['name']
     
     return _current_grid.copy(), _max_walls, CHALLENGE_MAPS[map]['name']
 
@@ -93,7 +97,7 @@ def get_custom_map(grid: np.ndarray, max_walls: int, name: str = "Custom Map") -
     Returns:
         Tuple of (grid, max_walls, name)
     """
-    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data
+    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data, _map_number, _map_name
     
     if not isinstance(grid, np.ndarray):
         raise TypeError("Grid must be a numpy array")
@@ -106,6 +110,8 @@ def get_custom_map(grid: np.ndarray, max_walls: int, name: str = "Custom Map") -
     _max_walls = max_walls
     _placed_walls = []
     _highlight_data = {'interest': [], 'candidate': []}
+    _map_number = None
+    _map_name = name
     
     return _current_grid.copy(), _max_walls, name
 
@@ -344,7 +350,9 @@ def visualize_result() -> None:
     ax.set_xticks(range(width))
     ax.set_yticks(range(height))
     
-    title = f'Fire Spread Simulation - Frame 1/{len(history)}\n'
+    # Build title with map info
+    map_info = f"Map {_map_number}: {_map_name}" if _map_number is not None else _map_name
+    title = f'{map_info} - Frame 1/{len(history)}\n'
     title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
     ax.set_title(title, fontsize=14, fontweight='bold', pad=20)
     
@@ -359,7 +367,8 @@ def visualize_result() -> None:
         while plt.fignum_exists(fig.number):
             # Update image and title
             img.set_data(history[frame])
-            title = f'Fire Spread Simulation - Frame {frame + 1}/{len(history)}\n'
+            map_info = f"Map {_map_number}: {_map_name}" if _map_number is not None else _map_name
+            title = f'{map_info} - Frame {frame + 1}/{len(history)}\n'
             title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
             ax.set_title(title, fontsize=14, fontweight='bold')
             
