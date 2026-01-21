@@ -44,6 +44,61 @@ def find_all_open_cells(grid):
     return open_cells
 
 
+def generate_diagonal_candidates(grid, max_walls):
+    """Generate specific diagonal line patterns for corner protection."""
+    height, width = grid.shape
+    diagonals = []
+    
+    # Generate diagonals from each corner
+    # Each diagonal aims to use edges as natural barriers
+    
+    # Top-right corner diagonals (going down-left)
+    for start_x in range(max(0, width - height - 3), width):
+        diagonal = []
+        for offset in range(max_walls):
+            x = start_x + offset
+            y = offset
+            if 0 <= x < width and 0 <= y < height and grid[y, x] == 0:
+                diagonal.append((x, y))
+        if len(diagonal) >= max_walls:
+            diagonals.append(diagonal[:max_walls])
+    
+    # Top-left corner diagonals (going down-right)
+    for start_x in range(min(height + 3, width)):
+        diagonal = []
+        for offset in range(max_walls):
+            x = start_x + offset
+            y = offset
+            if 0 <= x < width and 0 <= y < height and grid[y, x] == 0:
+                diagonal.append((x, y))
+        if len(diagonal) >= max_walls:
+            diagonals.append(diagonal[:max_walls])
+    
+    # Bottom-right corner diagonals (going up-left)
+    for start_x in range(max(0, width - height - 3), width):
+        diagonal = []
+        for offset in range(max_walls):
+            x = start_x + offset
+            y = height - 1 - offset
+            if 0 <= x < width and 0 <= y < height and grid[y, x] == 0:
+                diagonal.append((x, y))
+        if len(diagonal) >= max_walls:
+            diagonals.append(diagonal[:max_walls])
+    
+    # Bottom-left corner diagonals (going up-right)
+    for start_x in range(min(height + 3, width)):
+        diagonal = []
+        for offset in range(max_walls):
+            x = start_x - offset
+            y = height - 1 - offset
+            if 0 <= x < width and 0 <= y < height and grid[y, x] == 0:
+                diagonal.append((x, y))
+        if len(diagonal) >= max_walls:
+            diagonals.append(diagonal[:max_walls])
+    
+    return diagonals
+
+
 def find_strategic_cells(grid):
     """Find cells that are likely to be good wall positions."""
     height, width = grid.shape
@@ -303,6 +358,10 @@ def solve_fire_challenge(map_num=0, visualize=True, use_parallel=True):
     strategic = find_strategic_cells(grid)
     print(f"Strategic positions identified: {len(strategic)}")
     
+    # Check for pre-computed diagonal patterns (for corner protection)
+    diagonals = generate_diagonal_candidates(grid, max_walls)
+    print(f"Diagonal patterns generated: {len(diagonals)}")
+    
     # Calculate search space size efficiently
     def count_combinations(n, k):
         from math import comb
@@ -326,29 +385,78 @@ def solve_fire_challenge(map_num=0, visualize=True, use_parallel=True):
         candidates = all_open
         actual_combos = all_open_combos
     else:
-        candidates = strategic
-        actual_combos = strategic_combos
+        # Use strategic cells but ensure we have enough to find good patterns
+        if strategic_combos > 1000000:
+            print(f"Strategy: Using top strategic cells (filtered for performance)")
+            # For very large strategic sets, prioritize edge cells and diagonals
+            edge_cells = [c for c in strategic if c[0] == 0 or c[0] == grid.shape[1]-1 or c[1] == 0 or c[1] == grid.shape[0]-1]
+            candidates = edge_cells if len(edge_cells) >= max_walls else strategic[:100]
+            actual_combos = count_combinations(len(candidates), max_walls)
+        else:
+            candidates = strategic
+            actual_combos = strategic_combos
     
     print(f"Final combinations to test: {actual_combos:,}")
     
-    # Choose parallel vs sequential
-    if use_parallel and cpu_count() > 1:
-        if actual_combos <= 100000:
-            print(f"Strategy: PARALLEL exhaustive search ({cpu_count()} cores)")
-            best_score, best_walls = exhaustive_search_parallel(grid, map_num, max_walls, candidates, total_open_cells)
-        else:
-            # For very large search spaces, reduce wall count
-            print(f"Strategy: PARALLEL with reduced walls (too many combos: {actual_combos:,})")
-            reduced_walls = min(max_walls, 4)
-            best_score, best_walls = exhaustive_search_parallel(grid, map_num, reduced_walls, candidates, total_open_cells)
+    # First, try pre-computed diagonal patterns (fast check for corner strategies)
+    if diagonals:
+        print(f"\nTesting {len(diagonals)} pre-computed diagonal patterns...")
+        best_diagonal_score = 0
+        best_diagonal_walls = []
+        
+        for diagonal in diagonals:
+            grid_test, _, _ = get_map(map=map_num)
+            place_walls(diagonal)
+            score = test_result()
+            if score > best_diagonal_score:
+                best_diagonal_score = score
+                best_diagonal_walls = diagonal
+        
+        print(f"  Best diagonal: {best_diagonal_score} cells saved")
+        
+        # If diagonal is promising, use it as baseline
+        if best_diagonal_score > 0:
+            best_score = best_diagonal_score
+            best_walls = best_diagonal_walls
+            print(f"  Using diagonal as baseline solution")
     else:
-        if actual_combos <= 10000:
-            print("Strategy: Sequential exhaustive search")
-            best_score, best_walls = exhaustive_search(grid, map_num, max_walls, candidates, total_open_cells)
+        best_score = 0
+        best_walls = []
+    
+    # If we already have a great diagonal solution, we can skip exhaustive search for huge spaces
+    if best_score > total_open_cells * 0.1 and actual_combos > 1000000:
+        print(f"\nSkipping exhaustive search (diagonal found {best_score} cells, search space too large)")
+    else:
+        # Choose parallel vs sequential
+        if use_parallel and cpu_count() > 1:
+            if actual_combos <= 500000:  # Increased threshold for better results
+                print(f"\nStrategy: PARALLEL exhaustive search ({cpu_count()} cores)")
+                search_score, search_walls = exhaustive_search_parallel(grid, map_num, max_walls, candidates, total_open_cells)
+                if search_score > best_score:
+                    best_score = search_score
+                    best_walls = search_walls
+            else:
+                # For very large search spaces, reduce wall count
+                print(f"\nStrategy: PARALLEL with reduced walls (too many combos: {actual_combos:,})")
+                reduced_walls = min(max_walls, 5)  # Allow 5 walls minimum
+                search_score, search_walls = exhaustive_search_parallel(grid, map_num, reduced_walls, candidates, total_open_cells)
+                if search_score > best_score:
+                    best_score = search_score
+                    best_walls = search_walls
         else:
-            print(f"Strategy: Sequential with reduced walls (too many combos: {actual_combos:,})")
-            reduced_walls = min(max_walls, 4)
-            best_score, best_walls = exhaustive_search(grid, map_num, reduced_walls, candidates, total_open_cells)
+            if actual_combos <= 10000:
+                print("\nStrategy: Sequential exhaustive search")
+                search_score, search_walls = exhaustive_search(grid, map_num, max_walls, candidates, total_open_cells)
+                if search_score > best_score:
+                    best_score = search_score
+                    best_walls = search_walls
+            else:
+                print(f"\nStrategy: Sequential with reduced walls (too many combos: {actual_combos:,})")
+                reduced_walls = min(max_walls, 4)
+                search_score, search_walls = exhaustive_search(grid, map_num, reduced_walls, candidates, total_open_cells)
+                if search_score > best_score:
+                    best_score = search_score
+                    best_walls = search_walls
     
     # Calculate final results
     percentage = (best_score / total_open_cells * 100) if total_open_cells > 0 else 0
