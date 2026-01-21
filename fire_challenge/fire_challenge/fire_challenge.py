@@ -360,24 +360,35 @@ def visualize_result() -> None:
     plt.show(block=False)
     plt.pause(0.1)
     
-    # Animation loop
+    # Animation loop - play through once, then stop on final frame
     frame = 0
+    animation_complete = False
     
     try:
         while plt.fignum_exists(fig.number):
             # Update image and title
             img.set_data(history[frame])
-            map_info = f"Map {_map_number}: {_map_name}" if _map_number is not None else _map_name
-            title = f'{map_info} - Frame {frame + 1}/{len(history)}\n'
+
+            if animation_complete:
+                title = f'Fire Spread Complete - Final Result\n'
+            else:
+                title = f'Fire Spread Simulation - Frame {frame + 1}/{len(history)}\n'
             title += f'Cells Saved: {num_saved}/{total_open} | Walls Used: {len(_placed_walls)}/{_max_walls}'
             ax.set_title(title, fontsize=14, fontweight='bold')
-            
+
             # Redraw and wait
             fig.canvas.draw_idle()
             fig.canvas.flush_events()
-            time.sleep(0.5)
-            
-            frame = (frame + 1) % len(history)
+
+            if animation_complete:
+                # Stay on final frame, just keep window responsive
+                time.sleep(0.1)
+            else:
+                time.sleep(0.5)
+                frame += 1
+                if frame >= len(history):
+                    frame = len(history) - 1  # Stay on last frame
+                    animation_complete = True
     except KeyboardInterrupt:
         pass
     
