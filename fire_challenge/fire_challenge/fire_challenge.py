@@ -210,17 +210,23 @@ def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray
         Tuple of (final_grid, history) where history is list of grid states over time
     
     Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
+    Note: Initial fire cells use value 4 for visualization, spread fire uses value 2
     """
     height, width = grid.shape
     current = grid.copy()
-    history = [current.copy()]
     
-    # Find initial fire cells
-    fire_cells = deque()
+    # Mark initial fire cells with value 4 for visualization (darker red)
+    initial_fire_positions = []
     for y in range(height):
         for x in range(width):
             if current[y, x] == CELL_FIRE:
-                fire_cells.append((x, y))
+                current[y, x] = 4  # Initial fire gets special value
+                initial_fire_positions.append((x, y))
+    
+    history = [current.copy()]
+    
+    # Find initial fire cells for spreading
+    fire_cells = deque(initial_fire_positions)
     
     # Spread fire
     while fire_cells:
@@ -240,7 +246,7 @@ def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray
                 
                 if 0 <= nx < width and 0 <= ny < height:
                     if current[ny, nx] == CELL_OPEN:
-                        current[ny, nx] = CELL_FIRE
+                        current[ny, nx] = CELL_FIRE  # Spread fire uses value 2
                         next_fire.append((nx, ny))
         
         if next_fire:
@@ -311,12 +317,12 @@ def visualize_result() -> None:
     plt.ion()
     
     height, width = history[0].shape
-    colors = ['white', 'dodgerblue', 'orangered', 'gray']
+    colors = ['white', 'dodgerblue', 'orangered', 'gray', 'darkred']
     cmap = ListedColormap(colors)
     
-    # Create image with colormap: 0=white, 1=blue, 2=red, 3=gray
+    # Create image with colormap: 0=white, 1=blue, 2=orangered (spread fire), 3=gray, 4=darkred (initial fire)
     img = ax.imshow(history[0], interpolation='nearest', cmap=cmap,
-                    vmin=0, vmax=3, aspect='auto', origin='upper')
+                    vmin=0, vmax=4, aspect='auto', origin='upper')
     
     # Draw highlights
     for x, y in _highlight_data.get('interest', []):
