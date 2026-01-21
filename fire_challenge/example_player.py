@@ -10,8 +10,7 @@ This script demonstrates how to use the fire_challenge module to:
 
 Strategy: Surround the initial fire as much as possible
 """
-
-from fire_challenge import (
+import fire_challenge as fcfrom fire_challenge import (
     get_map, 
     place_walls, 
     test_result, 
@@ -25,9 +24,9 @@ def surround_fire_strategy(map_num=0):
     Simple strategy: Surround the fire starting positions with walls.
     """
     # Get the challenge map
-    grid, max_walls = get_map(map=map_num)
+    grid, max_walls, map_name = get_map(map=map_num)
     
-    print(f"Map {map_num} loaded!")
+    print(f"Map {map_num}: {map_name}")
     print(f"Grid size: {grid.shape}")
     print(f"Maximum walls allowed: {max_walls}")
     print("\nGrid layout:")
@@ -35,6 +34,7 @@ def surround_fire_strategy(map_num=0):
     print("\nLegend: 0=Open, 1=Water, 2=Fire, 3=Wall")
     
     # Find fire starting positions
+    # Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
     fire_positions = []
     for y in range(grid.shape[0]):
         for x in range(grid.shape[1]):
@@ -86,11 +86,16 @@ if __name__ == "__main__":
     print("=" * 50)
     print("\nStrategy: Surround initial fire positions with walls")
     
-    map_choice = input("\nEnter map number (0-6, or press Enter for map 0): ").strip()
+    print("\nAvailable maps:")
+    available_maps = get_available_maps()
+    for num, name in available_maps:
+        print(f"  {num}: {name}")
+    
+    map_choice = input("\nEnter map number (or press Enter for map 0): ").strip()
     
     if map_choice.isdigit():
         map_num = int(map_choice)
-        if 0 <= map_num <= 6:
+        if 0 <= map_num < len(available_maps):
             surround_fire_strategy(map_num=map_num)
         else:
             print("Invalid map number. Using map 0.")

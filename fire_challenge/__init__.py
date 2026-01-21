@@ -4,6 +4,7 @@ Fire Challenge Module - Simple imports for player convenience
 
 from .fire_challenge import (
     get_map,
+    get_available_maps,
     place_walls,
     test_result,
     highlight_cells,
@@ -13,6 +14,7 @@ from .fire_challenge import (
 
 __all__ = [
     'get_map',
+    'get_available_maps',
     'place_walls',
     'test_result',
     'highlight_cells',

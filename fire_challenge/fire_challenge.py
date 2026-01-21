@@ -42,8 +42,9 @@ _placed_walls: List[Tuple[int, int]] = []
 _highlight_data: dict = {'interest': [], 'candidate': []}
 
 # Challenge maps
-CHALLENGE_MAPS = {
-    0: {
+CHALLENGE_MAPS = [
+    {
+        'name': 'Two Fires',
         'grid': np.array([
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0],
@@ -56,7 +57,8 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 5
     },
-    1: {
+    {
+        'name': 'Corner Fires',
         'grid': np.array([
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -71,7 +73,8 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 10
     },
-    2: {
+    {
+        'name': 'Diagonal Fires',
         'grid': np.array([
             [2, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],
@@ -82,7 +85,8 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 3
     },
-    3: {
+    {
+        'name': 'Fire Row',
         'grid': np.array([
             [2, 2, 2, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -97,13 +101,14 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 8
     },
-    4: {
+    {
+        'name': 'Two Rooms',
         'grid': np.array([
             [2, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],  # Door in middle
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
@@ -112,52 +117,87 @@ CHALLENGE_MAPS = {
         ]),
         'max_walls': 1
     },
-    5: {
+    {
+        'name': 'Central Town',
         'grid': np.array([
             [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 1, 1, 1, 1, 0, 0, 2],
             [2, 0, 0, 1, 0, 0, 1, 0, 0, 2],
-            [2, 0, 0, 0, 0, 0, 1, 0, 0, 2],  # Left entrance at column 3
-            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],  # Right entrance at column 6
+            [2, 0, 0, 0, 0, 0, 1, 0, 0, 2],
+            [2, 0, 0, 1, 0, 0, 0, 0, 0, 2],
             [2, 0, 0, 1, 0, 0, 1, 0, 0, 2],
-            [2, 0, 0, 1, 0, 1, 1, 0, 0, 2],  # Bottom entrance at column 4
+            [2, 0, 0, 1, 0, 1, 1, 0, 0, 2],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 2],
             [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
         ]),
         'max_walls': 3
     },
-    6: {
+    {
+        'name': 'Hallway Rooms',
         'grid': np.array([
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],  # Door to room 1 at col 5
+            [2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
             [2, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1],
-            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],  # Hallway at col 1, door to room 2 at col 9
+            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
             [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],  # Door to room 3 at col 11
+            [0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
             [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         ]),
         'max_walls': 1
     },
-}
+    {
+        'name': 'Big Funnel',
+        'grid': np.array([
+            [2, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+            [2, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ]),
+        'max_walls': 4
+    },
+    {
+        'name': 'Fake Doors',
+        'grid': np.array([
+            [2, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [2, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0],
+            [2, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0],
+            [2, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
+            [2, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0],
+            [2, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        ]),
+        'max_walls': 4
+    },
+]
 
 
-def get_map(map: int = 0) -> Tuple[np.ndarray, int]:
+def get_map(map: int = 0) -> Tuple[np.ndarray, int, str]:
     """
     Get a challenge map for the fire spreading game.
     
     Args:
-        map: Map number (0-6)
+        map: Map number (0-len(CHALLENGE_MAPS)-1)
         
     Returns:
-        Tuple of (grid, max_walls) where:
+        Tuple of (grid, max_walls, name) where:
             - grid is a 2D numpy array with 0=open, 1=water, 2=fire
             - max_walls is the maximum number of walls allowed
+            - name is the map name
     """
     global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data
     
-    if map not in CHALLENGE_MAPS:
-        raise ValueError(f"Map {map} not found. Available maps: {list(CHALLENGE_MAPS.keys())}")
+    if map < 0 or map >= len(CHALLENGE_MAPS):
+        raise ValueError(f"Map {map} not found. Available maps: 0-{len(CHALLENGE_MAPS) - 1}")
     
     _current_grid = CHALLENGE_MAPS[map]['grid'].copy()
     _total_open_cells = int(np.sum(_current_grid == CELL_OPEN))
@@ -165,7 +205,17 @@ def get_map(map: int = 0) -> Tuple[np.ndarray, int]:
     _placed_walls = []
     _highlight_data = {'interest': [], 'candidate': []}
     
-    return _current_grid.copy(), _max_walls
+    return _current_grid.copy(), _max_walls, CHALLENGE_MAPS[map]['name']
+
+
+def get_available_maps() -> List[Tuple[int, str]]:
+    """
+    Get a list of all available challenge maps.
+    
+    Returns:
+        List of (map_number, map_name) tuples
+    """
+    return [(i, map_data['name']) for i, map_data in enumerate(CHALLENGE_MAPS)]
 
 
 def place_walls(cells: List[Tuple[int, int]]) -> None:
@@ -177,6 +227,8 @@ def place_walls(cells: List[Tuple[int, int]]) -> None:
         
     Raises:
         ValueError: If trying to place too many walls or on invalid cells
+
+    Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
     """
     global _current_grid, _placed_walls, _max_walls
     
@@ -209,6 +261,8 @@ def _simulate_fire_spread(grid: np.ndarray) -> Tuple[np.ndarray, List[np.ndarray
         
     Returns:
         Tuple of (final_grid, history) where history is list of grid states over time
+    
+    Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
     """
     height, width = grid.shape
     current = grid.copy()
@@ -372,6 +426,7 @@ def visualize_result() -> None:
 # Export public API
 __all__ = [
     'get_map',
+    'get_available_maps',
     'place_walls',
     'test_result',
     'highlight_cells',

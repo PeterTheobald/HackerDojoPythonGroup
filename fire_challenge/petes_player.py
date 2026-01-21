@@ -11,7 +11,8 @@ Algorithm:
 
 from itertools import combinations
 from fire_challenge import (
-    get_map, 
+    get_map,
+    get_available_maps,
     place_walls, 
     test_result, 
     highlight_cells,
@@ -21,6 +22,7 @@ from fire_challenge import (
 
 def find_fire_positions(grid):
     """Find all initial fire positions in the grid."""
+    # Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
     fire_positions = []
     for y in range(grid.shape[0]):
         for x in range(grid.shape[1]):
@@ -31,6 +33,7 @@ def find_fire_positions(grid):
 
 def find_adjacent_to_fire(grid, fire_positions):
     """Find all open cells adjacent to fire positions."""
+    # Note: grids are stored [y,x] but coordinates are given as (x,y) by math convention.
     height, width = grid.shape
     adjacent = set()
     
@@ -91,9 +94,9 @@ def solve_fire_challenge(map_num=0):
     Solve the fire challenge using Pete's algorithm.
     """
     # Get the map
-    grid, max_walls = get_map(map=map_num)
+    grid, max_walls, map_name = get_map(map=map_num)
     
-    print(f"\nMap {map_num} - Pete's Algorithm")
+    print(f"\nMap {map_num}: {map_name} - Pete's Algorithm")
     print(f"Grid size: {grid.shape}")
     print(f"Maximum walls: {max_walls}")
     print("\nGrid layout:")
@@ -130,7 +133,7 @@ def solve_fire_challenge(map_num=0):
             total_combinations += 1
             
             # Reset and try this combination
-            grid, _ = get_map(map=map_num)
+            grid, _, _ = get_map(map=map_num)
             place_walls(list(wall_combo))
             score = test_result()
             
@@ -144,7 +147,7 @@ def solve_fire_challenge(map_num=0):
     print(f"Best wall positions: {best_walls}")
     
     # Apply the best solution
-    grid, _ = get_map(map=map_num)
+    grid, _, _ = get_map(map=map_num)
     highlight_cells(interesting_squares, level=1)
     highlight_cells(best_walls, level=2)
     place_walls(best_walls)
@@ -161,11 +164,16 @@ if __name__ == "__main__":
     print("Pete's Fire Challenge Solver")
     print("=" * 50)
     
-    map_choice = input("\nEnter map number (0-6, or press Enter for map 0): ").strip()
+    print("\nAvailable maps:")
+    available_maps = get_available_maps()
+    for num, name in available_maps:
+        print(f"  {num}: {name}")
+    
+    map_choice = input("\nEnter map number (or press Enter for map 0): ").strip()
     
     if map_choice.isdigit():
         map_num = int(map_choice)
-        if 0 <= map_num <= 6:
+        if 0 <= map_num < len(available_maps):
             solve_fire_challenge(map_num=map_num)
         else:
             print("Invalid map number. Using map 0.")
