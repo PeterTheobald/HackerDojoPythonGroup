@@ -20,7 +20,7 @@ from fire_challenge import (
 )
 
 
-def surround_fire_strategy(map_num=0):
+def solve_fire_challenge(map_num=0, visualize=True):
     """
     Simple strategy: Surround the fire starting positions with walls.
     """
@@ -78,8 +78,11 @@ def surround_fire_strategy(map_num=0):
     print(f"\nCells saved from fire: {num_saved}")
     
     # Visualize the result
-    print("\nLaunching visualization...")
-    visualize_result()
+    if visualize:
+        print("\nLaunching visualization...")
+        visualize_result()
+    
+    return num_saved
 
 
 if __name__ == "__main__":
@@ -97,12 +100,12 @@ if __name__ == "__main__":
     if map_choice.isdigit():
         map_num = int(map_choice)
         if 0 <= map_num < len(available_maps):
-            surround_fire_strategy(map_num=map_num)
+            solve_fire_challenge(map_num=map_num)
         else:
             print("Invalid map number. Using map 0.")
-            surround_fire_strategy(map_num=0)
+            solve_fire_challenge(map_num=0)
     else:
         # Default to map 0
         print("Using map 0...")
-        surround_fire_strategy(map_num=0)
+        solve_fire_challenge(map_num=0)
 

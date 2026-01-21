@@ -240,6 +240,66 @@ uv run example_player.py
 uv will automatically install numpy and matplotlib if needed, then run the example. The example demonstrates both simple and advanced strategies for wall placement.
 *Note: the example players are not particularly smart!*
 
+## Leaderboard Competition
+
+Compete against other players by creating your own player file!
+
+### Requirements to Participate
+
+To have your player included in the leaderboard:
+
+1. **Name your file**: `*_player.py` or `*_Player.py` (e.g., `alice_player.py`, `Bob_Player.py`)
+
+2. **Define the function**:
+   ```python
+   def solve_fire_challenge(map_num, visualize=True):
+       # Your strategy here
+       return score  # or return (score, other_data)
+   ```
+   - **Parameters**: 
+     - `map_num` (int) - The map number to solve
+     - `visualize` (bool) - Whether to display visualization (default: True)
+   - **Returns**: Either a single number (the score) or a tuple whose first element is the score
+
+3. **Run the leaderboard**:
+   ```bash
+   python leaderboard.py
+   ```
+
+The leaderboard will automatically:
+- Find all player files matching the naming pattern
+- Run each player against all 11 challenge maps
+- Display a results table showing each player's score on each map
+- Declare the overall winner based on total cells saved
+
+### Example Player Template
+
+```python
+from fire_challenge import get_map, place_walls, test_result, visualize_result
+
+def solve_fire_challenge(map_num, visualize=True):
+    """Your strategy description here."""
+    
+    # Get the map
+    grid, max_walls, map_name = get_map(map=map_num)
+    
+    # Your algorithm here
+    # ...
+    
+    # Place walls
+    wall_positions = [(x1, y1), (x2, y2)]  # Your wall positions
+    place_walls(wall_positions)
+    
+    # Get score
+    score = test_result()
+    
+    # Optional visualization
+    if visualize:
+        visualize_result()
+    
+    return score
+```
+
 ## Fire Spread Rules
 
 1. Fire starts at cells marked with value 2

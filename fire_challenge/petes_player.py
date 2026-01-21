@@ -89,7 +89,7 @@ def find_doorways(grid):
     return doorways
 
 
-def solve_fire_challenge(map_num=0):
+def solve_fire_challenge(map_num=0, visualize=True):
     """
     Solve the fire challenge using Pete's algorithm.
     """
@@ -156,8 +156,11 @@ def solve_fire_challenge(map_num=0):
     print(f"Final verification: {final_score} cells saved\n")
     
     # Visualize
-    print("Launching visualization...")
-    visualize_result()
+    if visualize:
+        print("Launching visualization...")
+        visualize_result()
+    
+    return final_score
 
 
 if __name__ == "__main__":
