@@ -24,7 +24,8 @@ No installation needed! [uv](https://github.com/astral-sh/uv) automatically mana
 from fire_challenge import get_map, place_walls, test_result, visualize_result
 
 # Get a challenge map
-grid, max_walls = get_map(map=0)
+grid, max_walls, map_name = get_map(map=0)
+print(f"Playing: {map_name}")
 
 # Analyze the grid (0=open, 1=water, 2=fire)
 print(grid)
@@ -49,7 +50,7 @@ from fire_challenge import (
 )
 
 # Load a map
-grid, max_walls = get_map(map=1)
+grid, max_walls, map_name = get_map(map=1)
 
 # Find fire positions
 fire_positions = [(x, y) for y in range(grid.shape[0]) 
@@ -73,26 +74,71 @@ num_saved = test_result()
 visualize_result()
 ```
 
+### Testing Multiple Wall Placements
+
+```python
+from fire_challenge import get_map, place_walls, test_result
+
+# Load a map
+grid, max_walls, map_name = get_map(map=3)
+
+best_score = 0
+best_walls = []
+
+# Try different wall placement strategies
+candidates = [
+    [(0, 1), (0, 2), (0, 3)],
+    [(1, 0), (2, 0), (3, 0)],
+    [(0, 1), (1, 1), (2, 1)],
+]
+
+for wall_placement in candidates:
+    # Reset the map to clear previous walls
+    grid, max_walls, map_name = get_map(map=3)
+    
+    # Try this placement
+    place_walls(wall_placement)
+    score = test_result()
+    
+    print(f"Walls {wall_placement}: saved {score} cells")
+    
+    if score > best_score:
+        best_score = score
+        best_walls = wall_placement
+
+# Use the best solution
+grid, max_walls, map_name = get_map(map=3)
+place_walls(best_walls)
+print(f"Best solution: {best_walls} with {best_score} cells saved")
+```
+
+**Note**: Call `get_map()` again to reset all placed walls and highlights before testing a new wall configuration.
+
 ## API Reference
 
-### `get_map(map=0) -> (grid, max_walls)`
+### `get_map(map=0) -> (grid, max_walls, name)`
 Load a challenge map.
-- **Parameters**: `map` (int) - Map number (0-6)
-- **Returns**: Tuple of (2D numpy array, max walls allowed)
+- **Parameters**: `map` (int) - Map number (0-7)
+- **Returns**: Tuple of (2D numpy array, max walls allowed, map name)
+- **Note**: Calling `get_map()` resets all placed walls and highlighted cells from any previous map
+- **Example**: `grid, max_walls, map_name = get_map(map=0)`
 
 ### `place_walls(cells)`
 Place walls on the grid.
 - **Parameters**: `cells` (List[Tuple[int, int]]) - List of (x, y) coordinates
+- **Example**: `place_walls([(3, 0), (3, 1), (4, 1)])`
 
 ### `test_result() -> int`
 Test current wall placement.
 - **Returns**: Number of cells saved from fire
+- **Example**: `num_saved = test_result()`
 
 ### `highlight_cells(cells, level)`
 Highlight cells in visualization.
 - **Parameters**: 
   - `cells` (List[Tuple[int, int]]) - List of (x, y) coordinates
   - `level` (int) - 1 for interest (yellow), 2 for candidate (orange)
+- **Example**: `highlight_cells([(2, 3), (4, 5)], level=1)`
 
 ### `highlight_clear()`
 Clear all highlighted cells.
@@ -102,13 +148,15 @@ Display animated visualization of fire spreading.
 
 ## Challenge Maps
 
-- **Map 0**: 8x8 grid with two fire sources, 5 walls allowed
-- **Map 1**: 10x10 grid with corner fires, 10 walls allowed
-- **Map 2**: 6x6 grid with diagonal fires, 3 walls allowed  
-- **Map 3**: 10x10 grid with multiple fires in a row, 8 walls allowed
-- **Map 4**: 10x10 two rooms with one door - block the door with 1 wall
-- **Map 5**: 10x10 central town with 3 entrances - seal it with 3 walls
-- **Map 6**: 12x7 hallway with multiple rooms - 1 wall to save the most
+- **Map 0 - Two Fires**: 8x8 grid with two fire sources, 5 walls allowed
+- **Map 1 - Corner Fires**: 10x10 grid with corner fires, 10 walls allowed
+- **Map 2 - Diagonal Fires**: 6x6 grid with diagonal fires, 3 walls allowed  
+- **Map 3 - Fire Row**: 10x10 grid with multiple fires in a row, 8 walls allowed
+- **Map 4 - Two Rooms**: 10x10 two rooms with one door - block the door with 1 wall
+- **Map 5 - Central Town**: 10x10 central town with 3 entrances - seal it with 3 walls
+- **Map 6 - Hallway Rooms**: 12x7 hallway with multiple rooms - 1 wall to save the most
+- **Map 7 - Big Funnel**: 15x10 funnel shape with fire at both ends, 4 walls allowed
+- **Map 8 - Fake Doors**: 15x10 maze with multiple openings - find the real choke points, 4 walls allowed
 
 ## Running the Example
 
@@ -117,7 +165,7 @@ uv run example_player.py
 ```
 
 uv will automatically install numpy and matplotlib if needed, then run the example. The example demonstrates both simple and advanced strategies for wall placement.
-*Note: the example players are not smart!*
+*Note: the example players are not particularly smart!*
 
 ## Fire Spread Rules
 

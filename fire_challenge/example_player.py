@@ -10,8 +10,9 @@ This script demonstrates how to use the fire_challenge module to:
 
 Strategy: Surround the initial fire as much as possible
 """
-import fire_challenge as fcfrom fire_challenge import (
-    get_map, 
+from fire_challenge import (
+    get_map,
+    get_available_maps,
     place_walls, 
     test_result, 
     highlight_cells,
