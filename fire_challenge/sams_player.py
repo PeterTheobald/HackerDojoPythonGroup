@@ -383,7 +383,7 @@ if __name__ == "__main__":
     
     if map_choice.isdigit():
         map_num = int(map_choice)
-        if 0 <= map_num <= 8:
+        if 0 <= map_num <= 9:
             solve_fire_challenge(map_num=map_num, use_parallel=True)
         else:
             print("Invalid map number. Using map 0.")

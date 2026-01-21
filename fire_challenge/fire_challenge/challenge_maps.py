@@ -149,7 +149,7 @@ CHALLENGE_MAPS = [
         'max_walls': 4
     },
     {
-        'name': 'Wide Open',
+        'name': 'Wide Open, Safe Corner',
         'grid': np.array([
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
