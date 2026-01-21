@@ -81,6 +81,90 @@ def get_available_maps() -> List[Tuple[int, str]]:
     return [(i, map_data['name']) for i, map_data in enumerate(CHALLENGE_MAPS)]
 
 
+def get_custom_map(grid: np.ndarray, max_walls: int, name: str = "Custom Map") -> Tuple[np.ndarray, int, str]:
+    """
+    Load a custom map for the fire spreading game.
+    
+    Args:
+        grid: 2D numpy array with 0=open, 1=water, 2=fire
+        max_walls: Maximum number of walls allowed
+        name: Display name for the map
+        
+    Returns:
+        Tuple of (grid, max_walls, name)
+    """
+    global _current_grid, _total_open_cells, _max_walls, _placed_walls, _highlight_data
+    
+    if not isinstance(grid, np.ndarray):
+        raise TypeError("Grid must be a numpy array")
+    
+    if grid.ndim != 2:
+        raise ValueError("Grid must be a 2D array")
+    
+    _current_grid = grid.copy()
+    _total_open_cells = int(np.sum(_current_grid == CELL_OPEN))
+    _max_walls = max_walls
+    _placed_walls = []
+    _highlight_data = {'interest': [], 'candidate': []}
+    
+    return _current_grid.copy(), _max_walls, name
+
+
+def get_custom_map_from_string(map_string: str, max_walls: int, name: str = "Custom Map") -> Tuple[np.ndarray, int, str]:
+    """
+    Load a custom map from a string representation.
+    
+    Args:
+        map_string: Multi-line string where:
+            ' ' = open cell (0)
+            '#' = water cell (1)
+            'f' = fire cell (2)
+        max_walls: Maximum number of walls allowed
+        name: Display name for the map
+        
+    Returns:
+        Tuple of (grid, max_walls, name)
+        
+    Example:
+        map_str = '''
+        f   #
+            #
+        #####
+           f
+        '''
+        grid, max_walls, name = get_custom_map_from_string(map_str, max_walls=3, name="My Map")
+    """
+    # Split into lines and remove empty lines at start/end
+    lines = map_string.strip().split('\n')
+    
+    # Convert characters to cell values
+    char_map = {
+        ' ': CELL_OPEN,
+        '#': CELL_WATER,
+        'f': CELL_FIRE,
+    }
+    
+    # Build grid
+    grid_data = []
+    for line in lines:
+        row = []
+        for char in line:
+            if char not in char_map:
+                raise ValueError(f"Invalid character '{char}' in map string. Use ' ', '#', or 'f'")
+            row.append(char_map[char])
+        grid_data.append(row)
+    
+    # Ensure all rows have the same length
+    if grid_data:
+        max_len = max(len(row) for row in grid_data)
+        for row in grid_data:
+            while len(row) < max_len:
+                row.append(CELL_OPEN)
+    
+    grid = np.array(grid_data)
+    return get_custom_map(grid, max_walls, name)
+
+
 def place_walls(cells: List[Tuple[int, int]]) -> None:
     """
     Place walls on the grid at specified coordinates.
@@ -290,6 +374,8 @@ def visualize_result() -> None:
 __all__ = [
     'get_map',
     'get_available_maps',
+    'get_custom_map',
+    'get_custom_map_from_string',
     'place_walls',
     'test_result',
     'highlight_cells',

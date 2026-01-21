@@ -114,14 +114,87 @@ print(f"Best solution: {best_walls} with {best_score} cells saved")
 
 **Note**: Call `get_map()` again to reset all placed walls and highlights before testing a new wall configuration.
 
+### Creating Custom Maps
+
+```python
+from fire_challenge import get_custom_map_from_string, place_walls, visualize_result
+
+# Create a custom map using a string representation
+map_str = '''
+f   #
+    #
+#####
+   f
+'''
+
+grid, max_walls, name = get_custom_map_from_string(
+    map_str, 
+    max_walls=3, 
+    name="My Custom Map"
+)
+
+# Or create from a numpy array
+import numpy as np
+from fire_challenge import get_custom_map
+
+custom_grid = np.array([
+    [2, 0, 0, 1],
+    [0, 0, 0, 1],
+    [0, 0, 0, 0],
+    [1, 1, 1, 2],
+])
+
+grid, max_walls, name = get_custom_map(
+    custom_grid, 
+    max_walls=2, 
+    name="Array Map"
+)
+
+# Play as normal
+place_walls([(1, 0), (2, 2)])
+visualize_result()
+```
+
 ## API Reference
 
 ### `get_map(map=0) -> (grid, max_walls, name)`
 Load a challenge map.
-- **Parameters**: `map` (int) - Map number (0-7)
+- **Parameters**: `map` (int) - Map number (0-8)
 - **Returns**: Tuple of (2D numpy array, max walls allowed, map name)
 - **Note**: Calling `get_map()` resets all placed walls and highlighted cells from any previous map
 - **Example**: `grid, max_walls, map_name = get_map(map=0)`
+
+### `get_available_maps() -> List[(int, str)]`
+Get a list of all available challenge maps.
+- **Returns**: List of (map_number, map_name) tuples
+- **Example**: `maps = get_available_maps()`
+
+### `get_custom_map(grid, max_walls, name="Custom Map") -> (grid, max_walls, name)`
+Load a custom map from a numpy array.
+- **Parameters**: 
+  - `grid` (np.ndarray) - 2D numpy array with 0=open, 1=water, 2=fire
+  - `max_walls` (int) - Maximum number of walls allowed
+  - `name` (str) - Display name for the map
+- **Returns**: Tuple of (grid, max_walls, name)
+- **Example**: `grid, max_walls, name = get_custom_map(my_array, max_walls=5)`
+
+### `get_custom_map_from_string(map_string, max_walls, name="Custom Map") -> (grid, max_walls, name)`
+Load a custom map from a string representation.
+- **Parameters**: 
+  - `map_string` (str) - Multi-line string where `' '`=open, `'#'`=water, `'f'`=fire
+  - `max_walls` (int) - Maximum number of walls allowed
+  - `name` (str) - Display name for the map
+- **Returns**: Tuple of (grid, max_walls, name)
+- **Example**: 
+```python
+map_str = '''
+f   #
+    #
+#####
+   f
+'''
+grid, max_walls, name = get_custom_map_from_string(map_str, max_walls=3)
+```
 
 ### `place_walls(cells)`
 Place walls on the grid.
