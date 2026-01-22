@@ -4,6 +4,7 @@ all:
 	@egrep '^[a-z]*:' Makefile | awk '{print $$1}' | tr -d :
 
 ACTIVATE := echo && source ../.venv/bin/activate
+PYTHONPATH := .:..
 
 ../.venv:
 	cd .. && uv sync
@@ -15,5 +16,5 @@ STRICT := --strict
 
 lint:
 	$(ACTIVATE) && ruff check
-	$(ACTIVATE) && pyright        tests
-	$(ACTIVATE) && mypy $(STRICT) tests
+	$(ACTIVATE) && pyright        
+	$(ACTIVATE) && mypy $(STRICT) .

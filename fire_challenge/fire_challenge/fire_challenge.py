@@ -65,6 +65,7 @@ def get_map(map: int = 0) -> Tuple[np.ndarray, int, str]:
         raise ValueError(f"Map {map} not found. Available maps: 0-{len(CHALLENGE_MAPS) - 1}")
 
     _current_grid = CHALLENGE_MAPS[map]['grid'].copy()
+    assert _current_grid
     _total_open_cells = int(np.sum(_current_grid == CELL_OPEN))
     _max_walls = CHALLENGE_MAPS[map]['max_walls']
     _placed_walls = []
