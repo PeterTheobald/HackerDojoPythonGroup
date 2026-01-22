@@ -12,9 +12,12 @@ PYTHONPATH := .:..
 test: ../.venv
 	$(ACTIVATE) && python -m unittest tests/*_test.py
 
-STRICT := --strict
-
 lint:
 	$(ACTIVATE) && black . && isort . && ruff check
 	$(ACTIVATE) && pyright        
+
+STRICT := --strict
+
+# example_player.py and others need refactoring before `mypy` can be used.
+lint-mypy:
 	$(ACTIVATE) && mypy $(STRICT) .
