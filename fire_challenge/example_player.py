@@ -21,7 +21,7 @@ from fire_challenge import (
 )
 
 
-def solve_fire_challenge(map_num=0, visualize=True):
+def solve_fire_challenge(map_num: int = 0, visualize: bool = True) -> int:
     """
     Simple strategy: Surround the fire starting positions with walls.
     """
