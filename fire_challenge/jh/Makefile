@@ -15,6 +15,6 @@ test: ../.venv
 STRICT := --strict
 
 lint:
-	$(ACTIVATE) && ruff check
+	$(ACTIVATE) && black . && isort . && ruff check
 	$(ACTIVATE) && pyright        
 	$(ACTIVATE) && mypy $(STRICT) .
