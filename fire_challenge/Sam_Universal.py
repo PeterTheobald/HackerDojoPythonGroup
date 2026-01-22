@@ -22,7 +22,7 @@ from fire_challenge import (
 )
 
 
-def solve_fire_cpsat(grid, max_walls, time_limit=30.0):
+def solve_fire_cpsat(grid, max_walls, time_limit=60.0):
     """
     Universal fire challenge solver using CP-SAT.
 
@@ -110,7 +110,7 @@ def solve_fire_cpsat(grid, max_walls, time_limit=30.0):
     # Solve
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit
-    solver.parameters.num_search_workers = 8
+    solver.parameters.num_search_workers = 28
 
     status = solver.Solve(model)
 
