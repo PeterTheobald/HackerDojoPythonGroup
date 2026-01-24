@@ -1,8 +1,12 @@
+#! /usr/bin/env python
+
 import logging
 from enum import Enum
 
 import numpy as np
+import typer
 from fire_challenge.challenge_maps import CHALLENGE_MAPS
+from fire_challenge.fire_challenge import get_map
 from networkx import Graph
 from numpy.typing import NDArray
 
@@ -65,3 +69,14 @@ def get_map_graph(map_num: int = 0) -> Graph:
                     log.info("node %r, nbr %r", node, nbr)
 
     return g
+
+
+def solve_fire_challenge(map_num: int = 0, visualize: bool = False) -> int:
+
+    grid, max_walls, map_name = get_map(map=map_num)
+
+    return 0
+
+
+if __name__ == "__main__":
+    typer.run(solve_fire_challenge)

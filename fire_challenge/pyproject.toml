@@ -8,4 +8,5 @@ dependencies = [
     "networkx>=3.0",
     "numpy>=1.24.0",
     "ortools>=9.15.6755",
+    "typer>=0.21.1",
 ]
