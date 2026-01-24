@@ -12,9 +12,9 @@ PYTHONPATH := .:..
 test: ../.venv
 	$(ACTIVATE) && python -m unittest tests/*_test.py
 
-lint:
+lint: ../.venv
 	$(ACTIVATE) && black . && isort . && ruff check
-	$(ACTIVATE) && pyright        
+	$(ACTIVATE) && pyright
 
 STRICT := --strict
 
