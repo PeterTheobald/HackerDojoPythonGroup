@@ -1,7 +1,64 @@
+import logging
+from dataclasses import dataclass
+from enum import Enum
+
 import numpy as np
 from fire_challenge.challenge_maps import CHALLENGE_MAPS
+from networkx import Graph
 from numpy.typing import NDArray
+
+
+class CellType(Enum):
+    OPEN = 0
+    WATER = 1
+    FIRE = 2
+    WALL = 3
+
+    def is_fireproof(self) -> bool:
+        return self in (CellType.WATER, CellType.WALL)
+
+
+@dataclass(frozen=True)
+class Nodez:
+    x: int
+    y: int
+    value: CellType
 
 
 def get_map_grid(map_num: int = 0) -> NDArray[np.int64]:
     return CHALLENGE_MAPS[map_num]["grid"]
+
+
+log = logging.getLogger(__name__)
+
+
+def get_map_graph(map_num: int = 0) -> Graph:
+    grid = CHALLENGE_MAPS[map_num]["grid"]
+    rows, cols = grid.shape
+
+    g = Graph()
+    for x in range(cols):
+        for y in range(rows):
+            g.add_node((x, y), value=CellType(grid[x, y]))
+
+    nbr_offsets = [
+        (1, 0),
+        (0, 1),
+        (-1, 0),
+        (0, -1),
+    ]
+    for x, y in g.nodes:
+        node = g.nodes[(x, y)]
+        if node["value"].is_fireproof():
+            continue
+        for dx, dy in nbr_offsets:
+            nx, ny = x + dx, y + dy
+            if nx in range(cols) and ny in range(rows):
+                nbr = g.nodes[(nx, ny)]
+                if nbr["value"].is_fireproof():
+                    continue
+                log.info("node %r, nbr %r", node, nbr)
+                g.add_edge((x, y), (nx, ny))
+                g.add_edge((nx, ny), (x, y))
+
+    return g
