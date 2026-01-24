@@ -8,7 +8,7 @@ class FlowPlayerTest(unittest.TestCase):
         self.assertEqual(12, get_map_grid(0).sum())
 
     def test_map_zero_graph(self) -> None:
-        self.assertEqual(64, get_map_graph(0).number_of_nodes())
+        self.assertEqual(65, get_map_graph(0).number_of_nodes())
 
     def test_is_fireproof(self) -> None:
         self.assertTrue(CellType.WATER.is_fireproof())
