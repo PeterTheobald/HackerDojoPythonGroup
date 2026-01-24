@@ -1,7 +1,7 @@
 
 all:
 	@echo Here are some valid "make" targets. && echo
-	@egrep '^[a-z]*:' Makefile | awk '{print $$1}' | tr -d :
+	@egrep '^[a-z-]*:' Makefile | awk '{print $$1}' | tr -d :
 
 ACTIVATE := echo && source ../.venv/bin/activate
 PYTHONPATH := .:..
@@ -21,3 +21,6 @@ STRICT := --strict
 # example_player.py and others need refactoring before `mypy` can be used.
 lint-mypy:
 	$(ACTIVATE) && mypy $(STRICT) .
+
+universal:
+	$(ACTIVATE) && cd .. && python Sam_Universal.py
