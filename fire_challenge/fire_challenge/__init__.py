@@ -3,8 +3,10 @@ Fire Challenge Module - Simple imports for player convenience
 """
 
 from .fire_challenge import (
+    # New class-based API (recommended)
+    FireChallenge,
+    # Legacy function API (deprecated)
     get_map,
-    get_available_maps,
     get_custom_map,
     get_custom_map_from_string,
     place_walls,
@@ -15,8 +17,10 @@ from .fire_challenge import (
 )
 
 __all__ = [
+    # New class-based API (recommended)
+    'FireChallenge',
+    # Legacy function API (deprecated)
     'get_map',
-    'get_available_maps',
     'get_custom_map',
     'get_custom_map_from_string',
     'place_walls',

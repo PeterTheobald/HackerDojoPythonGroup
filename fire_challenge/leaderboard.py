@@ -19,16 +19,15 @@ import importlib.util
 import sys
 import os
 from pathlib import Path
-from typing import Dict, List, Tuple, Optional
 import traceback
 
 # Add the fire_challenge directory to the path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from fire_challenge import get_available_maps
+from fire_challenge import FireChallenge
 
 
-def find_player_files() -> List[Path]:
+def find_player_files() -> list[Path]:
     """Find all player files matching *_player.py or *_Player.py pattern."""
     current_dir = Path(__file__).parent
     
@@ -57,7 +56,7 @@ def load_player_module(player_file: Path):
     return module
 
 
-def run_player_on_map(player_name: str, player_module, map_num: int) -> Optional[int]:
+def run_player_on_map(player_name: str, player_module, map_num: int) -> int | None:
     """
     Run a player's solve_fire_challenge function on a specific map.
     
@@ -87,7 +86,7 @@ def run_player_on_map(player_name: str, player_module, map_num: int) -> Optional
         return None
 
 
-def format_table(headers: List[str], rows: List[List[str]], col_widths: Optional[List[int]] = None) -> str:
+def format_table(headers: list[str], rows: list[list[str]], col_widths: list[int] | None = None) -> str:
     """Format data as a pretty ASCII table."""
     if col_widths is None:
         # Calculate column widths
@@ -136,7 +135,7 @@ def run_leaderboard():
     print()
     
     # Get available maps
-    available_maps = get_available_maps()
+    available_maps = FireChallenge.get_available_maps()
     print(f"Running against {len(available_maps)} maps:")
     for map_num, map_name in available_maps:
         print(f"  {map_num}: {map_name}")
@@ -145,7 +144,7 @@ def run_leaderboard():
     print()
     
     # Run each player on each map
-    results: Dict[str, Dict[int, Optional[int]]] = {}
+    results: dict[str, dict[int, int | None]] = {}
     
     for player_file in player_files:
         player_name = player_file.stem
