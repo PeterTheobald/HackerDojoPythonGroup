@@ -24,8 +24,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/PeterTheobald/HackerDojoPythonGroup"
-Repository = "https://github.com/PeterTheobald/HackerDojoPythonGroup"
+Homepage = "https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/fire_challenge"
+Repository = "https://github.com/PeterTheobald/HackerDojoPythonGroup/tree/main/fire_challenge"
 Issues = "https://github.com/PeterTheobald/HackerDojoPythonGroup/issues"
 
 [build-system]
