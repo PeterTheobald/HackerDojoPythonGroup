@@ -14,128 +14,205 @@ Players must analyze the grid and place a limited number of walls to save as man
 
 ## Installation
 
-No installation needed! [uv](https://github.com/astral-sh/uv) automatically manages dependencies when you run the scripts.
+```bash
+pip install fire-challenge
+```
+
+Or using [uv](https://github.com/astral-sh/uv):
+```bash
+uv pip install fire-challenge
+```
 
 ## Usage
 
-### Basic Example
+### Recommended: Class-Based API
+
+The new `FireChallenge` class provides a clean, object-oriented interface that makes it easy to test multiple strategies and manage game state.
+
+#### Listing Available Maps
 
 ```python
-from fire_challenge import get_map, place_walls, test_result, visualize_result
+from fire_challenge import FireChallenge
 
-# Get a challenge map
-grid, max_walls, map_name = get_map(map=0)
-print(f"Playing: {map_name}")
+# Get list of all maps
+maps = FireChallenge.get_available_maps()
+for num, name in maps:
+    print(f"Map {num}: {name}")
+```
+
+#### Basic Example
+
+```python
+from fire_challenge import FireChallenge
+
+# Create a new game instance
+game = FireChallenge(map=0)
+print(f"Playing: {game.name}")
+print(f"Max walls: {game.max_walls}")
 
 # Analyze the grid (0=open, 1=water, 2=fire)
-print(grid)
+print(game.grid)
 
 # Place walls at strategic positions
-place_walls([(3, 0), (3, 1), (4, 1)])
+game.place_walls([(3, 0), (3, 1), (4, 1)])
 
 # Test how many cells you saved
-num_saved = test_result()
+num_saved = game.test_result()
 print(f"Saved {num_saved} cells!")
 
 # Visualize the fire spread animation
-visualize_result()
+game.visualize()
 ```
 
-### Advanced Features
+#### Comparing Multiple Strategies
+
+The class-based API makes it easy to test different approaches:
 
 ```python
-from fire_challenge import (
-    get_map, place_walls, test_result, 
-    highlight_cells, highlight_clear, visualize_result
-)
+from fire_challenge import FireChallenge
 
-# Load a map
-grid, max_walls, map_name = get_map(map=1)
-
-# Find fire positions
-fire_positions = [(x, y) for y in range(grid.shape[0]) 
-                  for x in range(grid.shape[1]) if grid[y, x] == 2]
-
-# Highlight cells of interest (level 1 = yellow frame)
-highlight_cells(fire_positions, level=1)
-
-# Mark candidate wall positions (level 2 = orange frame)
-candidates = [(5, 5), (5, 6), (6, 5)]
-highlight_cells(candidates, level=2)
-
-# Place walls
-place_walls(candidates)
-
-# Clear highlights if needed
-# highlight_clear()
-
-# Test and visualize
-num_saved = test_result()
-visualize_result()
-```
-
-### Testing Multiple Wall Placements
-
-```python
-from fire_challenge import get_map, place_walls, test_result
-
-# Load a map
-grid, max_walls, map_name = get_map(map=3)
-
-best_score = 0
-best_walls = []
-
-# Try different wall placement strategies
-candidates = [
+# Test different wall placements
+strategies = [
     [(0, 1), (0, 2), (0, 3)],
     [(1, 0), (2, 0), (3, 0)],
     [(0, 1), (1, 1), (2, 1)],
 ]
 
-for wall_placement in candidates:
-    # Reset the map to clear previous walls
-    grid, max_walls, map_name = get_map(map=3)
+best_score = 0
+best_walls = []
+
+for walls in strategies:
+    # Each instance is independent!
+    game = FireChallenge(map=0)
+    game.place_walls(walls)
+    score = game.test_result()
     
-    # Try this placement
-    place_walls(wall_placement)
-    score = test_result()
-    
-    print(f"Walls {wall_placement}: saved {score} cells")
+    print(f"Walls {walls}: saved {score} cells")
     
     if score > best_score:
         best_score = score
-        best_walls = wall_placement
+        best_walls = walls
 
-# Use the best solution
-grid, max_walls, map_name = get_map(map=3)
-place_walls(best_walls)
 print(f"Best solution: {best_walls} with {best_score} cells saved")
+
+# Visualize the best solution
+game = FireChallenge(map=0)
+game.place_walls(best_walls)
+game.visualize()
 ```
 
-**Note**: Call `get_map()` again to reset all placed walls and highlights before testing a new wall configuration.
+#### Using reset() for Multiple Attempts
+
+```python
+from fire_challenge import FireChallenge
+
+game = FireChallenge(map=0)
+
+# Try first strategy
+game.place_walls([(0, 0), (1, 0)])
+score1 = game.test_result()
+print(f"Strategy 1: {score1} cells saved")
+
+# Reset and try another
+game.reset()
+game.place_walls([(4, 4), (5, 5)])
+score2 = game.test_result()
+print(f"Strategy 2: {score2} cells saved")
+```
+
+#### Inspecting Game State
+
+```python
+from fire_challenge import FireChallenge
+
+game = FireChallenge(map=0)
+
+# Access useful properties
+print(f"Map name: {game.name}")
+print(f"Grid size: {game.grid.shape}")
+print(f"Max walls: {game.max_walls}")
+print(f"Walls remaining: {game.walls_remaining}")
+print(f"Total open cells: {game.total_open_cells}")
+
+game.place_walls([(1, 1), (2, 2)])
+print(f"Walls placed: {game.walls_placed}")
+print(f"Walls remaining: {game.walls_remaining}")
+```
+
+#### Printing Maps
+
+```python
+from fire_challenge import FireChallenge
+
+game = FireChallenge(map=0)
+
+# Print as integer grid
+print("Grid as integers:")
+game.print_map('int')
+# Output: [[0 0 0 ...] [0 0 0 ...] ...]
+
+# Print as visual characters with border
+print("\nGrid as characters:")
+game.print_map('str')
+# Output:
+# ┌────────┐
+# │        │
+# │  ###   │
+# │* # #   │
+# │  ###   │
+# │       *│
+# └────────┘
+
+# Place walls and see them in the output
+game.place_walls([(1, 1), (2, 1)])
+game.print_map('str')  # Shows 'W' for walls
+
+# Get map as string for further processing
+map_string = game.get_map_string('str')
+```
+
+#### Highlighting Cells
+
+```python
+from fire_challenge import FireChallenge
+
+game = FireChallenge(map=1)
+
+# Find fire positions
+fire_positions = [(x, y) for y in range(game.grid.shape[0]) 
+                  for x in range(game.grid.shape[1]) if game.grid[y, x] == 2]
+
+# Highlight cells of interest (level 1 = yellow frame)
+game.highlight_cells(fire_positions, level=1)
+
+# Mark candidate wall positions (level 2 = orange frame)
+candidates = [(5, 5), (5, 6), (6, 5)]
+game.highlight_cells(candidates, level=2)
+
+# Place walls and visualize
+game.place_walls(candidates)
+game.visualize()
+```
 
 ### Creating Custom Maps
 
 ```python
-from fire_challenge import get_custom_map_from_string, place_walls, visualize_result
+from fire_challenge import FireChallenge
 
-# Create a custom map using a string representation
+# Create from a string representation
 map_str = '''
-f   #
+*   #
     #
 #####
-   f
+   *
 '''
 
-grid, max_walls, name = get_custom_map_from_string(
-    map_str, 
-    max_walls=3, 
-    name="My Custom Map"
-)
+game = FireChallenge.from_string(map_str, max_walls=3, name="My Custom Map")
+game.place_walls([(1, 0), (2, 2)])
+game.visualize()
 
 # Or create from a numpy array
 import numpy as np
-from fire_challenge import get_custom_map
 
 custom_grid = np.array([
     [2, 0, 0, 1],
@@ -144,80 +221,45 @@ custom_grid = np.array([
     [1, 1, 1, 2],
 ])
 
-grid, max_walls, name = get_custom_map(
-    custom_grid, 
-    max_walls=2, 
-    name="Array Map"
-)
-
-# Play as normal
-place_walls([(1, 0), (2, 2)])
-visualize_result()
+game = FireChallenge.from_custom_grid(custom_grid, max_walls=2, name="Array Map")
+game.place_walls([(1, 0), (2, 2)])
+game.visualize()
 ```
 
 ## API Reference
 
-### `get_map(map=0) -> (grid, max_walls, name)`
-Load a challenge map.
-- **Parameters**: `map` (int) - Map number (0-8)
-- **Returns**: Tuple of (2D numpy array, max walls allowed, map name)
-- **Note**: Calling `get_map()` resets all placed walls and highlighted cells from any previous map
-- **Example**: `grid, max_walls, map_name = get_map(map=0)`
+### FireChallenge Class
 
-### `get_available_maps() -> List[(int, str)]`
-Get a list of all available challenge maps.
-- **Returns**: List of (map_number, map_name) tuples
-- **Example**: `maps = get_available_maps()`
+#### `FireChallenge(map=0)`
+Create a new fire challenge game instance.
+- **Parameters**: `map` (int) - Map number (0-13, use `FireChallenge.get_available_maps()` to see all)
+- **Example**: `game = FireChallenge(map=0)`
 
-### `get_custom_map(grid, max_walls, name="Custom Map") -> (grid, max_walls, name)`
-Load a custom map from a numpy array.
-- **Parameters**: 
-  - `grid` (np.ndarray) - 2D numpy array with 0=open, 1=water, 2=fire
-  - `max_walls` (int) - Maximum number of walls allowed
-  - `name` (str) - Display name for the map
-- **Returns**: Tuple of (grid, max_walls, name)
-- **Example**: `grid, max_walls, name = get_custom_map(my_array, max_walls=5)`
+**Static Methods:**
+- `FireChallenge.get_available_maps()` - Get list of all built-in maps as (number, name) tuples
 
-### `get_custom_map_from_string(map_string, max_walls, name="Custom Map") -> (grid, max_walls, name)`
-Load a custom map from a string representation.
-- **Parameters**: 
-  - `map_string` (str) - Multi-line string where `' '`=open, `'#'`=water, `'f'`=fire
-  - `max_walls` (int) - Maximum number of walls allowed
-  - `name` (str) - Display name for the map
-- **Returns**: Tuple of (grid, max_walls, name)
-- **Example**: 
-```python
-map_str = '''
-f   #
-    #
-#####
-   f
-'''
-grid, max_walls, name = get_custom_map_from_string(map_str, max_walls=3)
-```
+**Class Methods:**
+- `FireChallenge.from_custom_grid(grid, max_walls, name="Custom Map")` - Create from numpy array
+- `FireChallenge.from_string(map_string, max_walls, name="Custom Map")` - Create from string representation
 
-### `place_walls(cells)`
-Place walls on the grid.
-- **Parameters**: `cells` (List[Tuple[int, int]]) - List of (x, y) coordinates
-- **Example**: `place_walls([(3, 0), (3, 1), (4, 1)])`
+**Instance Methods:**
+- `.place_walls(cells)` - Place walls at (x, y) positions
+- `.test_result()` - Return number of cells saved
+- `.visualize()` - Display fire spread animation
+- `.reset()` - Remove all placed walls and highlights
+- `.highlight_cells(cells, level)` - Highlight cells (level 1=yellow, 2=orange)
+- `.highlight_clear()` - Clear all highlights
+- `.print_map(format='int')` - Print map to console ('int' for numbers, 'str' for characters)
+- `.get_map_string(format='str')` - Return map as string ('int' or 'str' format)
 
-### `test_result() -> int`
-Test current wall placement.
-- **Returns**: Number of cells saved from fire
-- **Example**: `num_saved = test_result()`
-
-### `highlight_cells(cells, level)`
-Highlight cells in visualization.
-- **Parameters**: 
-  - `cells` (List[Tuple[int, int]]) - List of (x, y) coordinates
-  - `level` (int) - 1 for interest (yellow), 2 for candidate (orange)
-- **Example**: `highlight_cells([(2, 3), (4, 5)], level=1)`
-
-### `highlight_clear()`
-Clear all highlighted cells.
-
-### `visualize_result()`
-Display animated visualization of fire spreading.
+**Properties (read-only):**
+- `.grid` - Current grid state (numpy array copy)
+- `.name` - Map name
+- `.map_number` - Map number or None for custom maps
+- `.max_walls` - Maximum walls allowed
+- `.walls_remaining` - Walls that can still be placed
+- `.walls_placed` - List of wall positions placed
+- `.total_open_cells` - Total open cells in original grid
 
 ## Challenge Maps
 
@@ -227,18 +269,36 @@ Display animated visualization of fire spreading.
 - **Map 3 - Fire Row**: 10x10 grid with multiple fires in a row, 8 walls allowed
 - **Map 4 - Two Rooms**: 10x10 two rooms with one door - block the door with 1 wall
 - **Map 5 - Central Town**: 10x10 central town with 3 entrances - seal it with 3 walls
-- **Map 6 - Hallway Rooms**: 12x7 hallway with multiple rooms - 1 wall to save the most
-- **Map 7 - Big Funnel**: 15x10 funnel shape with fire at both ends, 4 walls allowed
-- **Map 8 - Fake Doors**: 15x10 maze with multiple openings - find the real choke points, 4 walls allowed
+- **Map 6 - Hallway Rooms**: 7x12 hallway with multiple rooms - 1 wall to save the most
+- **Map 7 - Big Funnel**: 10x15 funnel shape with fire at both ends, 4 walls allowed
+- **Map 8 - Fake Doors**: 10x15 maze with multiple openings - find the real choke points, 4 walls allowed
+- **Map 9 - Wide Open, Safe Corner**: 10x15 wide open area with a safe corner, 7 walls allowed
+- **Map 10 - Sams Bane (assisted corner)**: 10x15 assisted corner challenge, 7 walls allowed
+- **Map 11 - Diagonal Corner with Blocked Fires**: 15x15 diagonal pattern with blocked fires, 12 walls allowed
+- **Map 12 - The Diabolical Five-Fire Maze**: 30x30 complex maze with five fire sources, 8 walls allowed
+- **Map 13 - Nightmare open map with complex water assists**: 30x30 extremely challenging open map, 15 walls allowed
 
-## Running the Example
+## Examples
+
+### Beginner Tutorial
 
 ```bash
-uv run example_player.py
+python beginner_tutorial.py
 ```
 
-uv will automatically install numpy and matplotlib if needed, then run the example. The example demonstrates both simple and advanced strategies for wall placement.
-*Note: the example players are not particularly smart!*
+Starts with simple custom maps and teaches the basics of the FireChallenge API.
+
+### Browse Available Maps
+
+```bash
+python browse_maps.py
+```
+
+Interactive tool to preview all 14 built-in challenge maps.
+
+### Create Your Own Player
+
+See the example player template in the "Leaderboard Competition" section below.
 
 ## Leaderboard Competition
 
@@ -275,27 +335,27 @@ The leaderboard will automatically:
 ### Example Player Template
 
 ```python
-from fire_challenge import get_map, place_walls, test_result, visualize_result
+from fire_challenge import FireChallenge
 
 def solve_fire_challenge(map_num, visualize=True):
     """Your strategy description here."""
     
-    # Get the map
-    grid, max_walls, map_name = get_map(map=map_num)
+    # Create game instance
+    game = FireChallenge(map=map_num)
     
     # Your algorithm here
     # ...
     
     # Place walls
     wall_positions = [(x1, y1), (x2, y2)]  # Your wall positions
-    place_walls(wall_positions)
+    game.place_walls(wall_positions)
     
     # Get score
-    score = test_result()
+    score = game.test_result()
     
     # Optional visualization
     if visualize:
-        visualize_result()
+        game.visualize()
     
     return score
 ```
