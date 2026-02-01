@@ -1,5 +1,7 @@
 import unittest
 
+from fire_challenge.challenge_maps import CHALLENGE_MAPS
+
 from flow_player import CellType, get_map_graph, get_map_grid
 
 
@@ -8,7 +10,10 @@ class FlowPlayerTest(unittest.TestCase):
         self.assertEqual(12, get_map_grid(0).sum())
 
     def test_map_zero_graph(self) -> None:
-        self.assertEqual(65, get_map_graph(0).number_of_nodes())
+        map_num = 0
+        grid = CHALLENGE_MAPS[map_num]["grid"]
+
+        self.assertEqual(65, get_map_graph(grid).number_of_nodes())
 
     def test_is_fireproof(self) -> None:
         self.assertTrue(CellType.WATER.is_fireproof())

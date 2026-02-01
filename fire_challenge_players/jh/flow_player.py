@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 
 import logging
+from dataclasses import dataclass, field
 from enum import Enum
+from typing import NamedTuple
 
 import numpy as np
 import typer
@@ -36,8 +38,7 @@ def _add_undirected_edge(g: Graph, a: tuple[int, int], b: tuple[int, int]) -> No
 FIRE_SOURCE = (-1, -1)
 
 
-def get_map_graph(map_num: int = 0) -> Graph:
-    grid = CHALLENGE_MAPS[map_num]["grid"]
+def get_map_graph(grid: np.ndarray) -> Graph:
     rows, cols = grid.shape
 
     g = Graph()
@@ -71,9 +72,41 @@ def get_map_graph(map_num: int = 0) -> Graph:
     return g
 
 
+class Coord(NamedTuple):
+    x: int
+    y: int
+
+
+SOURCE = Coord(-2, -2)  # connected to the problem's one or more starting flames
+SINK = Coord(-1, -1)  # connected to the zero or more proposed wall locations
+
+
+@dataclass
+class Solution:
+    """A candidate FireChallenge solution.
+    It may be a partial solution, proposing fewer than max_walls."""
+
+    sink = SINK
+    num_saved: int = 0
+
+
+@dataclass
+class Problem:
+    """An instance of a FireChallenge problem."""
+
+    graph: Graph
+    max_walls: int
+    map_name: str
+    source = SOURCE
+    solutions: list[Solution] = field(default_factory=list)
+
+
 def solve_fire_challenge(map_num: int = 0, visualize: bool = False) -> int:
 
     grid, max_walls, map_name = get_map(map=map_num)
+
+    pr = Problem(get_map_graph(grid), max_walls, map_name)
+    assert pr
 
     return 0
 
