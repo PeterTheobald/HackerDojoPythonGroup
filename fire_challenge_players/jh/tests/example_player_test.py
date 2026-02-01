@@ -2,7 +2,7 @@ import sys
 import unittest
 from io import StringIO
 
-from fire_challenge_players.example_player import solve_fire_challenge
+from example_player import solve_fire_challenge_simple
 
 
 class ExamplePlayerTest(unittest.TestCase):
@@ -10,7 +10,7 @@ class ExamplePlayerTest(unittest.TestCase):
         console = sys.stdin
         sys.stdout = StringIO()  # /dev/null, for chatty target code
         try:
-            solve_fire_challenge(visualize=False)
+            solve_fire_challenge_simple(visualize=False)
             self.assertGreater(len(sys.stdout.getvalue()), 440)
         finally:
             sys.stdout = console
