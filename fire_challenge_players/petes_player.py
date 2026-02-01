@@ -11,8 +11,8 @@ Algorithm:
 
 from itertools import combinations
 from fire_challenge import (
+    FireChallenge,
     get_map,
-    get_available_maps,
     place_walls, 
     test_result, 
     highlight_cells,
@@ -168,7 +168,7 @@ if __name__ == "__main__":
     print("=" * 50)
     
     print("\nAvailable maps:")
-    available_maps = get_available_maps()
+    available_maps = FireChallenge.get_available_maps()
     for num, name in available_maps:
         print(f"  {num}: {name}")
     
