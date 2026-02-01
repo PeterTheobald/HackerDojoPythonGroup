@@ -29,11 +29,12 @@ Legacy Usage (Deprecated):
 """
 
 import time
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-from matplotlib.colors import ListedColormap
 from collections import deque
+
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.colors import ListedColormap
+from matplotlib.patches import Rectangle
 
 from .challenge_maps import CHALLENGE_MAPS
 
