@@ -4,7 +4,7 @@ all:
 	@egrep '^[a-z-]*:' Makefile | awk '{print $$1}' | tr -d :
 
 ACTIVATE := echo && source ../.venv/bin/activate
-PYTHONPATH := .:..
+PYTHONPATH := .:..:../../fire_challenge
 
 ../.venv:
 	cd .. && uv sync

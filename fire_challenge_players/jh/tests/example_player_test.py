@@ -2,7 +2,7 @@ import sys
 import unittest
 from io import StringIO
 
-from example_player import solve_fire_challenge
+from fire_challenge_players.example_player import solve_fire_challenge
 
 
 class ExamplePlayerTest(unittest.TestCase):
