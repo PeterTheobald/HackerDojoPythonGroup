@@ -17,6 +17,7 @@ from multiprocessing import Pool, cpu_count
 from functools import partial
 import numpy as np
 from fire_challenge import (
+    FireChallenge,
     get_map,
     place_walls,
     test_result,
@@ -1321,14 +1322,12 @@ def solve_fire_challenge(map_num=0, visualize=True, use_parallel=True):
 
 def test_all_maps(visualize=False):
     """Test the solver on all available maps."""
-    from fire_challenge import get_available_maps
-
     print("="*60)
     print("TESTING ALL MAPS")
     print("="*60)
 
     results = []
-    available_maps = get_available_maps()
+    available_maps = FireChallenge.get_available_maps()
 
     for map_num, map_name in available_maps:
         score, total, walls = solve_fire_challenge(map_num, visualize=visualize)
@@ -1345,15 +1344,13 @@ def test_all_maps(visualize=False):
 
 
 if __name__ == "__main__":
-    from fire_challenge import get_available_maps
-
     print("Sam's Fire Challenge Solver - Smart Optimization")
     print("=" * 60)
     print("Using: Greedy + Local Search + Limited Exhaustive")
     print(f"Available CPU cores: {cpu_count()}")
 
     print("\nAvailable maps:")
-    available_maps = get_available_maps()
+    available_maps = FireChallenge.get_available_maps()
     for num, name in available_maps:
         print(f"  {num}: {name}")
 
