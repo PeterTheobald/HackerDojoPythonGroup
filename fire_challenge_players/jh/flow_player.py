@@ -35,43 +35,6 @@ def _add_undirected_edge(g: Graph, a: tuple[int, int], b: tuple[int, int]) -> No
     g.add_edge(b, a)
 
 
-FIRE_SOURCE = (-1, -1)
-
-
-def get_map_graph(grid: np.ndarray) -> Graph:
-    rows, cols = grid.shape
-
-    g = Graph()
-    g.add_node(FIRE_SOURCE, value=CellType.FIRE)
-
-    for x in range(cols):
-        for y in range(rows):
-            g.add_node((x, y), value=CellType(grid[x, y]))
-
-    nbr_offsets = [
-        (1, 0),
-        (0, 1),
-        (-1, 0),
-        (0, -1),
-    ]
-    for x, y in g.nodes:
-        node = g.nodes[(x, y)]
-        if node["value"].is_fireproof():
-            continue
-        for dx, dy in nbr_offsets:
-            nx, ny = x + dx, y + dy
-            if nx in range(cols) and ny in range(rows):
-                nbr = g.nodes[(nx, ny)]
-                if nbr["value"].is_fireproof():
-                    continue
-                _add_undirected_edge(g, (x, y), (nx, ny))
-                if nbr["value"] is CellType.FIRE:
-                    _add_undirected_edge(g, (x, y), FIRE_SOURCE)
-                    log.info("node %r, nbr %r", node, nbr)
-
-    return g
-
-
 class Coord(NamedTuple):
     x: int
     y: int
@@ -79,6 +42,40 @@ class Coord(NamedTuple):
 
 SOURCE = Coord(-2, -2)  # connected to the problem's one or more starting flames
 SINK = Coord(-1, -1)  # connected to the zero or more proposed wall locations
+
+
+def get_map_graph(grid: np.ndarray) -> Graph:
+    rows, cols = grid.shape
+
+    g = Graph()
+    g.add_node(SOURCE, value=CellType.FIRE)
+
+    for x in range(cols):
+        for y in range(rows):
+            g.add_node(Coord(x, y), value=CellType(grid[x, y]))
+
+    nbr_offsets = [
+        (1, 0),
+        (0, 1),
+        (-1, 0),
+        (0, -1),
+    ]
+    for coord in g.nodes:
+        node = g.nodes[coord]
+        if node["value"].is_fireproof():
+            continue
+        for dx, dy in nbr_offsets:
+            nx, ny = coord.x + dx, coord.y + dy
+            if nx in range(cols) and ny in range(rows):
+                nbr = g.nodes[Coord(nx, ny)]
+                if nbr["value"].is_fireproof():
+                    continue
+                _add_undirected_edge(g, coord, Coord(nx, ny))
+                if nbr["value"] is CellType.FIRE:
+                    _add_undirected_edge(g, coord, SOURCE)
+                    log.info("node %r, nbr %r", node, nbr)
+
+    return g
 
 
 @dataclass
@@ -101,14 +98,11 @@ class Problem:
     solutions: list[Solution] = field(default_factory=list)
 
 
-def solve_fire_challenge(map_num: int = 0, visualize: bool = False) -> int:
+def solve_fire_challenge(map_num: int = 0, visualize: bool = False) -> Problem:
 
     grid, max_walls, map_name = get_map(map=map_num)
 
-    pr = Problem(get_map_graph(grid), max_walls, map_name)
-    assert pr
-
-    return 0
+    return Problem(get_map_graph(grid), max_walls, map_name)
 
 
 if __name__ == "__main__":
