@@ -161,7 +161,7 @@ def demonstrate_reset(map_num=0):
     print(f"Walls remaining: {game.walls_remaining}\n")
 
     print("Strategy 2: Place walls at center")
-    game.place_walls([(4, 4), (5, 5)])
+    game.place_walls([(5, 5), (6, 6)])
     score2 = game.test_result()
     print(f"Score: {score2}, Walls placed: {game.walls_placed}\n")
 
@@ -202,7 +202,7 @@ if __name__ == "__main__":
     print("=" * 60)
 
     print("\nAvailable maps:")
-    available_maps = get_available_maps()
+    available_maps = FireChallenge.get_available_maps()
     for num, name in available_maps:
         print(f"  {num}: {name}")
 
