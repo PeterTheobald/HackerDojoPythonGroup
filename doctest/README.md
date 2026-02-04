@@ -10,10 +10,10 @@ correct. Docs often go out of sync with the actual code changes.
 Doctest makes your docs into live tests.
 
 What does pytest give you that doctest doesn't?
-- parameterization
-- fixtures
-- mocking
-- coverage
+- parameterization (testing many different example inputs)
+- fixtures (setup and cleanup functions)
+- mocking (replacing dependencies like database calls or network calls with fake results)
+- coverage (pytest-cov can report how much of your code is being tested)
 
 Use doctest for core modules and reusable logic where the functions
 are small and mostly pure (no side effects)
