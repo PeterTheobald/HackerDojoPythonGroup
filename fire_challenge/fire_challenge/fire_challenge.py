@@ -300,7 +300,8 @@ class FireChallenge:
         plt.ion()
         
         height, width = history[0].shape
-        colors = ['white', 'dodgerblue', 'orangered', 'gray', 'darkred']
+        # Colors: 0=open(white), 1=water(blue), 2=spreading fire(orange), 3=wall(gray), 4=initial fire(dark red)
+        colors = ['white', 'dodgerblue', 'orange', 'gray', 'darkred']
         cmap = ListedColormap(colors)
         
         img = ax.imshow(history[0], interpolation='nearest', cmap=cmap,
