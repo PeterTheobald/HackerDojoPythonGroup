@@ -488,6 +488,19 @@ def get_map(map: int = 0) -> tuple[np.ndarray, int, str]:
     return _current_game.grid, _current_game.max_walls, _current_game.name
 
 
+def get_available_maps() -> list[tuple[int, str]]:
+    """
+    Get a list of all available challenge maps.
+    
+    **DEPRECATED**: Use FireChallenge.get_available_maps() instead:
+        maps = FireChallenge.get_available_maps()
+    
+    Returns:
+        List of (map_number, map_name) tuples
+    """
+    return FireChallenge.get_available_maps()
+
+
 def get_custom_map(grid: np.ndarray, max_walls: int, name: str = "Custom Map") -> tuple[np.ndarray, int, str]:
     """
     Load a custom map for the fire spreading game.
@@ -649,6 +662,7 @@ __all__ = [
     'FireChallenge',
     # Legacy function API (deprecated)
     'get_map',
+    'get_available_maps',
     'get_custom_map',
     'get_custom_map_from_string',
     'place_walls',

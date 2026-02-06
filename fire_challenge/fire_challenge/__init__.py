@@ -7,6 +7,7 @@ from .fire_challenge import (
     FireChallenge,
     # Legacy function API (deprecated)
     get_map,
+    get_available_maps,
     get_custom_map,
     get_custom_map_from_string,
     place_walls,
@@ -21,6 +22,7 @@ __all__ = [
     'FireChallenge',
     # Legacy function API (deprecated)
     'get_map',
+    'get_available_maps',
     'get_custom_map',
     'get_custom_map_from_string',
     'place_walls',

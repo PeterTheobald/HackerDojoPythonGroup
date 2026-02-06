@@ -21,14 +21,11 @@ pip install fire-challenge
 Or using [uv](https://github.com/astral-sh/uv):
 ```bash
 uv pip install fire-challenge
+or
+uv add fire-challenge
 ```
 
 ## Usage
-
-### Recommended: Class-Based API
-
-The new `FireChallenge` class provides a clean, object-oriented interface that makes it easy to test multiple strategies and manage game state.
-
 #### Listing Available Maps
 
 ```python
@@ -378,4 +375,5 @@ def solve_fire_challenge(map_num, visualize=True):
 
 ## License
 
+MIT License: Use it as you like but always include the author copyright and license
 Part of the Hacker Dojo Python Group project materials.
