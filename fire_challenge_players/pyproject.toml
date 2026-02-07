@@ -4,4 +4,5 @@ version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
     "fire-challenge>=2.1.0",
+    "ortools>=9.15.6755",
 ]
