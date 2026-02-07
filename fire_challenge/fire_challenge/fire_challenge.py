@@ -290,34 +290,35 @@ class FireChallenge:
             return '\n'.join(lines)
         else:
             raise ValueError(f"Invalid format '{format}'. Use 'int' or 'str'")
-
+    
     def visualize(self) -> None:
         """Display an animated visualization of the fire spreading across the grid."""
         final_grid, history = self._simulate_fire_spread(self._current_grid)
-
+        
         num_saved = int(np.sum(final_grid == CELL_OPEN))
-
+        
         fig, ax = plt.subplots(figsize=(10, 10))
         plt.ion()
-
+        
         height, width = history[0].shape
-        colors = ['white', 'dodgerblue', 'orangered', 'gray', 'darkred']
+        # Colors: 0=open(white), 1=water(blue), 2=spreading fire(orange), 3=wall(gray), 4=initial fire(dark red)
+        colors = ['white', 'dodgerblue', 'orange', 'gray', 'darkred']
         cmap = ListedColormap(colors)
-
+        
         img = ax.imshow(history[0], interpolation='nearest', cmap=cmap,
                         vmin=0, vmax=4, aspect='auto', origin='upper')
-
+        
         # Draw highlights
         for x, y in self._highlight_data.get('interest', []):
-            rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False,
+            rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False, 
                              edgecolor='yellow', linewidth=3)
             ax.add_patch(rect)
-
+        
         for x, y in self._highlight_data.get('candidate', []):
-            rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False,
+            rect = Rectangle((x - 0.5, y - 0.5), 1, 1, fill=False, 
                              edgecolor='orange', linewidth=3)
             ax.add_patch(rect)
-
+        
         ax.set_xlim(-0.5, width - 0.5)
         ax.set_ylim(height - 0.5, -0.5)
         ax.set_xticks(np.arange(-0.5, width, 1), minor=True)
