@@ -41,7 +41,7 @@ def register_algorithm(name: str, description: str = ""):
 class Tracer:
     """Captures the exploration state of pathfinding algorithms."""
 
-    def __init__(self, grid_size: Tuple[int, int], visualizer=None, grid=None):
+    def __init__(self, grid_size: Tuple[int, int], visualizer=None, grid=None, start_pos=None, end_pos=None):
         self.n_rows, self.n_cols = grid_size
         self.visited_order = []  # List of (row, col, state)
         self.visited_set = set()
@@ -49,6 +49,8 @@ class Tracer:
         self.cells_explored = 0
         self.visualizer = visualizer
         self.grid = grid
+        self.start_pos = start_pos if start_pos else (0, 0)
+        self.end_pos = end_pos if end_pos else (grid_size[0] - 1, grid_size[1] - 1)
 
     def visit(self, row: int, col: int, state: str = "exploring"):
         """Record a cell visit.
@@ -85,57 +87,6 @@ class Tracer:
         return heatmap
 
 
-class GridGenerator:
-    """Generate test grids of various difficulties."""
-
-    @staticmethod
-    def empty_grid(size: int = 20) -> List[List[int]]:
-        """Generate an empty grid (no obstacles)."""
-        return [[0 for _ in range(size)] for _ in range(size)]
-
-    @staticmethod
-    def maze_grid(size: int = 20) -> List[List[int]]:
-        """Generate a maze-like grid with corridors."""
-        grid = [
-            [0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-            [0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0],
-            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0],
-            [1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0],
-            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-            [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0],
-            [0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0],
-            [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-            [1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-            [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-        ]
-        return grid
-
-    @staticmethod
-    def sparse_obstacles(size: int = 20) -> List[List[int]]:
-        """Generate grid with sparse random obstacles."""
-        import random
-
-        random.seed(42)  # Deterministic for fair comparison
-        grid = [[0 for _ in range(size)] for _ in range(size)]
-        # Add 15% obstacles
-        for i in range(size):
-            for j in range(size):
-                if (i, j) != (0, 0) and (i, j) != (size - 1, size - 1):
-                    if random.random() < 0.15:
-                        grid[i][j] = 1
-        return grid
-
-
 class Visualizer:
     """Visualize algorithm exploration patterns with real-time terminal graphics."""
 
@@ -149,6 +100,7 @@ class Visualizer:
     MAGENTA = "\033[35m"
     CYAN = "\033[36m"
     WHITE = "\033[37m"
+    
     BG_BLACK = "\033[40m"
     BG_RED = "\033[41m"
     BG_GREEN = "\033[42m"
@@ -159,9 +111,11 @@ class Visualizer:
     BG_WHITE = "\033[47m"
     BOLD = "\033[1m"
 
-    def __init__(self, animation_speed: float = 0.001):
+    def __init__(self, animation_speed: float = 0.001, start_pos=None, end_pos=None):
         self.animation_speed = animation_speed
         self.start_row = 0
+        self.start_pos = start_pos if start_pos else (0, 0)
+        self.end_pos = end_pos
 
     def clear_screen(self):
         """Clear terminal screen."""
@@ -177,9 +131,9 @@ class Visualizer:
         """Get colored character for a cell."""
         n, m = len(grid), len(grid[0])
 
-        if row == 0 and col == 0:
+        if (row, col) == self.start_pos:
             return f"{self.BG_GREEN}{self.BLACK}{self.BOLD}S{self.RESET}"
-        elif row == n - 1 and col == m - 1:
+        elif self.end_pos and (row, col) == self.end_pos:
             return f"{self.BG_RED}{self.WHITE}{self.BOLD}E{self.RESET}"
         elif grid[row][col] == 1:
             # Wall - use bright white background with black block
@@ -352,6 +306,8 @@ def discover_algorithms():
 
 def run_benchmark(
     grid: List[List[int]],
+    start_pos: Tuple[int, int] = (0, 0),
+    end_pos: Tuple[int, int] = None,
     num_runs: int = 1000,
     visualize: bool = True,
     animation_speed: float = 0.001,
@@ -369,10 +325,14 @@ def run_benchmark(
         print(f"  • {algo['name']}{desc}")
 
     n, m = len(grid), len(grid[0])
+    
+    # Default end_pos to bottom-right if not specified
+    if end_pos is None:
+        end_pos = (n - 1, m - 1)
 
     # First, run animated visualizations
     if visualize:
-        visualizer = Visualizer(animation_speed=animation_speed)
+        visualizer = Visualizer(animation_speed=animation_speed, start_pos=start_pos, end_pos=end_pos)
 
         for i, algo in enumerate(algorithms):
             # Show initial unexplored map
@@ -402,8 +362,8 @@ def run_benchmark(
             visualizer.start_visualization(grid, algo["name"])
 
             # Run with visualization
-            tracer = Tracer((n, m), visualizer=visualizer, grid=grid)
-            path = algo["function"](grid, tracer)
+            tracer = Tracer((n, m), visualizer=visualizer, grid=grid, start_pos=start_pos, end_pos=end_pos)
+            path = algo["function"](grid, tracer, start_pos, end_pos)
 
             # Show final path
             if path:
@@ -440,13 +400,13 @@ def run_benchmark(
         def make_wrapper(func):
             def wrapper(data):
                 grid, tracer = data
-                return func(grid, tracer)
+                return func(grid, tracer, tracer.start_pos, tracer.end_pos)
 
             return wrapper
 
-        def make_setup(grid_data, size):
+        def make_setup(grid_data, size, s_pos, e_pos):
             def setup():
-                tracer = Tracer(size)  # No visualizer for benchmark
+                tracer = Tracer(size, start_pos=s_pos, end_pos=e_pos)  # No visualizer for benchmark
                 return (grid_data, tracer)
 
             return setup
@@ -455,7 +415,7 @@ def run_benchmark(
             {
                 "title": algo["name"],
                 "algorithm_fn": make_wrapper(algo["function"]),
-                "setup_fn": make_setup(grid, (n, m)),
+                "setup_fn": make_setup(grid, (n, m), start_pos, end_pos),
             }
         )
 
@@ -467,7 +427,14 @@ def run_benchmark(
 
 
 def load_map_from_sample():
-    """Load the map from map_samplemap.py, converting spaces to 0 and # to 1."""
+    """Load the map from map_samplemap.py, converting spaces to 0 and # to 1.
+    
+    Returns:
+        Tuple of (grid, start_pos, end_pos) where:
+        - grid: 2D list with 0=open, 1=wall
+        - start_pos: (row, col) for start position (from 'S' or default to (0,0))
+        - end_pos: (row, col) for end position (from 'F' or default to bottom-right)
+    """
     try:
         import map_samplemap
 
@@ -477,28 +444,50 @@ def load_map_from_sample():
         max_len = max(len(line) for line in lines)
 
         grid = []
-        for line in lines:
+        start_pos = None
+        end_pos = None
+        
+        for row_idx, line in enumerate(lines):
             # Pad line to max length if needed
             padded_line = line.ljust(max_len)
-            row = [1 if char == "#" else 0 for char in padded_line]
+            row = []
+            for col_idx, char in enumerate(padded_line):
+                if char == 'S':
+                    start_pos = (row_idx, col_idx)
+                    row.append(0)  # S is an open cell
+                elif char == 'E':
+                    end_pos = (row_idx, col_idx)
+                    row.append(0)  # F is an open cell
+                elif char == '#':
+                    row.append(1)  # Wall
+                else:
+                    row.append(0)  # Open space
             grid.append(row)
 
-        # Ensure start and end positions are open
-        if grid[0][0] == 1:
-            grid[0][0] = 0
-        if grid[-1][-1] == 1:
-            grid[-1][-1] = 0
+        # Default to top-left and bottom-right if not specified
+        if start_pos is None:
+            start_pos = (0, 0)
+            # Ensure start position is open
+            if grid[0][0] == 1:
+                grid[0][0] = 0
+        
+        if end_pos is None:
+            end_pos = (len(grid) - 1, len(grid[0]) - 1)
+            # Ensure end position is open
+            if grid[-1][-1] == 1:
+                grid[-1][-1] = 0
 
-        return grid
+        return grid, start_pos, end_pos
     except ImportError as e:
-        print(f"Warning: map_samplemap.py not found ({e}), using default maze")
-        return GridGenerator.maze_grid(20)
+        print(f"Warning: map_samplemap.py not found ({e}), using default 20x20 grid")
+        # Simple default grid
+        return [[0 for _ in range(20)] for _ in range(20)], (0, 0), (19, 19)
     except Exception as e:
         print(f"Error loading map: {e}")
         import traceback
 
         traceback.print_exc()
-        return GridGenerator.maze_grid(20)
+        return [[0 for _ in range(20)] for _ in range(20)], (0, 0), (19, 19)
 
 
 def main():
@@ -514,13 +503,18 @@ def main():
     print("=" * 80)
 
     # Load grid from sample map
-    grid = load_map_from_sample()
+    grid, start_pos, end_pos = load_map_from_sample()
+    print(f"Map size: {len(grid)}x{len(grid[0])}")
+    print(f"Start: {start_pos}, End: {end_pos}")
+    print()
 
     # Run benchmark with real-time animation
     # animation_speed controls delay between steps (larger = slower)
     # For large maps, use very small delay or set visualize=False
     run_benchmark(
-        grid, 
+        grid,
+        start_pos=start_pos,
+        end_pos=end_pos,
         num_runs=args.repeat, 
         visualize=not args.no_visualize, 
         animation_speed=args.animation_speed
