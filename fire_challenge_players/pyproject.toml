@@ -2,12 +2,9 @@
 name = "fire-challenge"
 version = "0.1.0"
 requires-python = ">=3.14"
-
 dependencies = [
     "fire-challenge>=2.1.0",
-    "matplotlib>=3.10.8",
     "networkx>=3.6.1",
-    "numpy>=2.4.2",
     "ortools>=9.15.6755",
     "typer>=0.21.1",
 ]
