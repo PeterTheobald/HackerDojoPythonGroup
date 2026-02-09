@@ -14,15 +14,14 @@ ONE model for ALL maps:
 No heuristics. No scenarios. Pure optimization.
 """
 
-import numpy as np
 from ortools.sat.python import cp_model
-
+import numpy as np
 from fire_challenge import (
-    get_available_maps,
     get_map,
-    highlight_cells,
     place_walls,
+    highlight_cells,
     visualize_result,
+    get_available_maps
 )
 
 

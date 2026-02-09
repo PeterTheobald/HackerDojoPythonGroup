@@ -21,9 +21,6 @@ classifiers = [
 dependencies = [
     "numpy>=1.24.0",
     "matplotlib>=3.7.0",
-    "networkx>=3.0",
-    "ortools>=9.15.6755",
-    "typer>=0.21.1",
 ]
 
 [project.urls]
