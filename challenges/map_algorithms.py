@@ -6,10 +6,12 @@ Contributors: Add your pathfinding algorithms here.
 Each function will be automatically registered by the benchmark system.
 
 Algorithm Requirements:
-- Signature: def solve_name(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]
+- Signature: def solve_name(grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]) -> Optional[List[Tuple[int, int]]]
 - grid: 2D list where 0=open, 1=wall
 - tracer: Use tracer.visit(row, col, state) to record exploration
-- Return: List of (row, col) tuples from (0,0) to (n-1,m-1), or None if no path
+- start_pos: (row, col) tuple for start position
+- end_pos: (row, col) tuple for end/goal position
+- Return: List of (row, col) tuples from start_pos to end_pos, or None if no path
 - Name your function starting with "solve_"
 - Add a docstring describing your algorithm
 """
@@ -48,27 +50,30 @@ ALGORITHMS = [
 ]
 
 
-def solve_bfs(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
+def solve_bfs(grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]) -> Optional[List[Tuple[int, int]]]:
     """Find shortest path using BFS."""
     if not grid or not grid[0]:
         return None
 
     n = len(grid)
     m = len(grid[0])
+    
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
 
-    if grid[0][0] == 1 or grid[n - 1][m - 1] == 1:
+    if grid[start_row][start_col] == 1 or grid[end_row][end_col] == 1:
         return None
 
-    queue = deque([(0, 0)])
-    visited = {(0, 0)}
-    parent = {(0, 0): None}
+    queue = deque([start_pos])
+    visited = {start_pos}
+    parent = {start_pos: None}
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
     while queue:
         row, col = queue.popleft()
         tracer.visit(row, col, "exploring")
 
-        if row == n - 1 and col == m - 1:
+        if (row, col) == end_pos:
             # Reconstruct path
             path = []
             curr = (row, col)
@@ -99,15 +104,18 @@ def solve_bfs(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
     return None
 
 
-def solve_dfs(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
+def solve_dfs(grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]) -> Optional[List[Tuple[int, int]]]:
     """Find a path using DFS (may not be shortest)."""
     if not grid or not grid[0]:
         return None
 
     n = len(grid)
     m = len(grid[0])
+    
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
 
-    if grid[0][0] == 1 or grid[n - 1][m - 1] == 1:
+    if grid[start_row][start_col] == 1 or grid[end_row][end_col] == 1:
         return None
 
     visited = set()
@@ -117,7 +125,7 @@ def solve_dfs(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
     def dfs(row, col):
         tracer.visit(row, col, "exploring")
 
-        if row == n - 1 and col == m - 1:
+        if (row, col) == end_pos:
             path.append((row, col))
             tracer.visit(row, col, "path")
             return True
@@ -142,30 +150,33 @@ def solve_dfs(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
         path.pop()
         return False
 
-    if dfs(0, 0):
+    if dfs(start_row, start_col):
         return path
     return None
 
 
-def solve_astar(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]]:
+def solve_astar(grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]) -> Optional[List[Tuple[int, int]]]:
     """Find shortest path using A* with Manhattan distance heuristic."""
     if not grid or not grid[0]:
         return None
 
     n = len(grid)
     m = len(grid[0])
+    
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
 
-    if grid[0][0] == 1 or grid[n - 1][m - 1] == 1:
+    if grid[start_row][start_col] == 1 or grid[end_row][end_col] == 1:
         return None
 
     def heuristic(row, col):
-        return abs(row - (n - 1)) + abs(col - (m - 1))
+        return abs(row - end_row) + abs(col - end_col)
 
     # Priority queue: (f_score, g_score, row, col)
-    open_heap = [(heuristic(0, 0), 0, 0, 0)]
+    open_heap = [(heuristic(start_row, start_col), 0, start_row, start_col)]
     visited = set()
-    parent = {(0, 0): None}
-    g_score = {(0, 0): 0}
+    parent = {start_pos: None}
+    g_score = {start_pos: 0}
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
     while open_heap:
@@ -177,7 +188,7 @@ def solve_astar(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]
         visited.add((row, col))
         tracer.visit(row, col, "exploring")
 
-        if row == n - 1 and col == m - 1:
+        if (row, col) == end_pos:
             # Reconstruct path
             path = []
             curr = (row, col)
@@ -208,7 +219,7 @@ def solve_astar(grid: List[List[int]], tracer) -> Optional[List[Tuple[int, int]]
 
 
 def solve_bidirectional_bfs(
-    grid: List[List[int]], tracer
+    grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]
 ) -> Optional[List[Tuple[int, int]]]:
     """BFS from start and end simultaneously, meeting in the middle."""
     if not grid or not grid[0]:
@@ -216,17 +227,20 @@ def solve_bidirectional_bfs(
 
     n = len(grid)
     m = len(grid[0])
+    
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
 
-    if grid[0][0] == 1 or grid[n - 1][m - 1] == 1:
+    if grid[start_row][start_col] == 1 or grid[end_row][end_col] == 1:
         return None
 
     # Forward search from start
-    queue_fwd = deque([(0, 0)])
-    visited_fwd = {(0, 0): None}
+    queue_fwd = deque([start_pos])
+    visited_fwd = {start_pos: None}
 
     # Backward search from end
-    queue_bwd = deque([(n - 1, m - 1)])
-    visited_bwd = {(n - 1, m - 1): None}
+    queue_bwd = deque([end_pos])
+    visited_bwd = {end_pos: None}
 
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
@@ -306,7 +320,7 @@ def solve_bidirectional_bfs(
 
 
 def solve_bidirectional_astar(
-    grid: List[List[int]], tracer
+    grid: List[List[int]], tracer, start_pos: Tuple[int, int], end_pos: Tuple[int, int]
 ) -> Optional[List[Tuple[int, int]]]:
     """A* from start and end simultaneously, meeting in the middle."""
     if not grid or not grid[0]:
@@ -314,28 +328,31 @@ def solve_bidirectional_astar(
 
     n = len(grid)
     m = len(grid[0])
+    
+    start_row, start_col = start_pos
+    end_row, end_col = end_pos
 
-    if grid[0][0] == 1 or grid[n - 1][m - 1] == 1:
+    if grid[start_row][start_col] == 1 or grid[end_row][end_col] == 1:
         return None
 
     def heuristic_from_start(row, col):
         """Manhattan distance to end."""
-        return abs(row - (n - 1)) + abs(col - (m - 1))
+        return abs(row - end_row) + abs(col - end_col)
 
     def heuristic_from_end(row, col):
         """Manhattan distance to start."""
-        return abs(row - 0) + abs(col - 0)
+        return abs(row - start_row) + abs(col - start_col)
 
     # Forward search from start (using heuristic toward end)
-    heap_fwd = [(heuristic_from_start(0, 0), 0, 0, 0)]  # (f, g, row, col)
-    g_score_fwd = {(0, 0): 0}
-    parent_fwd = {(0, 0): None}
+    heap_fwd = [(heuristic_from_start(start_row, start_col), 0, start_row, start_col)]  # (f, g, row, col)
+    g_score_fwd = {start_pos: 0}
+    parent_fwd = {start_pos: None}
     visited_fwd = set()
 
     # Backward search from end (using heuristic toward start)
-    heap_bwd = [(heuristic_from_end(n - 1, m - 1), 0, n - 1, m - 1)]
-    g_score_bwd = {(n - 1, m - 1): 0}
-    parent_bwd = {(n - 1, m - 1): None}
+    heap_bwd = [(heuristic_from_end(end_row, end_col), 0, end_row, end_col)]
+    g_score_bwd = {end_pos: 0}
+    parent_bwd = {end_pos: None}
     visited_bwd = set()
 
     directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
