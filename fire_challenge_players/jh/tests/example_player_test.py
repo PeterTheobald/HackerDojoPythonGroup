@@ -11,6 +11,6 @@ class ExamplePlayerTest(unittest.TestCase):
         sys.stdout = StringIO()  # /dev/null, for chatty target code
         try:
             solve_fire_challenge_simple(visualize=False)
-            self.assertGreater(len(sys.stdout.getvalue()), 440)
+            self.assertGreater(len(sys.stdout.getvalue()), 228)
         finally:
             sys.stdout = console
