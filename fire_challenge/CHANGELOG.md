@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.2.0] - 2026-02-06
 ### Added
-- Build and publish documentation in README using uv
+- Build and publish usign uv documentation added to README
 - CHANGELOG.md for tracking version history
 - Examples organized in `examples/` folder for better project structure
 
