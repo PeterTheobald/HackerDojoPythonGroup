@@ -1,0 +1,4 @@
+Help on function render in module memory_graph:
+
+rreennddeerr(data, outfile=None, view=False, numbered=False)
+    Renders the graph of 'data' to 'outfile' or `memory_graph.render_filename` when not specified.

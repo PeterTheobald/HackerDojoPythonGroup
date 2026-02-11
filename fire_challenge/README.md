@@ -377,3 +377,93 @@ def solve_fire_challenge(map_num, visualize=True):
 
 MIT License: Use it as you like but always include the author copyright and license
 Part of the Hacker Dojo Python Group project materials.
+
+
+## Building and Publishing to PyPI
+
+This package uses [uv](https://github.com/astral-sh/uv) for building and publishing.
+
+### Prerequisites
+
+Install uv if you haven't already:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### Build Process
+
+1. **Update the version number** in `pyproject.toml`:
+   ```toml
+   [project]
+   version = "2.1.1"  # Increment appropriately
+   ```
+
+2. **Clean old builds and build the package**:
+   ```bash
+   cd fire_challenge
+   rm dist/*.tar.gz dist/*.whl
+   uv build
+   ```
+   
+   This creates distribution files in the `dist/` directory:
+   - `fire_challenge-X.Y.Z-py3-none-any.whl` (wheel)
+   - `fire_challenge-X.Y.Z.tar.gz` (source distribution)
+
+3. **Test the build locally** (optional but recommended):
+   ```bash
+   uv pip install dist/fire_challenge-X.Y.Z-py3-none-any.whl --force-reinstall
+   python -c "from fire_challenge import FireChallenge; print(FireChallenge.get_available_maps())"
+   ```
+
+### Publishing to PyPI
+
+1. **Set up PyPI credentials** (one-time setup):
+   
+   Ensure your `~/.pypirc` file contains your PyPI credentials:
+   ```ini
+   [pypi]
+   username = your_username
+   password = your_password
+   ```
+   
+   Note: `uv-publish` will automatically read credentials from `~/.pypirc`
+
+2. **Publish to PyPI**:
+   ```bash
+   uvx uv-publish
+   ```
+   
+   The command will use your credentials from `~/.pypirc` automatically.
+
+3. **Verify the upload**:
+   
+   Visit https://pypi.org/project/fire-challenge/ to confirm the new version is live.
+
+4. **Test installation from PyPI**:
+   ```bash
+   uv pip install fire-challenge --upgrade
+   python -c "from fire_challenge import FireChallenge; print('Success!')"
+   ```
+
+### Version Numbering Guidelines
+
+Follow [Semantic Versioning](https://semver.org/):
+- **Major (X.0.0)**: Breaking API changes
+- **Minor (X.Y.0)**: New features, backward compatible
+- **Patch (X.Y.Z)**: Bug fixes, backward compatible
+
+### Quick Reference
+
+```bash
+# Full workflow
+cd fire_challenge
+# 1. Update version in pyproject.toml
+# 2. Clean old builds and build
+rm dist/*.tar.gz dist/*.whl
+uv build
+# 3. Publish
+uvx uv-publish
+# 4. Test
+uv pip install fire-challenge --upgrade
+```
+
