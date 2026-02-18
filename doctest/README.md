@@ -32,7 +32,7 @@ def clean_names(name):
 
     >>> clean_names("  peter  ")
     'Peter'
-    >>> clean_name("JOSHUA")
+    >>> clean_names("JOSHUA")
     'Joshua'
     """
     return name.strip().capitalize()
