@@ -8,4 +8,5 @@ dependencies = [
  "Flask",
  "beautifulsoup4",
  "jupyter>=1.1.1",
+ "tqdm>=4.67.3",
 ]
