@@ -1,3 +1,13 @@
+"""
+  Leetcode: https://leetcode.com/problems/maximum-path-score-in-a-grid/description/
+  Each cell in dp answers: "If I'm standing at (i, j) and I've spent exactly c cost, what's the best score I could have?"
+
+  The loop fills that answer for every (i, j, c) triple by looking at the two cells that could have led here (above and left), grabbing the one with
+   the higher score, and adding the current cell's score.
+
+  At the end, we look at the destination with every budget from 0 to k and return the best — or -1 if no valid path exists.
+"""
+
 def maxScore(grid, k):
     m, n = len(grid), len(grid[0])
 
