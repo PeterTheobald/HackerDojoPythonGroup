@@ -1,0 +1,14 @@
+Search-Engine-Optimization SEO -> Now Answer-Engine-Optimization AEO!
+- SEO is still important first
+- questions/answers, short paragraphs, bulleted lists, tables
+- EEAT Experience, Expertise, Authoritativeness, and Trustworthiness (for SEO and AEO, show you are the "expert")  - author names, bios, real-world experience case studies, cite sources, endorsements reviews inbound links
+- A FAQ page, HowTo page
+- SuperSchema Schema.org generates JSON-LD in your HTML HEAD section
+- /llm.txt file at root of web server (Markdown with specific format)
+- llm.txt embedded in HEAD SCRIPT tag:
+	- <script type="text/llms.txt">instructions to llm</script>
+	- Include this on your 401 (auth) error pages as well
+- parallel .md versions of every page: /product/index.html.md with short question/answer format
+- Make sure robots.txt doesn't block LLMs
+- AGENTS.md in your github repo with instructions for LLMs
+
